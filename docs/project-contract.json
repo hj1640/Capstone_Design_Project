@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-30",
+  "baselineCommit": "dc385df9babe8bad53064f16674e2019010c4965",
+  "repository": "https://github.com/hj1640/Capstone_Design_Project",
+  "notion": "https://app.notion.com/p/3fcddc2e13b380868de9ca2b14385b29",
+  "expoBuild": "https://expo.dev/accounts/hj1640/projects/fridge-app/builds/ae1cdfc7-f4ef-4862-9024-4b00b5b70ac2",
+  "workingPlatform": "existing_react_native_expo_app",
+  "scope": {
+    "onlineOrdersOnly": {"value": true, "decision": "D-002"},
+    "hardwareRequired": {"value": false, "decision": "D-001"},
+    "showEstimatedRemainingAmount": {"value": false, "decision": "D-007"}
+  },
+  "requirements": {
+    "twoLayerProductFoodDb": "D-039",
+    "verifiedExpiryFeedbackStatistics": "D-040",
+    "githubTeamContinuation": "D-041"
+  },
+  "unresolved": {
+    "selectedEmbeddingModel": null,
+    "productSimilarityCutoff": null,
+    "candidateMargin": null,
+    "minimumDistinctContributors": null,
+    "outlierRule": null,
+    "outlierWeight": null,
+    "sharedStatisticsMethod": null,
+    "purchaseIntervalStatisticsMethod": null,
+    "feedbackDurationMeaning": null,
+    "serverDeployment": null
+  },
+  "evidence": {
+    "expoBuildSourceCommitVerified": false,
+    "physicalDeviceTestedThisReview": false,
+    "notionExperimentArtifactsInBaseline": false,
+    "realFoodKeeperWorkbookInBaseline": false,
+    "selected600ItemsInBaseline": false
+  }
+}

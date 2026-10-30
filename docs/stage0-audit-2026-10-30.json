@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "contractCheck": "passed; checks the documented policy, not current UI compliance",
+  "inspectedAt": "2026-10-30T03:43:25.991Z",
+  "node": "v24.22.1",
+  "platform": "win32",
+  "sourceCommit": "dc385df9babe8bad53064f16674e2019010c4965",
+  "sourceInventoryAvailable": true,
+  "packageLockSha256": "c6e0e8cb85877a5553e6aab5e2e667dee192d52ee5aa3426c6e5110b2357b927",
+  "dependencies": {
+    "@react-native-ml-kit/text-recognition": "^2.0.0",
+    "expo": "~57.0.27",
+    "expo-constants": "^57.0.21",
+    "expo-dev-client": "^57.0.19",
+    "expo-image-picker": "^57.0.20",
+    "expo-linking": "^57.0.12",
+    "expo-router": "^57.0.25",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-dom": "^19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "^5.10.1",
+    "react-native-screens": "^4.29.0",
+    "react-native-web": "^0.21.4"
+  },
+  "foodEntryCount": 16,
+  "eas": {
+    "configPresent": false,
+    "projectIdPresent": false,
+    "ownerPresent": false,
+    "androidPackagePresent": false
+  },
+  "trackedResearchFiles": [],
+  "trackedTestFiles": [],
+  "limits": [
+    "Inventory only; absence applies to tracked files, not teammates computers.",
+    "Does not verify Expo build provenance, OCR, mobile execution, food durations or model accuracy."
+  ]
+}

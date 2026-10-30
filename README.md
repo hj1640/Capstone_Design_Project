@@ -1,5 +1,8 @@
 # 스마트 냉장고 관리 앱 (7조 과제계획서 구현)
 
+> **팀원 시작점 (2026-10-30): [현재 상태·실행 안내·다음 작업](docs/README.md)**
+> 아래는 초기 구현 설명입니다. 온라인 주문 전용·추정 잔여량 비공개 등 최신 결정과 다른 부분은 [결정 기록](docs/DECISIONS.md)을 우선 확인하세요. 실제 구현과 연구노트 실험의 차이는 [0단계 점검](docs/STAGE_0_BASELINE.md)에 기록했습니다.
+
 영수증 인식 기반 AI 스마트 냉장고 관리 애플리케이션입니다.
 React Native + Expo (Expo Router) 기반이며, **영수증 OCR은 Google ML Kit Text Recognition v2(한국어
 모델)로 실제 연동**되어 있습니다. 다만 ML Kit은 네이티브 모듈이라 Expo Go에서는 실행할 수 없고,
