@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
-  "reviewDate": "2026-10-30",
+  "reviewDate": "2026-11-02",
+  "stage1": {"decision": "D-042", "status": "design_proposed", "runtimeImplemented": false},
   "baselineCommit": "dc385df9babe8bad53064f16674e2019010c4965",
   "repository": "https://github.com/hj1640/Capstone_Design_Project",
   "notion": "https://app.notion.com/p/3fcddc2e13b380868de9ca2b14385b29",
