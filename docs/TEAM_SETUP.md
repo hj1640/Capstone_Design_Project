@@ -64,3 +64,6 @@ npx eas-cli@latest build --profile development --platform android
 
 ## 5단계 이후 모델 준비
 앱이 로컬 양자화 모델도 참조하므로 STAGE_5_MODEL_AND_APP.md의 준비 절차(모델 다운로드·Python 양자화·색인 생성)를 실행한 뒤 Expo를 시작한다. pnpm model:prepare만으로 새 clone의 모든 모델이 준비되지는 않는다.
+
+## 6단계 이후
+expo-sqlite/expo-crypto가 추가되어 새 개발 APK가 필요하다. 로컬 API 실행 및 날짜 저장·동의·철회 검증은 STAGE_6_FEEDBACK.md 참조. 서버 운영 로그인/배포가 확정된 것은 아니다.

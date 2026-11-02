@@ -60,3 +60,8 @@ benchmarks/device-results.json
 # PC-only comparison artifacts
 assets/models/model.onnx
 assets/models/model_matmul_int8.onnx
+
+# Local development API is deployed separately
+server/
+__pycache__/
+*.pyc

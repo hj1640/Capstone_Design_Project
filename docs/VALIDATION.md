@@ -60,3 +60,11 @@ GitHub 연결의 저장소 메타데이터에는 push=true가 표시됐으나 �
 - TypeScript 통과. ESLint 오류 0/경고 3. Android Metro export 성공(1,330 modules, 모델 asset 2개).
 - 초기 sandbox 임시 경로 제한 후 정상 권한에서 양자화/비교 실행. ORT 전처리 권고 경고 기록.
 - PyTorch export/실기기/실제 상품 통합 미검증. 원시 실측 benchmarks/stage5-report.json.
+
+## 6단계 검증 — 2026-11-02 (D-047)
+- 서버 테스트 13개 통과. SQLite 소유권·날짜·동시 중복·멱등성·revision·철회·재연결 검사.
+- loopback 실제 HTTP + TypeScript 영속 대기열 통합 통과. 14개 시나리오 benchmarks/stage6-client-checks.json 참조. Native SQLite가 아닌 파일 adapter로 재시작 검증.
+- TypeScript 통과, lint 오류 0/기존 경고 3. Android Metro export 성공(1,373 modules).
+- 최초 수정 동의 전 비전송, Retry-After와 의존 순서, 응답 유실 후 철회, 충돌 재요청 확인.
+- 실기기 저장/네트워크 및 운영 인증/배포 미검증. N/평균/이상값/공개 기본값 비활성 유지.
+- 루트 handoff validator 및 기존 unittest 42개도 통과.

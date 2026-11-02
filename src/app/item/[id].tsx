@@ -2,16 +2,16 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, Alert } from 'react-native';
 import { useLocalSearchParams, router } from 'expo-router';
 import { useFridge } from '@/context/FridgeContext';
-import { computeStatus, remainingRatio } from '@/utils/status';
+import { computeStatus } from '@/utils/status';
 import { formatDateKo } from '@/utils/date';
 import { Card } from '@/components/Card';
-import { ProgressBar } from '@/components/ProgressBar';
+import { ExpiryEditor } from '@/components/ExpiryEditor';
 import { StatusBadge } from '@/components/StatusBadge';
 import { colors, radius, spacing } from '@/constants/theme';
 
 export default function ItemDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { fridgeItems, adjustRemaining, removeItem } = useFridge();
+  const { fridgeItems, removeItem } = useFridge();
   const item = fridgeItems.find((i) => i.id === id);
 
   if (!item) {
@@ -23,9 +23,6 @@ export default function ItemDetailScreen() {
   }
 
   const status = computeStatus(item.purchaseDate, item.expectedExpiryDate);
-  const ratio = remainingRatio(item.totalQuantity, item.remainingQuantity);
-  const isCountable = item.unit === '개' || item.unit === '마리';
-  const step = isCountable ? 1 / item.totalQuantity : 0.1;
 
   function handleFinish(outcome: 'consumed' | 'discarded') {
     Alert.alert(
@@ -69,21 +66,7 @@ export default function ItemDetailScreen() {
       </Card>
 
       <Card style={{ marginTop: spacing.lg }}>
-        <Text style={styles.sectionTitle}>잔여량</Text>
-        <ProgressBar ratio={ratio} color={status.color} height={10} />
-        <View style={styles.qtyControlRow}>
-          <Pressable style={styles.qtyButton} onPress={() => adjustRemaining(item.id, -step)}>
-            <Text style={styles.qtyButtonText}>− 사용</Text>
-          </Pressable>
-          <Text style={styles.qtyValue}>
-            {isCountable
-              ? `${item.remainingQuantity}/${item.totalQuantity} ${item.unit}`
-              : `${Math.round(item.remainingQuantity)}/${item.totalQuantity} ${item.unit}`}
-          </Text>
-          <Pressable style={styles.qtyButton} onPress={() => adjustRemaining(item.id, step)}>
-            <Text style={styles.qtyButtonText}>+ 보충</Text>
-          </Pressable>
-        </View>
+        <ExpiryEditor item={item} />
       </Card>
 
       <Card style={{ marginTop: spacing.lg }}>

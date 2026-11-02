@@ -8,12 +8,14 @@
     "expo": "~57.0.27",
     "expo-asset": "~57.0.20",
     "expo-constants": "^57.0.21",
+    "expo-crypto": "~57.0.4",
     "expo-dev-client": "^57.0.19",
     "expo-device": "~57.0.2",
     "expo-file-system": "~57.0.7",
     "expo-image-picker": "^57.0.20",
     "expo-linking": "^57.0.12",
     "expo-router": "^57.0.25",
+    "expo-sqlite": "~57.0.4",
     "expo-status-bar": "~57.0.1",
     "onnxruntime-react-native": "^1.24.3",
     "react": "19.2.3",
@@ -45,7 +47,10 @@
     "model:prepare:fp32": "node scripts/prepare-stage2-model.mjs --fp32",
     "model:quantize": "python scripts/stage5_quantize.py",
     "benchmark:stage5": "python scripts/stage5_benchmark.py",
-    "test:stage5": "node scripts/stage5-semantic-check.mjs"
+    "test:stage5": "node scripts/stage5-semantic-check.mjs",
+    "server:dev": "python server/dev_api.py",
+    "test:stage6:server": "python -m unittest discover -s server -p test_dev_api.py -v",
+    "test:stage6:client": "python server/run_client_check.py"
   },
   "private": true
 }

@@ -36,7 +36,8 @@
           "cameraPermission": "영수증을 촬영하기 위해 카메라 접근 권한이 필요해요."
         }
       ],
-      "onnxruntime-react-native"
+      "onnxruntime-react-native",
+      "expo-sqlite"
     ]
   }
 }

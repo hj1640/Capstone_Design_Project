@@ -5,6 +5,8 @@ import { purchaseHistory as initialPurchaseHistory } from '@/data/purchaseHistor
 import { discardLog as initialDiscardLog, DiscardEntry } from '@/data/discardLog';
 import { findFoodDbEntry } from '@/data/foodDatabase';
 import { addDays, todayIso } from '@/utils/date';
+import { feedbackStore } from '@/services/feedback/local';
+import type { EditSource } from '@/services/feedback/store';
 
 // 앱 전역 상태 (실제 구현에서는 "단말 내 경량 DB"로 영속화될 영역)
 // 과제계획서: "식품 표준정보, 보유 식품, 구매 이력, 수량 변경 이력을 단말 내 경량 DB에 저장"
@@ -33,6 +35,8 @@ interface FridgeContextValue {
   ) => void;
   adjustRemaining: (itemId: string, deltaRatio: number) => void;
   removeItem: (itemId: string, outcome: 'consumed' | 'discarded') => void;
+  savePersonalExpiry: (item: FoodItem, expiry: string | null, source: EditSource | null) => void;
+  refreshPersonalExpiry: () => void;
   // 영수증 등록 화면에서 생성되고, 인식결과 확인 화면에서 소비되는 임시 세션 데이터.
   // 복잡한 배열 데이터를 라우트 파라미터로 직렬화하는 대신 Context로 전달한다.
   pendingReceipt: MockReceipt | null;
@@ -42,12 +46,17 @@ interface FridgeContextValue {
 const FridgeContext = createContext<FridgeContextValue | undefined>(undefined);
 
 export function FridgeProvider({ children }: { children: React.ReactNode }) {
-  const [fridgeItems, setFridgeItems] = useState<FoodItem[]>(initialFridgeItems);
+  const [fridgeItems, setFridgeItems] = useState<FoodItem[]>(()=>feedbackStore.overlay(initialFridgeItems));
   const [purchaseHistory, setPurchaseHistory] = useState<PurchaseHistoryEntry[]>(
     initialPurchaseHistory,
   );
   const [discardLog, setDiscardLog] = useState<DiscardEntry[]>(initialDiscardLog);
   const [pendingReceipt, setPendingReceipt] = useState<MockReceipt | null>(null);
+  const refreshPersonalExpiry=useCallback(()=>setFridgeItems(previous=>feedbackStore.overlay(previous)),[]);
+  const savePersonalExpiry=useCallback((item: FoodItem,expiry: string | null,source: EditSource | null)=>{
+    feedbackStore.edit(item,expiry,source); // Durable save precedes visible success.
+    setFridgeItems(previous=>feedbackStore.overlay(previous));
+  },[]);
 
   const addConfirmedReceiptItems = useCallback(
     (candidates: OcrCandidate[], source: FoodItem['source']) => {
@@ -110,6 +119,8 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
 
   const removeItem = useCallback(
     (itemId: string, outcome: 'consumed' | 'discarded') => {
+      const stored=feedbackStore.state().records[itemId];
+      if (stored) feedbackStore.hide(stored.item);
       setFridgeItems((prev) => {
         const target = prev.find((i) => i.id === itemId);
         if (target && outcome === 'discarded') {
@@ -140,6 +151,8 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
       addConfirmedReceiptItems,
       adjustRemaining,
       removeItem,
+      savePersonalExpiry,
+      refreshPersonalExpiry,
       pendingReceipt,
       setPendingReceipt,
     }),
@@ -150,6 +163,8 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
       addConfirmedReceiptItems,
       adjustRemaining,
       removeItem,
+      savePersonalExpiry,
+      refreshPersonalExpiry,
       pendingReceipt,
     ],
   );

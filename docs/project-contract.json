@@ -82,5 +82,14 @@
     "physicalDeviceMeasured": false,
     "realCatalogIntegrated": false,
     "productionModelSelected": false
+  },
+  "stage6": {
+    "decision": "D-047",
+    "status": "local_feedback_implemented_http_verified",
+    "personalDateStorage": "expo_sqlite",
+    "backend": "local_development_python_sqlite",
+    "productionAuthenticationSelected": false,
+    "communityPublicationEnabled": false,
+    "physicalDevicePersistenceVerified": false
   }
 }

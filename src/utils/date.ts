@@ -23,6 +23,6 @@ export function daysRemaining(expiryIso: string): number {
 }
 
 export function formatDateKo(dateIso: string): string {
-  const d = new Date(dateIso);
-  return `${d.getMonth() + 1}월 ${d.getDate()}일`;
+  const [, month, day] = dateIso.split('-').map(Number);
+  return `${month}월 ${day}일`;
 }

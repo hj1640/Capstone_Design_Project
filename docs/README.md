@@ -24,3 +24,5 @@
 4단계: [Jaccard / MiniLM 실측 비교](STAGE_4_COMPARISON.md), [결과표](../benchmarks/STAGE4_RESULTS.md).
 
 5단계: [모델 비교·앱 개발용 연결](STAGE_5_MODEL_AND_APP.md), [실측 결과표](../benchmarks/STAGE5_RESULTS.md). 새 clone에서는 5단계 모델 준비 명령을 먼저 실행한다.
+
+6단계: [개인 소비기한 저장·서버 제출](STAGE_6_FEEDBACK.md). 새 SQLite/Crypto native dependency로 개발 APK 재빌드 필요.
