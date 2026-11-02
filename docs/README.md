@@ -20,3 +20,5 @@
 2단계: [모델 실행 검사·재현 방법](STAGE_2_VALIDATION.md). PC 검증 완료, 실기기 결과 대기.
 
 3단계: [상품 DB 검색과 표준 식품 연결](STAGE_3_CATALOG.md). 합성 자료 검증 및 앱 개발용 검색 화면.
+
+4단계: [Jaccard / MiniLM 실측 비교](STAGE_4_COMPARISON.md), [결과표](../benchmarks/STAGE4_RESULTS.md).

@@ -14,6 +14,15 @@ function similarity(a: string, b: string): number {
   return shared / (x.size + y.size - shared);
 }
 
+// Pure Jaccard ranking for stage-4 comparison; no exact/containment promotion.
+export function rankJaccard(query: string, products: Product[]): SearchCandidate[] {
+  const text = normalize(query);
+  return products.map(product => ({ productId: product.productId,
+    foodId: product.mappingStatus === 'reviewed' ? product.foodId : null,
+    title: product.originalTitle, score: similarity(text, normalize(product.searchText || product.originalTitle)) }))
+    .sort((a, b) => b.score - a.score || a.productId.localeCompare(b.productId));
+}
+
 export function validateCatalog(catalog: Catalog): void {
   if (!catalog || !Array.isArray(catalog.foods) || !Array.isArray(catalog.products) ||
       typeof catalog.version !== 'string' || !catalog.version || typeof catalog.synthetic !== 'boolean')

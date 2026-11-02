@@ -1,0 +1,3291 @@
+{
+  "timestamp": "2026-11-02T06:34:02.377083+00:00",
+  "dataset_sha256": "0efaaa64e45f67088e1abf431e54d1c0748c577f7541fa1a1b9a051aa01001fa",
+  "dataset": "Synthetic smoke evaluation; product-disjoint query groups. All retrieval candidates remain indexed.",
+  "source_sha256": {
+    "scripts/stage4_compare.py": "5428f78f846bf7dcf54e0f007d321c8eed8cbb08f55aa64992234b19f4cd8c68",
+    "scripts/stage4-export.mjs": "5105ba08d83604cd3a2409c570935042024f7115200adb8a69b49ececb7f88a6",
+    "src/services/catalog/search.ts": "7512d74fe59b007098e065067695c11f3276390e5c6f176dc411092f24a34ed3"
+  },
+  "git_base_commit": "453e5658db52990918932be0a28524c6658d5b0a",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "python": "3.12.14",
+  "onnxruntime": "1.30.0",
+  "numpy": "2.5.3",
+  "tokenizers": "0.23.2",
+  "model": {
+    "repository": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+    "revision": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+    "files": [
+      {
+        "path": "tokenizer.json",
+        "bytes": 17082913,
+        "sha256": "b60b6b43406a48bf3638526314f3d232d97058bc93472ff2de930d43686fa441"
+      },
+      {
+        "path": "tokenizer_config.json",
+        "bytes": 496,
+        "sha256": "3f5961b9ac86288cccdb97f32fb848d6187c78e1603958c53f3ea1f296b7d8a2"
+      },
+      {
+        "path": "config.json",
+        "bytes": 673,
+        "sha256": "05b570bff786faa5c4604152aa16f19f77ed6dfc31e47dd0f3dd987078693ac7"
+      },
+      {
+        "path": "onnx/model_int8.onnx",
+        "bytes": 118054609,
+        "sha256": "d6ea442ff6a891daefed7c83b2f596fc5dc66bf697e4d006236f64f34bbcf4c8"
+      }
+    ]
+  },
+  "providers": [
+    "CPUExecutionProvider"
+  ],
+  "warmup": 1,
+  "repeats": 3,
+  "threads": 2,
+  "model_load_ms": 237.96800000127405,
+  "index_ms": 2.068700036033988,
+  "cache_hit": true,
+  "index_key": "39257d2b5b636002811196a26e8ce4f3145c28ceeab6646539f26a0a04ea555b",
+  "notes": [
+    "All products indexed; query variants separated by product across dev/test.",
+    "Jaccard timings measured in Node; MiniLM timings in Python incl. tokenization/pooling/search.",
+    "Unknown/ambiguous cases excluded from known-item top-k denominator.",
+    "No production thresholds chosen. Structural and review-all policies are not equivalent."
+  ],
+  "summaries": {
+    "dev": {
+      "jaccard": {
+        "known_count": 9,
+        "product_top1": 1.0,
+        "product_top3": 1.0,
+        "food_top1": 1.0,
+        "warm_p50_ms": 0.041200000000003456,
+        "warm_p95_ms": 0.07750999999999379
+      },
+      "minilm": {
+        "known_count": 9,
+        "product_top1": 1.0,
+        "product_top3": 1.0,
+        "food_top1": 1.0,
+        "warm_p50_ms": 2.022800035774708,
+        "warm_p95_ms": 2.4428699747659266
+      },
+      "stage3_structural_policy": {
+        "cases": 9,
+        "food_suggestions": 4,
+        "wrong_food_suggestions": 0,
+        "wrong_food_suggestion_rate": 0.0,
+        "review_requests": 5,
+        "review_request_rate": 0.5555555555555556,
+        "no_match": 0
+      },
+      "minilm_policy": {
+        "status": "review_all_uncalibrated",
+        "review_request_rate": 1.0,
+        "automatic_accepts": 0,
+        "wrong_automatic_accept_rate": null
+      }
+    },
+    "test": {
+      "jaccard": {
+        "known_count": 12,
+        "product_top1": 1.0,
+        "product_top3": 1.0,
+        "food_top1": 1.0,
+        "warm_p50_ms": 0.039699999999996294,
+        "warm_p95_ms": 0.0809199999999947
+      },
+      "minilm": {
+        "known_count": 12,
+        "product_top1": 0.4166666666666667,
+        "product_top3": 0.8333333333333334,
+        "food_top1": 0.4166666666666667,
+        "warm_p50_ms": 2.0239499863237143,
+        "warm_p95_ms": 2.9479099437594414
+      },
+      "stage3_structural_policy": {
+        "cases": 16,
+        "food_suggestions": 10,
+        "wrong_food_suggestions": 0,
+        "wrong_food_suggestion_rate": 0.0,
+        "review_requests": 3,
+        "review_request_rate": 0.1875,
+        "no_match": 3
+      },
+      "minilm_policy": {
+        "status": "review_all_uncalibrated",
+        "review_request_rate": 1.0,
+        "automatic_accepts": 0,
+        "wrong_automatic_accept_rate": null
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "product-carrot-3-0",
+      "split": "dev",
+      "kind": "known",
+      "query": "가상 바른농장",
+      "expectedProductIds": [
+        "product-carrot-3"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.4166666666666667
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0.1
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0.07142857142857142
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0.07142857142857142
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.12119999999998754,
+        0.0478999999999985,
+        0.039400000000000546
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-3",
+            "foodId": "food-carrot",
+            "title": "가상 바른농장 제철 당근 1kg",
+            "score": 0.4166666666666667
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-carrot",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6818884611129761,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.4573266804218292,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.37688684463500977,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.3492003381252289,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.33722469210624695,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.3110136091709137,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.26608365774154663,
+          "title": "가상 부침용 두부 300g"
+        }
+      ],
+      "minilmWarmMs": [
+        2.0564000587910414,
+        1.931399921886623,
+        1.8952999962493777
+      ]
+    },
+    {
+      "id": "product-carrot-3-1",
+      "split": "dev",
+      "kind": "known",
+      "query": "바른농장 제철 당근",
+      "expectedProductIds": [
+        "product-carrot-3"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.5833333333333334
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.05263157894736842
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.047619047619047616
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.04939999999999145,
+        0.07309999999999661,
+        0.044799999999995066
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-3",
+            "foodId": "food-carrot",
+            "title": "가상 바른농장 제철 당근 1kg",
+            "score": 0.5833333333333334
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-carrot",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.8202457427978516,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.6793514490127563,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.6382864713668823,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.4820687472820282,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.4050280451774597,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.34337925910949707,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.30457985401153564,
+          "title": "가상 부침용 두부 300g"
+        }
+      ],
+      "minilmWarmMs": [
+        2.301699947565794,
+        2.043900080025196,
+        2.022900036536157
+      ]
+    },
+    {
+      "id": "product-carrot-3-2",
+      "split": "dev",
+      "kind": "known",
+      "query": "당근 제철 바른농장",
+      "expectedProductIds": [
+        "product-carrot-3"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.35714285714285715
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.05263157894736842
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.047619047619047616
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.04040000000000532,
+        0.050499999999999545,
+        0.04279999999999973
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-3",
+            "foodId": "food-carrot",
+            "title": "가상 바른농장 제철 당근 1kg",
+            "score": 0.35714285714285715
+          },
+          {
+            "productId": "product-carrot-1",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 햇당근 1kg",
+            "score": 0.05263157894736842
+          },
+          {
+            "productId": "product-carrot-2",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 아삭 당근 500g",
+            "score": 0.047619047619047616
+          }
+        ],
+        "resolution": "needs_review",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.8018023371696472,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.7421748042106628,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.7106868028640747,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.5161163806915283,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.408211350440979,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.3806404173374176,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.3481670618057251,
+          "title": "가상 부침용 두부 300g"
+        }
+      ],
+      "minilmWarmMs": [
+        2.014299971051514,
+        2.022800035774708,
+        2.0219000289216638
+      ]
+    },
+    {
+      "id": "product-tofu-1-0",
+      "split": "dev",
+      "kind": "known",
+      "query": "가상 부침용 두부",
+      "expectedProductIds": [
+        "product-tofu-1"
+      ],
+      "expectedFoodIds": [
+        "food-tofu"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0.6
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0.09090909090909091
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0.06666666666666667
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.058823529411764705
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.07939999999999259,
+        0.03810000000000002,
+        0.03740000000000521
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-tofu-1",
+            "foodId": "food-tofu",
+            "title": "가상 부침용 두부 300g",
+            "score": 0.6
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-tofu",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.6657534837722778,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.3839040994644165,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.34036731719970703,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.2909267544746399,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.2833781838417053,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.2482689619064331,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.1343703269958496,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        }
+      ],
+      "minilmWarmMs": [
+        1.9712999928742647,
+        1.8568000523373485,
+        1.8397999228909612
+      ]
+    },
+    {
+      "id": "product-tofu-1-1",
+      "split": "dev",
+      "kind": "known",
+      "query": "부침용 두부 300그램",
+      "expectedProductIds": [
+        "product-tofu-1"
+      ],
+      "expectedFoodIds": [
+        "food-tofu"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0.5833333333333334
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.043478260869565216
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.0613000000000028,
+        0.04180000000000916,
+        0.041200000000003456
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-tofu-1",
+            "foodId": "food-tofu",
+            "title": "가상 부침용 두부 300g",
+            "score": 0.5833333333333334
+          },
+          {
+            "productId": "product-carrot-2",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 아삭 당근 500g",
+            "score": 0.043478260869565216
+          }
+        ],
+        "resolution": "needs_review",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.7587323188781738,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6580697894096375,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.5532009601593018,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.5427326560020447,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.5359238386154175,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.41999316215515137,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.327634334564209,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        1.944800023920834,
+        1.9422000041231513,
+        1.9395999843254685
+      ]
+    },
+    {
+      "id": "product-tofu-1-2",
+      "split": "dev",
+      "kind": "known",
+      "query": "두부 부침용",
+      "expectedProductIds": [
+        "product-tofu-1"
+      ],
+      "expectedFoodIds": [
+        "food-tofu"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0.2727272727272727
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.039700000000010505,
+        0.035899999999998045,
+        0.03479999999998995
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-tofu-1",
+            "foodId": "food-tofu",
+            "title": "가상 부침용 두부 300g",
+            "score": 0.2727272727272727
+          }
+        ],
+        "resolution": "needs_review",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.4702841341495514,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.38452428579330444,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.3398415446281433,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.3228341341018677,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.28010308742523193,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.24734526872634888,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.1627877652645111,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        }
+      ],
+      "minilmWarmMs": [
+        2.342000021599233,
+        2.2621999960392714,
+        2.24030006211251
+      ]
+    },
+    {
+      "id": "product-milk-1-0",
+      "split": "dev",
+      "kind": "known",
+      "query": "가상 흰우유",
+      "expectedProductIds": [
+        "product-milk-1"
+      ],
+      "expectedFoodIds": [
+        "food-milk"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0.6666666666666666
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0.07692307692307693
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0.07692307692307693
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.06666666666666667
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.03349999999998943,
+        0.03300000000000125,
+        0.04809999999999093
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-milk-1",
+            "foodId": "food-milk",
+            "title": "가상 흰우유 1L",
+            "score": 0.6666666666666666
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-milk",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.837775468826294,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.564736545085907,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.5303871631622314,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.47712796926498413,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.4074341952800751,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.4007978141307831,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.29857829213142395,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        }
+      ],
+      "minilmWarmMs": [
+        2.2188000148162246,
+        2.217200002633035,
+        2.4860999546945095
+      ]
+    },
+    {
+      "id": "product-milk-1-1",
+      "split": "dev",
+      "kind": "known",
+      "query": "흰 우유 일 리터",
+      "expectedProductIds": [
+        "product-milk-1"
+      ],
+      "expectedFoodIds": [
+        "food-milk"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0.2222222222222222
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.03340000000000032,
+        0.037399999999990996,
+        0.031999999999996476
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-milk-1",
+            "foodId": "food-milk",
+            "title": "가상 흰우유 1L",
+            "score": 0.2222222222222222
+          }
+        ],
+        "resolution": "needs_review",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.8526287078857422,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.5697789192199707,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.44847336411476135,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.4433603584766388,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.4419858455657959,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.3745647668838501,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.3634182810783386,
+          "title": "가상 부침용 두부 300g"
+        }
+      ],
+      "minilmWarmMs": [
+        2.5167999556288123,
+        2.077599987387657,
+        1.944500021636486
+      ]
+    },
+    {
+      "id": "product-milk-1-2",
+      "split": "dev",
+      "kind": "known",
+      "query": "우유 1리터",
+      "expectedProductIds": [
+        "product-milk-1"
+      ],
+      "expectedFoodIds": [
+        "food-milk"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0.25
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.041300000000006776,
+        0.04919999999999902,
+        0.03450000000000841
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-milk-1",
+            "foodId": "food-milk",
+            "title": "가상 흰우유 1L",
+            "score": 0.25
+          }
+        ],
+        "resolution": "needs_review",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.7711913585662842,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.5659130811691284,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.49651429057121277,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.4801461696624756,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.4211823046207428,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.3978525400161743,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.3361439108848572,
+          "title": "가상 부침용 두부 300g"
+        }
+      ],
+      "minilmWarmMs": [
+        1.7939999233931303,
+        1.903400057926774,
+        2.278400002978742
+      ]
+    },
+    {
+      "id": "product-carrot-1-0",
+      "split": "test",
+      "kind": "known",
+      "query": "간편한 국내산 제주 햇당근",
+      "expectedProductIds": [
+        "product-carrot-1"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.7692307692307693
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.5333333333333333
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.47058823529411764
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.047619047619047616
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.054000000000002046,
+        0.04079999999999018,
+        0.037599999999997635
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-1",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 햇당근 1kg",
+            "score": 0.7692307692307693
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-carrot",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.7467418909072876,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.4828566312789917,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.4335998296737671,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.3621559739112854,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.21049408614635468,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.20460578799247742,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.1966799944639206,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        2.9820000054314733,
+        2.9553999193012714,
+        2.933999989181757
+      ]
+    },
+    {
+      "id": "product-carrot-1-1",
+      "split": "test",
+      "kind": "known",
+      "query": "제주 햇당근 1kg",
+      "expectedProductIds": [
+        "product-carrot-1"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.5384615384615384
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.26666666666666666
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.25
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.1
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.04210000000000491,
+        0.036100000000004684,
+        0.046900000000007935
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-1",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 햇당근 1kg",
+            "score": 0.5384615384615384
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-carrot",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.8657150268554688,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.8538193106651306,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.8295068740844727,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.8200398087501526,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.4512265920639038,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.35644781589508057,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.323779821395874,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        2.5810999795794487,
+        2.5480000767856836,
+        2.499199938029051
+      ]
+    },
+    {
+      "id": "product-carrot-1-2",
+      "split": "test",
+      "kind": "known",
+      "query": "햇 당근 제주산",
+      "expectedProductIds": [
+        "product-carrot-1"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.2
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.1111111111111111
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.0625
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.058823529411764705
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.03289999999999793,
+        0.04800000000000182,
+        0.03690000000000282
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-1",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 햇당근 1kg",
+            "score": 0.2
+          },
+          {
+            "productId": "product-carrot-2",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 아삭 당근 500g",
+            "score": 0.1111111111111111
+          },
+          {
+            "productId": "product-carrot-3",
+            "foodId": "food-carrot",
+            "title": "가상 바른농장 제철 당근 1kg",
+            "score": 0.0625
+          }
+        ],
+        "resolution": "needs_review",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.8125016689300537,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.7631397843360901,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.7077206373214722,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6164153218269348,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.32330480217933655,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.30525320768356323,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.2970044016838074,
+          "title": "가상 흰우유 1L"
+        }
+      ],
+      "minilmWarmMs": [
+        2.347599947825074,
+        2.3395000025629997,
+        1.9258999964222312
+      ]
+    },
+    {
+      "id": "product-carrot-2-0",
+      "split": "test",
+      "kind": "known",
+      "query": "제주 아삭 당근",
+      "expectedProductIds": [
+        "product-carrot-2"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.3333333333333333
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.125
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.0625
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.058823529411764705
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.03200000000001069,
+        0.04649999999999466,
+        0.03459999999999752
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-2",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 아삭 당근 500g",
+            "score": 0.3333333333333333
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-carrot",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.9155349731445312,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.8833707571029663,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6399063467979431,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.5365395545959473,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.2975047528743744,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.2660728096961975,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.2634049654006958,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        1.9078000914305449,
+        1.8139000749215484,
+        1.7691999673843384
+      ]
+    },
+    {
+      "id": "product-carrot-2-1",
+      "split": "test",
+      "kind": "known",
+      "query": "아삭 당근 500g",
+      "expectedProductIds": [
+        "product-carrot-2"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.4666666666666667
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0.13333333333333333
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.05555555555555555
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.05263157894736842
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.03349999999998943,
+        0.03629999999999711,
+        0.034100000000009345
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-2",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 아삭 당근 500g",
+            "score": 0.4666666666666667
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-carrot",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.7937948107719421,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.7006853818893433,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.6847578287124634,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.6410477161407471,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.49434590339660645,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.365004301071167,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.28154149651527405,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        1.815600087866187,
+        1.8130999524146318,
+        2.2194000193849206
+      ]
+    },
+    {
+      "id": "product-carrot-2-2",
+      "split": "test",
+      "kind": "known",
+      "query": "간편한 국내산 제주 아삭",
+      "expectedProductIds": [
+        "product-carrot-2"
+      ],
+      "expectedFoodIds": [
+        "food-carrot"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.6
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.4666666666666667
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.4666666666666667
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.041200000000003456,
+        0.052099999999995816,
+        0.05339999999999634
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-2",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 아삭 당근 500g",
+            "score": 0.6
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-carrot",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.9224217534065247,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.893134593963623,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6964590549468994,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.5566316843032837,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.38749557733535767,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.3698611259460449,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.3547266125679016,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        2.0740999607369304,
+        2.1512999664992094,
+        2.109499997459352
+      ]
+    },
+    {
+      "id": "product-potato-1-0",
+      "split": "test",
+      "kind": "known",
+      "query": "제주 햇감자",
+      "expectedProductIds": [
+        "product-potato-1"
+      ],
+      "expectedFoodIds": [
+        "food-potato"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.3076923076923077
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.13333333333333333
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.05555555555555555
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.05750000000000455,
+        0.0315000000000083,
+        0.04400000000001114
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-potato-1",
+            "foodId": "food-potato",
+            "title": "간편한 국내산 제주 햇감자 1kg",
+            "score": 0.3076923076923077
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-potato",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.9309297204017639,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.8838298320770264,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.662731409072876,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.5547454953193665,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.36110204458236694,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.32635557651519775,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.31897085905075073,
+          "title": "가상 흰우유 1L"
+        }
+      ],
+      "minilmWarmMs": [
+        1.7544999718666077,
+        1.761400024406612,
+        2.041200059466064
+      ]
+    },
+    {
+      "id": "product-potato-1-1",
+      "split": "test",
+      "kind": "known",
+      "query": "햇 감자 1kg",
+      "expectedProductIds": [
+        "product-potato-1"
+      ],
+      "expectedFoodIds": [
+        "food-potato"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.38461538461538464
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.13333333333333333
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.125
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.0379999999999967,
+        0.03909999999999059,
+        0.05169999999999675
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-potato-1",
+            "foodId": "food-potato",
+            "title": "간편한 국내산 제주 햇감자 1kg",
+            "score": 0.38461538461538464
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-potato",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.6731624603271484,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6225327849388123,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.39617589116096497,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.3579207956790924,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.3265855014324188,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.31593674421310425,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.2955908477306366,
+          "title": "가상 부침용 두부 300g"
+        }
+      ],
+      "minilmWarmMs": [
+        1.8401999259367585,
+        1.9215000793337822,
+        1.8663000082597136
+      ]
+    },
+    {
+      "id": "product-potato-1-2",
+      "split": "test",
+      "kind": "known",
+      "query": "간편한 국내산 제주 햇감",
+      "expectedProductIds": [
+        "product-potato-1"
+      ],
+      "expectedFoodIds": [
+        "food-potato"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.6923076923076923
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.5714285714285714
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.4117647058823529
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.07130000000000791,
+        0.06189999999999429,
+        0.05559999999999832
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-potato-1",
+            "foodId": "food-potato",
+            "title": "간편한 국내산 제주 햇감자 1kg",
+            "score": 0.6923076923076923
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-potato",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.7894291877746582,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.615381121635437,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.5669724941253662,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.4737018346786499,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.27230510115623474,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.2689873278141022,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.2576548457145691,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        2.177800051867962,
+        2.1758999209851027,
+        2.6092000771313906
+      ]
+    },
+    {
+      "id": "product-cheese-1-0",
+      "split": "test",
+      "kind": "known",
+      "query": "가상 슬라이스 치즈",
+      "expectedProductIds": [
+        "product-cheese-1"
+      ],
+      "expectedFoodIds": [
+        "food-cheese"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0.7
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0.08333333333333333
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0.0625
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0.05555555555555555
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.057999999999992724,
+        0.061499999999995225,
+        0.08609999999998763
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-cheese-1",
+            "foodId": "food-cheese",
+            "title": "가상 슬라이스 치즈 10매",
+            "score": 0.7
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-cheese",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.9114859700202942,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.4853383004665375,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.34844130277633667,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.27730172872543335,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.2578960955142975,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.2484731376171112,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.18545693159103394,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        }
+      ],
+      "minilmWarmMs": [
+        1.830899971537292,
+        1.9712999928742647,
+        1.8580000614747405
+      ]
+    },
+    {
+      "id": "product-cheese-1-1",
+      "split": "test",
+      "kind": "known",
+      "query": "치즈 슬라이스 열 장",
+      "expectedProductIds": [
+        "product-cheese-1"
+      ],
+      "expectedFoodIds": [
+        "food-cheese"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0.3076923076923077
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.05570000000000164,
+        0.055999999999997385,
+        0.061299999999988586
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-cheese-1",
+            "foodId": "food-cheese",
+            "title": "가상 슬라이스 치즈 10매",
+            "score": 0.3076923076923077
+          }
+        ],
+        "resolution": "needs_review",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.7997786402702332,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.7569711208343506,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6642893552780151,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.6590619087219238,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.4769675135612488,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.4383918046951294,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.3362579345703125,
+          "title": "가상 부침용 두부 300g"
+        }
+      ],
+      "minilmWarmMs": [
+        1.9407999934628606,
+        1.9399999873712659,
+        3.379100002348423
+      ]
+    },
+    {
+      "id": "product-cheese-1-2",
+      "split": "test",
+      "kind": "known",
+      "query": "슬라이스치즈 10매",
+      "expectedProductIds": [
+        "product-cheese-1"
+      ],
+      "expectedFoodIds": [
+        "food-cheese"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0.8
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.12109999999999843,
+        0.09190000000000964,
+        0.03310000000000457
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-cheese-1",
+            "foodId": "food-cheese",
+            "title": "가상 슬라이스 치즈 10매",
+            "score": 0.8
+          }
+        ],
+        "resolution": "food_only",
+        "selectedProductId": null,
+        "selectedFoodId": "food-cheese",
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.7777501940727234,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.7556226849555969,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6366572380065918,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.4992491900920868,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.46994131803512573,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.4479392170906067,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.44136351346969604,
+          "title": "가상 흰우유 1L"
+        }
+      ],
+      "minilmWarmMs": [
+        2.2568999556824565,
+        2.1692999871447682,
+        2.0963000133633614
+      ]
+    },
+    {
+      "id": "ambiguous-prefix",
+      "split": "test",
+      "kind": "ambiguous",
+      "query": "간편한 국내산 제주",
+      "expectedProductIds": [
+        "product-carrot-1",
+        "product-carrot-2",
+        "product-potato-1"
+      ],
+      "expectedFoodIds": [
+        "food-carrot",
+        "food-potato"
+      ],
+      "jaccard": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0.5384615384615384
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0.5384615384615384
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0.4666666666666667
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.032200000000003115,
+        0.03170000000000073,
+        0.032099999999999795
+      ],
+      "stage3": {
+        "candidates": [
+          {
+            "productId": "product-carrot-1",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 햇당근 1kg",
+            "score": 0.5384615384615384
+          },
+          {
+            "productId": "product-potato-1",
+            "foodId": "food-potato",
+            "title": "간편한 국내산 제주 햇감자 1kg",
+            "score": 0.5384615384615384
+          },
+          {
+            "productId": "product-carrot-2",
+            "foodId": "food-carrot",
+            "title": "간편한 국내산 제주 아삭 당근 500g",
+            "score": 0.4666666666666667
+          }
+        ],
+        "resolution": "needs_review",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.6382312774658203,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.600136399269104,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.566107988357544,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.5303612947463989,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.29864487051963806,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.29155877232551575,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.2819285988807678,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        2.0213000243529677,
+        1.9368999637663364,
+        1.918200054205954
+      ]
+    },
+    {
+      "id": "unknown-0",
+      "split": "test",
+      "kind": "unknown",
+      "query": "무관한외부상품",
+      "expectedProductIds": [],
+      "expectedFoodIds": [],
+      "jaccard": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.03260000000000218,
+        0.032399999999995543,
+        0.03249999999999886
+      ],
+      "stage3": {
+        "candidates": [],
+        "resolution": "no_match",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.48178982734680176,
+          "title": "가상 슬라이스 치즈 10매"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.45391762256622314,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.4451621174812317,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.4098248779773712,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.37257009744644165,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.36954444646835327,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.3147936165332794,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        }
+      ],
+      "minilmWarmMs": [
+        1.9033999415114522,
+        2.0265999482944608,
+        1.9444000208750367
+      ]
+    },
+    {
+      "id": "unknown-1",
+      "split": "test",
+      "kind": "unknown",
+      "query": "무선 충전기",
+      "expectedProductIds": [],
+      "expectedFoodIds": [],
+      "jaccard": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.030699999999995953,
+        0.030099999999990246,
+        0.030199999999993565
+      ],
+      "stage3": {
+        "candidates": [],
+        "resolution": "no_match",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.43976396322250366,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.37765049934387207,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.3607777953147888,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.32296547293663025,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.290698379278183,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.23485645651817322,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.05545517057180405,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        1.806700020097196,
+        1.9096999894827604,
+        1.885599922388792
+      ]
+    },
+    {
+      "id": "unknown-2",
+      "split": "test",
+      "kind": "unknown",
+      "query": "싱싱한 생연어",
+      "expectedProductIds": [],
+      "expectedFoodIds": [],
+      "jaccard": [
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 햇당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "title": "간편한 국내산 제주 아삭 당근 500g",
+          "score": 0
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "title": "가상 바른농장 제철 당근 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "title": "가상 슬라이스 치즈 10매",
+          "score": 0
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "title": "가상 흰우유 1L",
+          "score": 0
+        },
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "title": "간편한 국내산 제주 햇감자 1kg",
+          "score": 0
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "title": "가상 부침용 두부 300g",
+          "score": 0
+        }
+      ],
+      "jaccardWarmMs": [
+        0.03349999999998943,
+        0.03130000000000166,
+        0.040300000000002
+      ],
+      "stage3": {
+        "candidates": [],
+        "resolution": "no_match",
+        "selectedProductId": null,
+        "selectedFoodId": null,
+        "catalogVersion": "synthetic-stage3-v1",
+        "indexVersion": "lexical-stage3-v1",
+        "modelRevision": "none"
+      },
+      "minilm": [
+        {
+          "productId": "product-potato-1",
+          "foodId": "food-potato",
+          "score": 0.7189978957176208,
+          "title": "간편한 국내산 제주 햇감자 1kg"
+        },
+        {
+          "productId": "product-carrot-2",
+          "foodId": "food-carrot",
+          "score": 0.6740160584449768,
+          "title": "간편한 국내산 제주 아삭 당근 500g"
+        },
+        {
+          "productId": "product-carrot-3",
+          "foodId": "food-carrot",
+          "score": 0.6172374486923218,
+          "title": "가상 바른농장 제철 당근 1kg"
+        },
+        {
+          "productId": "product-carrot-1",
+          "foodId": "food-carrot",
+          "score": 0.498690128326416,
+          "title": "간편한 국내산 제주 햇당근 1kg"
+        },
+        {
+          "productId": "product-tofu-1",
+          "foodId": "food-tofu",
+          "score": 0.4195275902748108,
+          "title": "가상 부침용 두부 300g"
+        },
+        {
+          "productId": "product-milk-1",
+          "foodId": "food-milk",
+          "score": 0.3883301317691803,
+          "title": "가상 흰우유 1L"
+        },
+        {
+          "productId": "product-cheese-1",
+          "foodId": "food-cheese",
+          "score": 0.36663782596588135,
+          "title": "가상 슬라이스 치즈 10매"
+        }
+      ],
+      "minilmWarmMs": [
+        2.4338000221177936,
+        2.5388000067323446,
+        2.4963999167084694
+      ]
+    }
+  ]
+}

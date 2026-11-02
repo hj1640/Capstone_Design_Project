@@ -55,3 +55,7 @@ service-account*.json
 !/assets/models/.gitkeep
 
 .venv/
+
+# Python experiment caches
+__pycache__/
+*.pyc
