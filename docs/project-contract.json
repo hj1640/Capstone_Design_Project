@@ -1,16 +1,29 @@
 {
   "schemaVersion": 1,
   "reviewDate": "2026-11-02",
-  "stage1": {"decision": "D-042", "status": "design_proposed", "runtimeImplemented": false},
+  "stage1": {
+    "decision": "D-042",
+    "status": "design_proposed",
+    "runtimeImplemented": false
+  },
   "baselineCommit": "dc385df9babe8bad53064f16674e2019010c4965",
   "repository": "https://github.com/hj1640/Capstone_Design_Project",
   "notion": "https://app.notion.com/p/3fcddc2e13b380868de9ca2b14385b29",
   "expoBuild": "https://expo.dev/accounts/hj1640/projects/fridge-app/builds/ae1cdfc7-f4ef-4862-9024-4b00b5b70ac2",
   "workingPlatform": "existing_react_native_expo_app",
   "scope": {
-    "onlineOrdersOnly": {"value": true, "decision": "D-002"},
-    "hardwareRequired": {"value": false, "decision": "D-001"},
-    "showEstimatedRemainingAmount": {"value": false, "decision": "D-007"}
+    "onlineOrdersOnly": {
+      "value": true,
+      "decision": "D-002"
+    },
+    "hardwareRequired": {
+      "value": false,
+      "decision": "D-001"
+    },
+    "showEstimatedRemainingAmount": {
+      "value": false,
+      "decision": "D-007"
+    }
   },
   "requirements": {
     "twoLayerProductFoodDb": "D-039",
@@ -35,5 +48,12 @@
     "notionExperimentArtifactsInBaseline": false,
     "realFoodKeeperWorkbookInBaseline": false,
     "selected600ItemsInBaseline": false
+  },
+  "stage2": {
+    "decision": "D-043",
+    "status": "probe_implemented_desktop_validated_device_pending",
+    "runtimeVerified": false,
+    "desktopTokenParityCases": 8,
+    "experimentalModelRevision": "2c4055b12046f11709e9df2c122e59ffbdc2f900"
   }
 }

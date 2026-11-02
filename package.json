@@ -3,16 +3,20 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "dependencies": {
+    "@huggingface/tokenizers": "^0.2.0",
     "@react-native-ml-kit/text-recognition": "^2.0.0",
     "expo": "~57.0.27",
+    "expo-asset": "~57.0.20",
     "expo-constants": "^57.0.21",
     "expo-dev-client": "^57.0.19",
+    "expo-device": "~57.0.2",
+    "expo-file-system": "~57.0.7",
     "expo-image-picker": "^57.0.20",
     "expo-linking": "^57.0.12",
     "expo-router": "^57.0.25",
     "expo-status-bar": "~57.0.1",
+    "onnxruntime-react-native": "^1.24.3",
     "react": "19.2.3",
-    "react-dom": "^19.2.3",
     "react-native": "0.86.3",
     "react-native-safe-area-context": "^5.10.1",
     "react-native-screens": "^4.29.0",
@@ -20,13 +24,20 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
+    "eslint": "^9.39.5",
+    "eslint-config-expo": "~57.0.2",
+    "react-dom": "^19.2.3",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "model:prepare": "node scripts/prepare-stage2-model.mjs",
+    "test:stage2": "node scripts/stage2-parity.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
   },
   "private": true
 }

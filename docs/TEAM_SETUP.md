@@ -58,3 +58,6 @@ npx eas-cli@latest build --profile development --platform android
 `main`에서 최신 코드를 받은 뒤 `codex/<작업명>` 또는 팀이 정한 브랜치에서 작업하고 PR로 공유한다. PR에는 변경 내용, D-ID, 실행 결과, 미완료 항목을 적는다. 처음부터 다른 앱을 만들지 말고 `src/services/ocr/`, `src/data/`, `src/types/`, `src/context/` 연결을 유지하며 단계별 변경을 한다.
 
 공개 Git에는 소스·정의·익명화한 예제·재현 절차·평가 요약을 올린다. 주문 이미지·구매 이력·사용자 DB·개인 식별자·토큰·서명키는 올리지 않는다. 큰 모델은 체크섬과 다운로드 절차·고정 revision을 제공하고 실제 배포 위치는 모델 확보 후 정한다.
+
+## 2단계 이후 설치 안내
+현재는 pnpm-lock.yaml과 ESLint 설정이 추가되었다. 위 0단계의 npm ci 대신 pnpm install --frozen-lockfile 및 pnpm model:prepare를 사용한다. eas.json은 추가됐지만 기존 프로젝트 식별값은 여전히 필요하다. 자세한 절차는 STAGE_2_VALIDATION.md 참조.

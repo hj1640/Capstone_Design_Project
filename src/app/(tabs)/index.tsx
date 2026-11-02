@@ -50,6 +50,9 @@ export default function HomeScreen() {
     >
       <Text style={styles.greeting}>안녕하세요 👋</Text>
       <Text style={styles.subGreeting}>오늘 냉장고 상태를 확인해보세요</Text>
+      {__DEV__ && <Pressable onPress={() => router.push('/model-probe')}>
+        <Text>개발용: 2단계 모델 실행 검사</Text>
+      </Pressable>}
 
       <View style={styles.statusRow}>
         <StatusStat label="확인 필요" value={statusCounts.danger} color={colors.statusDanger} />

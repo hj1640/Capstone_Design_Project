@@ -32,3 +32,12 @@ GitHub 연결의 저장소 메타데이터에는 push=true가 표시됐으나 �
 이를 해결하려면 팀 저장소를 연결한 GitHub 앱의 repository contents 쓰기 권한과 PR 권한을 확인하거나, 권한 있는 조원이 제공된 패치/소스를 자신의 인증된 Git으로 push한다. 패치에는 현재 앱 동작 변경 없이 문서·감사 도구·공개 데이터 제외 규칙만 포함된다.
 
 자료 대조와 공유 패키지는 준비됐지만 **GitHub 게시 및 기존 개발 빌드 재현까지 완료된 상태는 아니다.**
+
+## 2단계 구현 검증 — 2026-11-02 (D-043)
+- Python ORT CPU 합성 입력 8개: 모두 384D 유한 벡터. 원시 측정: benchmarks/reference.json.
+- Python/JS 토큰 비교 8/8, masked pooling 및 오류 경계 검사 통과.
+- tsc --noEmit 통과. ESLint 오류 0, 경고 2 (기존 unused radius, Metro asset require).
+- Expo Android export 성공: 1,320 modules, Hermes bundle 약 14MB, ONNX asset 약 118MB. APK 빌드/실기기 실행을 뜻하지 않음.
+- 루트 handoff validator 및 unittest 42개 통과. Windows sandbox의 임시 파일 접근 실패 후 정상 권한에서 재검증.
+- RN ORT 네이티브 빌드/기기 추론, 메모리, FP32 비교 미검증. 기기 결과를 만든 적 없음.
+- 네이티브 의존성 설치 중 Expo CLI 후처리 오류가 있었으나 새 프로세스에서 TypeScript/Android export를 완료. ONNX config plugin 명시 추가.

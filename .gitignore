@@ -50,3 +50,8 @@ yarn-error.*
 !.env.example
 credentials.json
 service-account*.json
+
+/assets/models/*
+!/assets/models/.gitkeep
+
+.venv/
