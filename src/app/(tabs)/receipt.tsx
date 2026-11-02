@@ -13,7 +13,8 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useFridge } from '@/context/FridgeContext';
-import { runReceiptOcrPipeline, mlkitOcrEngine } from '@/services/ocr';
+import { runReceiptOcrPipeline, mlkitOcrEngine, createOnlineOrderDemo } from '@/services/ocr';
+import { validDate } from '@/services/feedback/store';
 import { foodDatabase } from '@/data/foodDatabase';
 import { Card } from '@/components/Card';
 import { SectionHeader } from '@/components/SectionHeader';
@@ -26,6 +27,7 @@ export default function ReceiptScreen() {
   const [showManualEntry, setShowManualEntry] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualQuantity, setManualQuantity] = useState('1');
+  const [manualDate,setManualDate]=useState('');
 
   async function pickFromLibrary() {
     const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -51,19 +53,20 @@ export default function ReceiptScreen() {
     if (!imageUri) return;
     setIsRecognizing(true);
     try {
-      // 실기기 개발 빌드(ML Kit 네이티브 모듈 연결됨)에서는 실제 OCR+매칭 결과를,
-      // Expo Go/웹 등 네이티브 모듈이 없는 환경에서는 모의 데이터를 반환한다.
-      // (판단 로직은 src/services/ocr/index.ts 참고)
+      // Actual OCR failure is reported; synthetic examples use a separate developer action.
       const result = await runReceiptOcrPipeline(imageUri);
       setPendingReceipt(result);
       setImageUri(null);
       router.push('/receipt-result');
+    } catch(error) {
+      Alert.alert('인식 실패',String(error));
     } finally {
       setIsRecognizing(false);
     }
   }
 
   function submitManualEntry() {
+    if (!validDate(manualDate)) {Alert.alert('구매일을 확인해 주세요','YYYY-MM-DD 형식으로 실제 구매일을 입력해 주세요.');return;}
     if (!manualName.trim()) {
       Alert.alert('품목명을 입력해주세요');
       return;
@@ -71,9 +74,10 @@ export default function ReceiptScreen() {
     const match = foodDatabase.find(
       (f) => f.standardName === manualName.trim() || f.synonyms.includes(manualName.trim()),
     );
-    const quantity = Number(manualQuantity) || 1;
+    const quantity = Number(manualQuantity);
+    if (!Number.isFinite(quantity) || quantity<=0) {Alert.alert('수량을 확인해 주세요');return;}
 
-    addConfirmedReceiptItems(
+    try {addConfirmedReceiptItems(
       [
         {
           id: `manual-${Date.now()}`,
@@ -83,12 +87,13 @@ export default function ReceiptScreen() {
           confidence: match ? 1 : 0.5,
           category: match?.category ?? '가공식품',
           quantity,
-          unit: match?.unit ?? '개',
+          unit: '개',
           status: 'confirmed',
         },
       ],
       '수기입력',
-    );
+      manualDate,
+    );}catch(error){Alert.alert('등록 실패',String(error));return;}
 
     setManualName('');
     setManualQuantity('1');
@@ -102,15 +107,15 @@ export default function ReceiptScreen() {
       contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xl }}
     >
       <SectionHeader
-        title="영수증 등록"
-        subtitle="영수증을 촬영하거나 갤러리에서 선택하면 식재료가 자동으로 인식돼요"
+        title="온라인 주문 등록"
+        subtitle="온라인 주문 화면의 캡처·사진을 선택하고 인식 결과를 확인해 주세요"
       />
 
       <View style={styles.engineBadge}>
         <Text style={styles.engineBadgeText}>
           {mlkitOcrEngine.isAvailable()
             ? '🟢 Google ML Kit 실제 인식 사용 중'
-            : '🟡 개발 빌드가 아니라 모의 인식 데이터를 사용해요'}
+            : '🟡 실제 OCR은 ML Kit 개발 빌드가 필요해요'}
         </Text>
       </View>
 
@@ -120,7 +125,7 @@ export default function ReceiptScreen() {
         ) : (
           <View style={styles.placeholder}>
             <Text style={styles.placeholderIcon}>🧾</Text>
-            <Text style={styles.placeholderText}>등록할 영수증 이미지가 없어요</Text>
+            <Text style={styles.placeholderText}>온라인 주문 화면의 캡처·사진을 선택해 주세요</Text>
           </View>
         )}
 
@@ -149,6 +154,10 @@ export default function ReceiptScreen() {
         </Pressable>
       </Card>
 
+      {__DEV__ && <Pressable onPress={()=>{setPendingReceipt(createOnlineOrderDemo());router.push('/receipt-result');}}>
+        <Text>개발용: 합성 온라인 주문 예제 열기</Text>
+      </Pressable>}
+
       <Pressable style={styles.manualToggle} onPress={() => setShowManualEntry((v) => !v)}>
         <Text style={styles.manualToggleText}>
           {showManualEntry ? '수기 입력 닫기' : '영수증이 없나요? 수기로 입력하기'}
@@ -171,6 +180,8 @@ export default function ReceiptScreen() {
             value={manualQuantity}
             onChangeText={setManualQuantity}
           />
+          <Text style={styles.inputLabel}>실제 구매일</Text>
+          <TextInput style={styles.input} placeholder="YYYY-MM-DD" value={manualDate} onChangeText={setManualDate} />
           <Pressable style={[styles.primaryButton, { marginTop: spacing.md }]} onPress={submitManualEntry}>
             <Text style={styles.primaryButtonText}>냉장고에 추가</Text>
           </Pressable>

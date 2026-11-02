@@ -38,13 +38,13 @@ export default function RecommendScreen() {
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xl }}>
       <SectionHeader
         title="구매 추천"
-        subtitle="최근 구매일 · 평균 주기 · 예상 소진일을 조합한 규칙 기반 추천"
+        subtitle="구매 기록을 바탕으로 다음 구매 시점을 안내하는 기능입니다"
       />
 
       {recommendations.length === 0 ? (
         <Card>
           <Text style={styles.emptyText}>
-            아직 추천할 만큼 충분한 구매 이력이 쌓이지 않았어요. 영수증을 더 등록해보세요.
+            구매 추천 기능을 준비 중입니다. 등록한 구매 기록은 보관됩니다.
           </Text>
         </Card>
       ) : (

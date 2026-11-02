@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-11-02T13:13:22.853Z",
+  "node": "v24.22.1",
+  "platform": "win32",
+  "synthetic": true,
+  "passed": true,
+  "checkpoints": [
+    "online order date/quantity parsing; missing/conflicting dates remain unknown",
+    "two-layer matching; ambiguous truncated name needs review",
+    "explicit confirmation and purchase date; no invented expiry",
+    "persistent registration/history and repeated personal edits; clear restores unknown",
+    "consented submission over HTTP is held before mapping review",
+    "synthetic operator review and test-only N gate publish rule without overwriting personal date",
+    "withdrawal removes contribution and rule; personal date survives"
+  ],
+  "limitations": [
+    "Input is synthetic OCR text; actual image OCR and Android SQLite/UI not executed.",
+    "Review callback exists only in this temporary test handler; production policy stays disabled."
+  ]
+}

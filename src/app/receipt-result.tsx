@@ -6,10 +6,12 @@ import { OcrCandidate } from '@/types/food';
 import { Card } from '@/components/Card';
 import { SectionHeader } from '@/components/SectionHeader';
 import { colors, radius, spacing } from '@/constants/theme';
+import { validDate } from '@/services/feedback/store';
 
 export default function ReceiptResultScreen() {
   const { pendingReceipt, setPendingReceipt, addConfirmedReceiptItems } = useFridge();
   const [candidates, setCandidates] = useState<OcrCandidate[]>(pendingReceipt?.candidates ?? []);
+  const [purchaseDate,setPurchaseDate]=useState(pendingReceipt?.date ?? '');
 
   useEffect(() => {
     if (!pendingReceipt) {
@@ -27,7 +29,7 @@ export default function ReceiptResultScreen() {
   function toggleReject(id: string) {
     setCandidates((prev) =>
       prev.map((c) =>
-        c.id === id ? { ...c, status: c.status === 'rejected' ? 'confirmed' : 'rejected' } : c,
+        c.id === id ? { ...c, status: c.status === 'rejected' ? 'uncertain' : 'rejected' } : c,
       ),
     );
   }
@@ -35,6 +37,7 @@ export default function ReceiptResultScreen() {
   const includedCount = candidates.filter((c) => c.status !== 'rejected').length;
 
   function handleConfirmAll() {
+    if (!validDate(purchaseDate)) {Alert.alert('구매일 확인','실제 구매일을 YYYY-MM-DD 형식으로 입력해 주세요.');return;}
     const stillUncertain = candidates.some((c) => c.status === 'uncertain');
     if (stillUncertain) {
       Alert.alert(
@@ -43,7 +46,8 @@ export default function ReceiptResultScreen() {
       );
       return;
     }
-    addConfirmedReceiptItems(candidates, '영수증');
+    try {addConfirmedReceiptItems(candidates, '온라인주문',purchaseDate);}
+    catch(error){Alert.alert('등록 확인',String(error));return;}
     setPendingReceipt(null);
     router.replace('/fridge');
   }
@@ -52,10 +56,14 @@ export default function ReceiptResultScreen() {
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xl }}>
       <SectionHeader
         title={pendingReceipt.storeName}
-        subtitle={`${pendingReceipt.date} · OCR로 ${candidates.length}개 품목을 인식했어요${
+        subtitle={`${pendingReceipt.date ?? '구매일 확인 필요'} · OCR로 ${candidates.length}개 품목을 인식했어요${
           pendingReceipt.engine === 'mock' ? ' (모의 데이터)' : ''
         }`}
       />
+
+      <Text>구매일 확인 (배송일과 구분해 주세요)</Text>
+      <TextInput accessibilityLabel="실제 구매일" value={purchaseDate} onChangeText={setPurchaseDate}
+        placeholder="YYYY-MM-DD" style={{borderWidth:1,padding:10,marginBottom:16}} />
 
       <Card style={{ marginBottom: spacing.lg }}>
         <Text style={styles.rawLabel}>원문 인식 결과 (OCR)</Text>
@@ -91,7 +99,7 @@ export default function ReceiptResultScreen() {
           {c.status === 'uncertain' && (
             <View style={styles.uncertainBox}>
               <Text style={styles.uncertainLabel}>
-                유사도가 낮아요 ({Math.round(c.confidence * 100)}%) · 후보 중 선택해주세요
+                분류 후보를 확인해 선택해주세요. 점수는 확률이 아닙니다.
               </Text>
               <View style={styles.chipRow}>
                 {[c.guessedName, ...c.alternativeNames].map((name) => (

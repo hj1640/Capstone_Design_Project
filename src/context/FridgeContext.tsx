@@ -3,8 +3,9 @@ import { FoodItem, MockReceipt, OcrCandidate, PurchaseHistoryEntry, FoodCategory
 import { fridgeItems as initialFridgeItems } from '@/data/fridgeItems';
 import { purchaseHistory as initialPurchaseHistory } from '@/data/purchaseHistory';
 import { discardLog as initialDiscardLog, DiscardEntry } from '@/data/discardLog';
-import { findFoodDbEntry } from '@/data/foodDatabase';
-import { addDays, todayIso } from '@/utils/date';
+import { buildRegistration } from '@/services/registration';
+import { randomUUID } from 'expo-crypto';
+import { todayIso } from '@/utils/date';
 import { feedbackStore } from '@/services/feedback/local';
 import type { EditSource } from '@/services/feedback/store';
 
@@ -32,6 +33,7 @@ interface FridgeContextValue {
   addConfirmedReceiptItems: (
     candidates: OcrCandidate[],
     source: FoodItem['source'],
+    purchaseDate: string,
   ) => void;
   adjustRemaining: (itemId: string, deltaRatio: number) => void;
   removeItem: (itemId: string, outcome: 'consumed' | 'discarded') => void;
@@ -46,11 +48,11 @@ interface FridgeContextValue {
 const FridgeContext = createContext<FridgeContextValue | undefined>(undefined);
 
 export function FridgeProvider({ children }: { children: React.ReactNode }) {
-  const [fridgeItems, setFridgeItems] = useState<FoodItem[]>(()=>feedbackStore.overlay(initialFridgeItems));
+  const [fridgeItems, setFridgeItems] = useState<FoodItem[]>(()=>feedbackStore.overlay(__DEV__ ? initialFridgeItems : []));
   const [purchaseHistory, setPurchaseHistory] = useState<PurchaseHistoryEntry[]>(
-    initialPurchaseHistory,
+    ()=>[...(__DEV__ ? initialPurchaseHistory : []),...feedbackStore.purchaseHistory()],
   );
-  const [discardLog, setDiscardLog] = useState<DiscardEntry[]>(initialDiscardLog);
+  const [discardLog, setDiscardLog] = useState<DiscardEntry[]>(__DEV__ ? initialDiscardLog : []);
   const [pendingReceipt, setPendingReceipt] = useState<MockReceipt | null>(null);
   const refreshPersonalExpiry=useCallback(()=>setFridgeItems(previous=>feedbackStore.overlay(previous)),[]);
   const savePersonalExpiry=useCallback((item: FoodItem,expiry: string | null,source: EditSource | null)=>{
@@ -59,52 +61,12 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
   },[]);
 
   const addConfirmedReceiptItems = useCallback(
-    (candidates: OcrCandidate[], source: FoodItem['source']) => {
-      const today = todayIso();
-      const newItems: FoodItem[] = [];
-      const newHistory: PurchaseHistoryEntry[] = [];
-
-      candidates
-        .filter((c) => c.status !== 'rejected')
-        .forEach((c, idx) => {
-          const db = findFoodDbEntry(c.guessedName);
-          // 예상 소비기한 산정: 구매일 + 미개봉 기준 보관일수 (과제계획서 "라" 항목)
-          const shelfLifeDays = db?.shelfLifeUnopenedDays ?? 7;
-          const expiryDate = addDays(today, shelfLifeDays);
-
-          newItems.push({
-            id: `new-${Date.now()}-${idx}`,
-            standardName: c.guessedName,
-            category: c.category,
-            storageType: db?.defaultStorage ?? '냉장',
-            icon: db?.icon ?? '🛒',
-            purchaseDate: today,
-            expectedExpiryDate: expiryDate,
-            isOpened: false,
-            totalQuantity: c.quantity,
-            remainingQuantity: c.quantity,
-            unit: c.unit,
-            consumptionPattern: db?.consumptionPattern ?? '비주기형',
-            nutrition: db?.nutrition ?? { calories: 0, protein: 0, fat: 0, carbs: 0 },
-            source,
-          });
-
-          newHistory.push({
-            id: `hist-${Date.now()}-${idx}`,
-            standardName: c.guessedName,
-            category: c.category,
-            date: today,
-            quantity: c.quantity,
-            unit: c.unit,
-            source,
-          });
-        });
-
-      setFridgeItems((prev) => [...newItems, ...prev]);
-      setPurchaseHistory((prev) => [...newHistory, ...prev]);
-    },
-    [],
-  );
+    (candidates: OcrCandidate[], source: FoodItem['source'], purchaseDate: string) => {
+      const registered=buildRegistration(candidates,source,purchaseDate,randomUUID);
+      feedbackStore.remember(registered.items,registered.history);
+      setFridgeItems(previous=>[...registered.items,...previous]);
+      setPurchaseHistory(previous=>[...registered.history,...previous]);
+    },[]);
 
   const adjustRemaining = useCallback((itemId: string, deltaRatio: number) => {
     setFridgeItems((prev) =>

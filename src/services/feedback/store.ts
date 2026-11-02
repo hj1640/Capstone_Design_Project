@@ -1,15 +1,16 @@
-import type { FoodItem } from '../../types/food';
+import type { FoodItem, PurchaseHistoryEntry } from '../../types/food';
 import type { PersonalItem, DurationBasis } from '../../contracts/catalog-v1';
 
 export type EditSource = 'package_label' | 'user_estimate';
 interface RecordValue {
   item: FoodItem;
-  baseExpiry: string;
+  baseExpiry: string | null;
   expiry: string | null;
   source: EditSource | null;
   revision: number;
   serverRevision: number;
   hidden?: boolean;
+  history?: PurchaseHistoryEntry;
 }
 interface Job {
   id: string;
@@ -55,6 +56,19 @@ export function createFeedbackStore(storage: Storage, newId: ()=>string) {
   }
   return {
     state: read,
+    remember(items: FoodItem[],history: PurchaseHistoryEntry[]) {
+      if (items.length!==history.length) throw new Error('Purchase snapshot mismatch');
+      const state=read();
+      items.forEach((item,i)=>{
+        if (state.records[item.id]) throw new Error('Duplicate local item ID');
+        state.records[item.id]={item,baseExpiry:item.expectedExpiryDate,expiry:null,source:null,
+          revision:0,serverRevision:0,history:history[i]};
+      });
+      write(state);
+    },
+    purchaseHistory(): PurchaseHistoryEntry[] {
+      return Object.values(read().records).flatMap(record=>record.history ? [record.history] : []);
+    },
     edit(item: FoodItem,expiry: string | null,source: EditSource | null) {
       if (expiry!==null && !validDate(expiry)) throw new Error('YYYY-MM-DD 형식의 실제 날짜를 입력해 주세요');
       if ((expiry===null && source!==null) || (expiry!==null && source!=='package_label' && source!=='user_estimate'))
@@ -63,8 +77,8 @@ export function createFeedbackStore(storage: Storage, newId: ()=>string) {
       cancelSubmissions(state,item.id);
       for (const job of state.jobs) if (job.itemId===item.id && job.kind==='edit' && job.status==='pending' && !job.request)
         job.status='cancelled'; // Coalesce edits which have never been sent.
-      const record: RecordValue={item,baseExpiry:previous?.baseExpiry ?? item.expectedExpiryDate,expiry,source,
-        revision:(previous?.revision ?? 0)+1,serverRevision:previous?.serverRevision ?? 0};
+      const record: RecordValue={item,baseExpiry:previous ? previous.baseExpiry : item.expectedExpiryDate,expiry,source,
+        revision:(previous?.revision ?? 0)+1,serverRevision:previous?.serverRevision ?? 0,history:previous?.history};
       state.records[item.id]=record;
       state.jobs.push({id:newId(),kind:'edit',itemId:item.id,snapshot:JSON.parse(JSON.stringify(record)),status:'pending'});
       write(state);
@@ -92,7 +106,7 @@ export function createFeedbackStore(storage: Storage, newId: ()=>string) {
       const merged=new Map(items.map(item=>[item.id,item]));
       for (const [id,record] of Object.entries(records)) {
         if (record.hidden) merged.delete(id);
-        else merged.set(id,{...record.item,expectedExpiryDate:record.expiry ?? record.baseExpiry});
+        else merged.set(id,{...(merged.get(id) ?? record.item),expectedExpiryDate:record.expiry ?? record.baseExpiry});
       }
       return [...merged.values()];
     },

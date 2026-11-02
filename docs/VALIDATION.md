@@ -75,3 +75,11 @@ GitHub 연결의 저장소 메타데이터에는 push=true가 표시됐으나 �
 - 6단계 실제 HTTP outbox 회귀, TypeScript, ESLint 오류 0/기존 경고 3 통과. 앱 코드 변경 없이 서버 기능 추가.
 - 정책 4개를 각각 독립 임시 DB에서 비교. benchmarks/stage7-policy-report.json에 합성값·환경·시각·엔진 해시 기록.
 - 기본 config/feedback-policy.json disabled 및 OPEN 숫자 null 유지. 실제 식품/기간 자료·운영 정책 승인·공개 배포는 미완료.
+
+## 8단계 전체 검증 — 2026-11-02 (D-049)
+- scripts/verify_stage8.py의 13개 검증 그룹 통과. 서버 32개·metric 4개·단계별 순위/토큰 회귀·6/7/8 HTTP·구매일 분석·날짜 경계·타입·lint·Android export 포함.
+- 합성 온라인 텍스트→분류→등록→개인 저장/재시작→동의 제출→임시 합성 검토→규칙→철회 전체 흐름 통과. 실제 이미지 OCR/native SQLite/UI 검증과 구분.
+- 등록 구매일은 명시적 확인, 근거 없는 기한은 null, 최초 등록/구매 이력도 저장. OCR 실패 자동 mock 대체와 7일 fallback 제거.
+- 서울/미국 현지 날짜 및 DST calendar 경계 확인. 미승인 운영 구매 추천 비활성, 합성 walk-forward 다음 구매일 MAE 분석 별도.
+- 원시 환경·소스 해시 benchmarks/stage8-verification.json. 루트 handoff validator 및 기존 unittest 42개도 통과.
+- 실제 데이터·정책 승인·실기기·원본 PyTorch export·운영 인증/배포는 남아 있음. RELEASE_GATES.md 참조.

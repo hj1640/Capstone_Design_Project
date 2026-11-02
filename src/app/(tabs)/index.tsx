@@ -16,7 +16,7 @@ export default function HomeScreen() {
   const { fridgeItems, purchaseHistory, discardLog } = useFridge();
 
   const statusCounts = useMemo(() => {
-    const counts = { danger: 0, warning: 0, normal: 0, fresh: 0 };
+    const counts = { danger: 0, warning: 0, normal: 0, fresh: 0, unknown:0 };
     fridgeItems.forEach((item) => {
       const s = computeStatus(item.purchaseDate, item.expectedExpiryDate);
       counts[s.level] += 1;
@@ -63,6 +63,8 @@ export default function HomeScreen() {
         <StatusStat label="정상" value={statusCounts.normal} color={colors.statusNormal} />
         <StatusStat label="여유" value={statusCounts.fresh} color={colors.statusFresh} />
       </View>
+
+      {statusCounts.unknown>0 && <Text>기한 미정 {statusCounts.unknown}개 · 품목 상세에서 날짜를 입력해 주세요</Text>}
 
       <Pressable style={styles.ctaButton} onPress={() => router.push('/receipt')}>
         <Text style={styles.ctaText}>🧾 영수증으로 식재료 등록하기</Text>

@@ -1,10 +1,11 @@
-import { StatusInfo, StatusLevel } from '@/types/food';
-import { daysBetween, daysRemaining } from './date';
+import type { StatusInfo, StatusLevel } from '../types/food';
+import { daysBetween, daysRemaining } from './date.ts';
 
 // 과제계획서 "마" 항목: 4단계 상태 색상 체계
 // 파랑(여유) / 초록(정상) / 주황(임박) / 빨강(확인 필요·기한 경과)
 // "단기, 장기 보관식품 차이를 반영해 남은 기간 비율과 절대 일수를 함께 사용"
-export function computeStatus(purchaseDate: string, expiryDate: string): StatusInfo {
+export function computeStatus(purchaseDate: string, expiryDate: string | null): StatusInfo {
+  if (!expiryDate) return {level:'unknown',color:'#6B7280',label:'기한 미정',description:'포장지 날짜를 확인해 입력해 주세요'};
   const totalDays = Math.max(1, daysBetween(purchaseDate, expiryDate));
   const remaining = daysRemaining(expiryDate);
   const isShortTerm = totalDays <= 14; // 우유, 채소 등 단기 보관 식품
@@ -29,7 +30,7 @@ export function computeStatus(purchaseDate: string, expiryDate: string): StatusI
   return STATUS_META[level](remaining);
 }
 
-const STATUS_META: Record<StatusLevel, (remaining: number) => StatusInfo> = {
+const STATUS_META: Record<Exclude<StatusLevel,'unknown'>, (remaining: number) => StatusInfo> = {
   fresh: (remaining) => ({
     level: 'fresh',
     color: '#3B82F6',

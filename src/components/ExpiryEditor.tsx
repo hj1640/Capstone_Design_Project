@@ -9,7 +9,7 @@ import type { FoodItem } from '@/types/food';
 export function ExpiryEditor({item}:{item:FoodItem}) {
   const {savePersonalExpiry}=useFridge();
   const record=feedbackStore.state().records[item.id];
-  const [date,setDate]=useState(record?.expiry ?? item.expectedExpiryDate);
+  const [date,setDate]=useState(record?.expiry ?? item.expectedExpiryDate ?? '');
   const [source,setSource]=useState<EditSource | null>(record?.source ?? null);
   function save(clear=false) {
     try { savePersonalExpiry(item,clear ? null : date,clear ? null : source);

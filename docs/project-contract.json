@@ -99,5 +99,16 @@
     "communityPublicationEnabled": false,
     "realReferenceDatasetVerified": false,
     "syntheticPolicyExperiments": 4
+  },
+  "stage8": {
+    "decision": "D-049",
+    "status": "synthetic_integration_and_handoff_prepared",
+    "verificationGroups": 13,
+    "realImageOcrVerified": false,
+    "physicalDeviceAcceptancePassed": false,
+    "productionReleaseApproved": false,
+    "implicitPurchaseDateFallback": false,
+    "unknownExpirySupported": true,
+    "purchaseForecastEnabled": false
   }
 }

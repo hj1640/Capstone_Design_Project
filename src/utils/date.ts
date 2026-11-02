@@ -1,12 +1,12 @@
 // 날짜 계산 유틸 (소비기한 산정의 기준이 되는 함수들)
 
-export function todayIso(): string {
-  return new Date().toISOString().slice(0, 10);
+export function todayIso(now: Date = new Date()): string {
+  return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 }
 
 export function addDays(dateIso: string, days: number): string {
   const d = new Date(dateIso);
-  d.setDate(d.getDate() + days);
+  d.setUTCDate(d.getUTCDate() + days);
   return d.toISOString().slice(0, 10);
 }
 
@@ -22,7 +22,8 @@ export function daysRemaining(expiryIso: string): number {
   return daysBetween(todayIso(), expiryIso);
 }
 
-export function formatDateKo(dateIso: string): string {
+export function formatDateKo(dateIso: string | null): string {
+  if (!dateIso) return '기한 미정';
   const [, month, day] = dateIso.split('-').map(Number);
   return `${month}월 ${day}일`;
 }

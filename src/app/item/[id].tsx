@@ -71,12 +71,12 @@ export default function ItemDetailScreen() {
 
       <Card style={{ marginTop: spacing.lg }}>
         <Text style={styles.sectionTitle}>영양정보 (기준량 당)</Text>
-        <View style={styles.nutritionRow}>
+        {item.nutritionVerified===false ? <Text>확인된 영양정보가 없습니다.</Text> : <View style={styles.nutritionRow}>
           <NutritionItem label="칼로리" value={`${item.nutrition.calories}kcal`} />
           <NutritionItem label="단백질" value={`${item.nutrition.protein}g`} />
           <NutritionItem label="지방" value={`${item.nutrition.fat}g`} />
           <NutritionItem label="탄수화물" value={`${item.nutrition.carbs}g`} />
-        </View>
+        </View>}
       </Card>
 
       <View style={styles.finishRow}>

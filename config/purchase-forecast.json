@@ -1,0 +1,8 @@
+{
+  "decision": "D-049",
+  "enabled": false,
+  "method": null,
+  "minimumHistory": null,
+  "leadDays": null,
+  "note": "Legacy full-history heuristics are not an approved production predictor. Select and implement an incremental adapter before enabling."
+}

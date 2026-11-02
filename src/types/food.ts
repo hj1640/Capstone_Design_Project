@@ -13,13 +13,13 @@ export type FoodCategory =
   | '곡물/베이커리'
   | '조미료/소스';
 
-export type StorageType = '냉장' | '냉동' | '실온';
+export type StorageType = '냉장' | '냉동' | '실온' | '미정';
 
 // 과제계획서 "라" 항목: 주기 식품 / 비주기 식품 구분
 export type ConsumptionPattern = '주기형' | '비주기형';
 
 // 과제계획서 "마" 항목: 4단계 상태 (파랑/초록/주황/빨강)
-export type StatusLevel = 'fresh' | 'normal' | 'warning' | 'danger';
+export type StatusLevel = 'fresh' | 'normal' | 'warning' | 'danger' | 'unknown';
 
 export interface StatusInfo {
   level: StatusLevel;
@@ -55,13 +55,14 @@ export interface FoodItem {
   storageType: StorageType;
   icon: string;
   purchaseDate: string; // ISO date
-  expectedExpiryDate: string; // ISO date, 소비기한 산정 결과
+  expectedExpiryDate: string | null; // null means no verified reference/user date.
   isOpened: boolean;
   totalQuantity: number;
   remainingQuantity: number;
   unit: string;
   consumptionPattern: ConsumptionPattern;
   nutrition: FoodDbEntry['nutrition'];
+  nutritionVerified?: boolean;
   source: '영수증' | '온라인주문' | '수기입력';
 }
 
@@ -104,10 +105,11 @@ export interface OcrCandidate {
 export interface MockReceipt {
   id: string;
   storeName: string;
-  date: string;
+  date: string | null;
+  dateNeedsReview?: boolean;
   rawLines: string[]; // OCR이 추출했다고 가정하는 원문 줄
   candidates: OcrCandidate[];
-  /** 이 결과를 만든 엔진. 실기기 빌드가 아니면 항상 'mock'이다. */
+  /** 'mock' is only used by an explicitly selected synthetic example. */
   engine?: 'mlkit' | 'mock';
 }
 

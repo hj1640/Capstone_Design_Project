@@ -28,3 +28,5 @@
 6단계: [개인 소비기한 저장·서버 제출](STAGE_6_FEEDBACK.md). 새 SQLite/Crypto native dependency로 개발 APK 재빌드 필요.
 
 7단계: [신뢰도·통계·공유 규칙 엔진](STAGE_7_TRUST_POLICY.md), [합성 비교 결과](../benchmarks/STAGE7_RESULTS.md). 운영 정책은 비활성/미정 상태.
+
+8단계: [전체 검증과 인수](STAGE_8_ACCEPTANCE.md), [운영 적용 전 남은 조건](RELEASE_GATES.md), [팀 시연 설명 노트](TEAM_DEMO_SCRIPT.md), [검증 결과](../benchmarks/STAGE8_RESULTS.md).
