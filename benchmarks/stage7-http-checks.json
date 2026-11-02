@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-11-02T12:42:12.832Z",
+  "node": "v24.22.1",
+  "platform": "win32",
+  "synthetic": true,
+  "passed": true,
+  "checks": [
+    "authenticated lookup",
+    "qualified publication",
+    "condition filter",
+    "invalid filter",
+    "no private aggregate fields",
+    "withdrawal removes public rule"
+  ],
+  "note": "Temporary loopback sandbox only. The real policy configuration remains disabled."
+}

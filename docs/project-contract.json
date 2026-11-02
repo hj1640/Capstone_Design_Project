@@ -91,5 +91,13 @@
     "productionAuthenticationSelected": false,
     "communityPublicationEnabled": false,
     "physicalDevicePersistenceVerified": false
+  },
+  "stage7": {
+    "decision": "D-048",
+    "status": "trust_engine_and_synthetic_comparison_implemented",
+    "productionPolicyApproved": false,
+    "communityPublicationEnabled": false,
+    "realReferenceDatasetVerified": false,
+    "syntheticPolicyExperiments": 4
   }
 }

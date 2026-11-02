@@ -50,7 +50,10 @@
     "test:stage5": "node scripts/stage5-semantic-check.mjs",
     "server:dev": "python server/dev_api.py",
     "test:stage6:server": "python -m unittest discover -s server -p test_dev_api.py -v",
-    "test:stage6:client": "python server/run_client_check.py"
+    "test:stage6:client": "python server/run_client_check.py",
+    "test:stage7": "python -m unittest discover -s server -p \"test_*.py\" -v",
+    "experiment:stage7": "python server/compare_trust_policies.py",
+    "test:stage7:http": "python server/check_trust_http.py"
   },
   "private": true
 }

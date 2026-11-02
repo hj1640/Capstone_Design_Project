@@ -1,0 +1,15 @@
+{
+  "decision": "D-048",
+  "enabled": false,
+  "policy": {
+    "version": null,
+    "method": null,
+    "minimum_contributors": null,
+    "relative_deviation": null,
+    "outlier_weight": null,
+    "contributor_rule": null,
+    "publication_enabled": false,
+    "approval_reference": null
+  },
+  "note": "OPEN values remain null. Synthetic experiment policies are separate."
+}

@@ -68,3 +68,10 @@ GitHub 연결의 저장소 메타데이터에는 push=true가 표시됐으나 �
 - 최초 수정 동의 전 비전송, Retry-After와 의존 순서, 응답 유실 후 철회, 충돌 재요청 확인.
 - 실기기 저장/네트워크 및 운영 인증/배포 미검증. N/평균/이상값/공개 기본값 비활성 유지.
 - 루트 handoff validator 및 기존 unittest 42개도 통과.
+
+## 7단계 검증 — 2026-11-02 (D-048)
+- 서버/API/신뢰도 테스트 32개 통과. 반복 사용자·동시성·그룹 분리·저가중치 N 제외·철회·공개 철회·정책 버전/재평가·트랜잭션 rollback 확인.
+- 별도 임시 합성 DB에서 실제 HTTP 공개 규칙 조회/조건 필터/철회 검사 통과. benchmarks/stage7-http-checks.json 참조.
+- 6단계 실제 HTTP outbox 회귀, TypeScript, ESLint 오류 0/기존 경고 3 통과. 앱 코드 변경 없이 서버 기능 추가.
+- 정책 4개를 각각 독립 임시 DB에서 비교. benchmarks/stage7-policy-report.json에 합성값·환경·시각·엔진 해시 기록.
+- 기본 config/feedback-policy.json disabled 및 OPEN 숫자 null 유지. 실제 식품/기간 자료·운영 정책 승인·공개 배포는 미완료.

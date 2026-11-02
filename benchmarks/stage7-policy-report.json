@@ -1,0 +1,265 @@
+{
+  "timestamp": "2026-11-02T12:40:34.224140+00:00",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "elapsed_seconds": 3.0664114999817684,
+  "synthetic": true,
+  "engine_sha256": "a967dd74762e233bd3c0fae3af82db26667c103260ec1f21a1329fe6aca5d0e0",
+  "dataset": "3 normal owners (9,10,11) + 1 outlier owner submitting 999 twenty times; reference anchor 10. All values synthetic.",
+  "caveats": [
+    "Not real expiry durations or approved policy constants.",
+    "N counts qualifying accounts, not verified distinct people.",
+    "Publication disabled in every experiment; eligible is an internal readiness preview.",
+    "Each policy runs separately; no live combination of averaging methods."
+  ],
+  "results": [
+    {
+      "policy": {
+        "version": "synthetic-arithmetic_mean-N3",
+        "method": "arithmetic_mean",
+        "minimum_contributors": 3,
+        "relative_deviation": 0.5,
+        "outlier_weight": 0,
+        "contributor_rule": "latest_eligible_per_owner_group",
+        "publication_enabled": false,
+        "approval_reference": null
+      },
+      "snapshots": {
+        "normal": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.0,
+          "sum_weighted_days": 30.0,
+          "contributors": 3,
+          "qualifying_contributors": 3,
+          "revision": 3,
+          "policy_version": "synthetic-arithmetic_mean-N3",
+          "mean": 10.0,
+          "eligible": true
+        },
+        "one_outlier": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.0,
+          "sum_weighted_days": 30.0,
+          "contributors": 3,
+          "qualifying_contributors": 3,
+          "revision": 3,
+          "policy_version": "synthetic-arithmetic_mean-N3",
+          "mean": 10.0,
+          "eligible": true
+        },
+        "repeat_owner_20": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.0,
+          "sum_weighted_days": 30.0,
+          "contributors": 3,
+          "qualifying_contributors": 3,
+          "revision": 3,
+          "policy_version": "synthetic-arithmetic_mean-N3",
+          "mean": 10.0,
+          "eligible": true
+        },
+        "after_withdraw": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 2.0,
+          "sum_weighted_days": 21.0,
+          "contributors": 2,
+          "qualifying_contributors": 2,
+          "revision": 4,
+          "policy_version": "synthetic-arithmetic_mean-N3",
+          "mean": 10.5,
+          "eligible": false
+        }
+      },
+      "raw_submission_count": 23,
+      "raw_mean_before_withdraw": 870.0,
+      "public_rules": [],
+      "audit_event_count": 70
+    },
+    {
+      "policy": {
+        "version": "synthetic-arithmetic_mean-N5",
+        "method": "arithmetic_mean",
+        "minimum_contributors": 5,
+        "relative_deviation": 0.5,
+        "outlier_weight": 0,
+        "contributor_rule": "latest_eligible_per_owner_group",
+        "publication_enabled": false,
+        "approval_reference": null
+      },
+      "snapshots": {
+        "normal": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.0,
+          "sum_weighted_days": 30.0,
+          "contributors": 3,
+          "qualifying_contributors": 3,
+          "revision": 3,
+          "policy_version": "synthetic-arithmetic_mean-N5",
+          "mean": 10.0,
+          "eligible": false
+        },
+        "one_outlier": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.0,
+          "sum_weighted_days": 30.0,
+          "contributors": 3,
+          "qualifying_contributors": 3,
+          "revision": 3,
+          "policy_version": "synthetic-arithmetic_mean-N5",
+          "mean": 10.0,
+          "eligible": false
+        },
+        "repeat_owner_20": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.0,
+          "sum_weighted_days": 30.0,
+          "contributors": 3,
+          "qualifying_contributors": 3,
+          "revision": 3,
+          "policy_version": "synthetic-arithmetic_mean-N5",
+          "mean": 10.0,
+          "eligible": false
+        },
+        "after_withdraw": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 2.0,
+          "sum_weighted_days": 21.0,
+          "contributors": 2,
+          "qualifying_contributors": 2,
+          "revision": 4,
+          "policy_version": "synthetic-arithmetic_mean-N5",
+          "mean": 10.5,
+          "eligible": false
+        }
+      },
+      "raw_submission_count": 23,
+      "raw_mean_before_withdraw": 870.0,
+      "public_rules": [],
+      "audit_event_count": 70
+    },
+    {
+      "policy": {
+        "version": "synthetic-weighted_mean-N3",
+        "method": "weighted_mean",
+        "minimum_contributors": 3,
+        "relative_deviation": 0.5,
+        "outlier_weight": 0.1,
+        "contributor_rule": "latest_eligible_per_owner_group",
+        "publication_enabled": false,
+        "approval_reference": null
+      },
+      "snapshots": {
+        "normal": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.0,
+          "sum_weighted_days": 30.0,
+          "contributors": 3,
+          "qualifying_contributors": 3,
+          "revision": 3,
+          "policy_version": "synthetic-weighted_mean-N3",
+          "mean": 10.0,
+          "eligible": true
+        },
+        "one_outlier": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.000505561172902,
+          "sum_weighted_days": 30.50505561172902,
+          "contributors": 4,
+          "qualifying_contributors": 3,
+          "revision": 4,
+          "policy_version": "synthetic-weighted_mean-N3",
+          "mean": 10.16663858466723,
+          "eligible": true
+        },
+        "repeat_owner_20": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.000505561172902,
+          "sum_weighted_days": 30.50505561172902,
+          "contributors": 4,
+          "qualifying_contributors": 3,
+          "revision": 42,
+          "policy_version": "synthetic-weighted_mean-N3",
+          "mean": 10.16663858466723,
+          "eligible": true
+        },
+        "after_withdraw": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 2.000505561172902,
+          "sum_weighted_days": 21.50505561172902,
+          "contributors": 3,
+          "qualifying_contributors": 2,
+          "revision": 43,
+          "policy_version": "synthetic-weighted_mean-N3",
+          "mean": 10.74981046247157,
+          "eligible": false
+        }
+      },
+      "raw_submission_count": 23,
+      "raw_mean_before_withdraw": 870.0,
+      "public_rules": [],
+      "audit_event_count": 89
+    },
+    {
+      "policy": {
+        "version": "synthetic-weighted_mean-N5",
+        "method": "weighted_mean",
+        "minimum_contributors": 5,
+        "relative_deviation": 0.5,
+        "outlier_weight": 0.1,
+        "contributor_rule": "latest_eligible_per_owner_group",
+        "publication_enabled": false,
+        "approval_reference": null
+      },
+      "snapshots": {
+        "normal": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.0,
+          "sum_weighted_days": 30.0,
+          "contributors": 3,
+          "qualifying_contributors": 3,
+          "revision": 3,
+          "policy_version": "synthetic-weighted_mean-N5",
+          "mean": 10.0,
+          "eligible": false
+        },
+        "one_outlier": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.000505561172902,
+          "sum_weighted_days": 30.50505561172902,
+          "contributors": 4,
+          "qualifying_contributors": 3,
+          "revision": 4,
+          "policy_version": "synthetic-weighted_mean-N5",
+          "mean": 10.16663858466723,
+          "eligible": false
+        },
+        "repeat_owner_20": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 3.000505561172902,
+          "sum_weighted_days": 30.50505561172902,
+          "contributors": 4,
+          "qualifying_contributors": 3,
+          "revision": 42,
+          "policy_version": "synthetic-weighted_mean-N5",
+          "mean": 10.16663858466723,
+          "eligible": false
+        },
+        "after_withdraw": {
+          "group_key": "{\"basis\":\"purchase_remaining\",\"foodId\":\"synthetic-food\",\"opened\":false,\"productForm\":\"fresh\",\"productId\":null,\"source\":\"package_label\",\"storage\":\"refrigerated\"}",
+          "sum_weight": 2.000505561172902,
+          "sum_weighted_days": 21.50505561172902,
+          "contributors": 3,
+          "qualifying_contributors": 2,
+          "revision": 43,
+          "policy_version": "synthetic-weighted_mean-N5",
+          "mean": 10.74981046247157,
+          "eligible": false
+        }
+      },
+      "raw_submission_count": 23,
+      "raw_mean_before_withdraw": 870.0,
+      "public_rules": [],
+      "audit_event_count": 89
+    }
+  ]
+}
