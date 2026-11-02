@@ -72,6 +72,13 @@ export default function ReceiptResultScreen() {
             <View style={{ flex: 1 }}>
               <Text style={styles.rawText}>{c.rawText}</Text>
               <Text style={styles.guessedName}>→ {c.guessedName}</Text>
+              {__DEV__ && c.catalogMatch && c.catalogMatch.candidates.length > 0 && (
+                <Text style={styles.rawText}>
+                  상품명 후보(합성 DB · 검증용): {c.catalogMatch.candidates.map(x => x.title).join(' / ')}
+                  {'\n'}식품 연결: {c.catalogMatch.resolution === 'food_only' ? '식품 수준 후보' :
+                    c.catalogMatch.resolution === 'product' ? '상품명 일치' : '사용자 확인 필요'}
+                </Text>
+              )}
             </View>
             <Pressable onPress={() => toggleReject(c.id)}>
               <Text style={styles.rejectText}>{c.status === 'rejected' ? '복구' : '제외'}</Text>

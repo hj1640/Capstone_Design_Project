@@ -53,6 +53,9 @@ export default function HomeScreen() {
       {__DEV__ && <Pressable onPress={() => router.push('/model-probe')}>
         <Text>개발용: 2단계 모델 실행 검사</Text>
       </Pressable>}
+      {__DEV__ && <Pressable onPress={() => router.push('/catalog-probe')}>
+        <Text>개발용: 3단계 상품 검색 검사</Text>
+      </Pressable>}
 
       <View style={styles.statusRow}>
         <StatusStat label="확인 필요" value={statusCounts.danger} color={colors.statusDanger} />

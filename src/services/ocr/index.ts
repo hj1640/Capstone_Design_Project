@@ -4,6 +4,8 @@ import { todayIso } from '@/utils/date';
 import { mlkitOcrEngine } from './mlkitEngine';
 import { parseReceiptLines, guessStoreName } from './receiptParser';
 import { matchFoodName } from './foodMatcher';
+import { searchCatalog } from '../catalog/search';
+import { foods, products, catalogVersion } from '../../data/catalog-stage3';
 
 export { parseReceiptLines, guessStoreName } from './receiptParser';
 export { matchFoodName } from './foodMatcher';
@@ -21,6 +23,9 @@ function buildCandidatesFromOcr(lines: string[]): OcrCandidate[] {
   const parsedLines = parseReceiptLines(lines);
 
   return parsedLines.map((parsed, idx) => {
+    // Stage 3 suggestions are synthetic and never authorize an automatic food/expiry save.
+    const catalogMatch = __DEV__ ? searchCatalog(parsed.nameCandidate,
+      { foods, products, version: catalogVersion, synthetic: true }) : undefined;
     const matches = matchFoodName(parsed.nameCandidate, 3);
     const top = matches[0];
     const second = matches[1];
@@ -38,6 +43,7 @@ function buildCandidatesFromOcr(lines: string[]): OcrCandidate[] {
         quantity: parsed.quantity,
         unit: parsed.unitHint ?? '개',
         status: 'uncertain',
+        catalogMatch,
       } satisfies OcrCandidate;
     }
 
@@ -58,6 +64,7 @@ function buildCandidatesFromOcr(lines: string[]): OcrCandidate[] {
       quantity: parsed.quantity,
       unit: top.entry.unit,
       status: isConfident ? 'confirmed' : 'uncertain',
+      catalogMatch,
     } satisfies OcrCandidate;
   });
 }

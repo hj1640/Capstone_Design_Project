@@ -37,7 +37,8 @@
     "model:prepare": "node scripts/prepare-stage2-model.mjs",
     "test:stage2": "node scripts/stage2-parity.mjs",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:stage3": "node scripts/stage3-catalog-check.mjs"
   },
   "private": true
 }

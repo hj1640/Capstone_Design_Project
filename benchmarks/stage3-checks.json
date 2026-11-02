@@ -1,0 +1,92 @@
+{
+  "stage": 3,
+  "dataset": "synthetic fixtures only",
+  "timestamp": "2026-11-02T06:22:58.756Z",
+  "node": "v24.22.1",
+  "platform": "win32",
+  "architecture": "x64",
+  "catalogVersion": "synthetic-stage3-v1",
+  "passed": 20,
+  "rows": [
+    {
+      "name": "catalog integrity",
+      "passed": true
+    },
+    {
+      "name": "exact product retains full title and stable IDs",
+      "passed": true
+    },
+    {
+      "name": "truncated prefix spans carrot and potato",
+      "passed": true
+    },
+    {
+      "name": "multiple products same food only",
+      "passed": true
+    },
+    {
+      "name": "unique truncated product still only food suggestion",
+      "passed": true
+    },
+    {
+      "name": "food noun absent but unique catalog prefix resolves food",
+      "passed": true
+    },
+    {
+      "name": "milk and cheese remain distinct",
+      "passed": true
+    },
+    {
+      "name": "standard food alias fallback without product",
+      "passed": true
+    },
+    {
+      "name": "unknown and empty input",
+      "passed": true
+    },
+    {
+      "name": "fuzzy overlap never auto selects product",
+      "passed": true
+    },
+    {
+      "name": "unreviewed product cannot authorize mapping",
+      "passed": true
+    },
+    {
+      "name": "ambiguity uses all matches before candidate limit",
+      "passed": true
+    },
+    {
+      "name": "duplicate product IDs rejected",
+      "passed": true
+    },
+    {
+      "name": "duplicate food IDs rejected",
+      "passed": true
+    },
+    {
+      "name": "broken food reference rejected",
+      "passed": true
+    },
+    {
+      "name": "duplicate marketplace external IDs rejected",
+      "passed": true
+    },
+    {
+      "name": "invalid schema rejected",
+      "passed": true
+    },
+    {
+      "name": "invalid candidate limits rejected",
+      "passed": true
+    },
+    {
+      "name": "async service filters marketplaces",
+      "passed": true
+    },
+    {
+      "name": "service snapshot and food copy resist external mutation",
+      "passed": true
+    }
+  ]
+}

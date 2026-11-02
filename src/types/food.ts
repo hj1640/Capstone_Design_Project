@@ -1,4 +1,5 @@
 // 식품/냉장고 도메인 타입 정의
+import type { SearchResult } from '../contracts/catalog-v1';
 // 과제계획서 "나. 영수증 인식 및 전처리", "다. Local AI 기반 식재료 분류", "라. 예상 소비기한 산정" 항목에 대응
 
 export type FoodCategory =
@@ -97,6 +98,7 @@ export interface OcrCandidate {
   quantity: number;
   unit: string;
   status: 'confirmed' | 'uncertain' | 'rejected';
+  catalogMatch?: SearchResult; // Stage 3 product-name suggestions; synthetic catalog is display-only.
 }
 
 export interface MockReceipt {
