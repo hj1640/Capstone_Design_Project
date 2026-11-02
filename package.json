@@ -41,7 +41,11 @@
     "test:stage3": "node scripts/stage3-catalog-check.mjs",
     "stage4:prepare": "node scripts/stage4-export.mjs",
     "test:stage4": "python -m unittest discover -s scripts -p test_stage4_metrics.py -v",
-    "benchmark:stage4": "python scripts/stage4_compare.py"
+    "benchmark:stage4": "python scripts/stage4_compare.py",
+    "model:prepare:fp32": "node scripts/prepare-stage2-model.mjs --fp32",
+    "model:quantize": "python scripts/stage5_quantize.py",
+    "benchmark:stage5": "python scripts/stage5_benchmark.py",
+    "test:stage5": "node scripts/stage5-semantic-check.mjs"
   },
   "private": true
 }

@@ -61,3 +61,6 @@ npx eas-cli@latest build --profile development --platform android
 
 ## 2단계 이후 설치 안내
 현재는 pnpm-lock.yaml과 ESLint 설정이 추가되었다. 위 0단계의 npm ci 대신 pnpm install --frozen-lockfile 및 pnpm model:prepare를 사용한다. eas.json은 추가됐지만 기존 프로젝트 식별값은 여전히 필요하다. 자세한 절차는 STAGE_2_VALIDATION.md 참조.
+
+## 5단계 이후 모델 준비
+앱이 로컬 양자화 모델도 참조하므로 STAGE_5_MODEL_AND_APP.md의 준비 절차(모델 다운로드·Python 양자화·색인 생성)를 실행한 뒤 Expo를 시작한다. pnpm model:prepare만으로 새 clone의 모든 모델이 준비되지는 않는다.

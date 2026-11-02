@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import crypto from 'node:crypto';
 import { Buffer } from 'node:buffer';
 const root = new URL('../', import.meta.url);
-const manifest = JSON.parse(await fs.readFile(new URL('models/manifest.json', root), 'utf8'));
+const manifest = JSON.parse(await fs.readFile(new URL(process.argv.includes('--fp32') ? 'models/stage5-manifest.json' : 'models/manifest.json', root), 'utf8'));
 await fs.mkdir(new URL('assets/models/', root), {recursive:true});
 for (const entry of manifest.files) {
   const target = new URL(`assets/models/${entry.path.split('/').at(-1)}`, root);

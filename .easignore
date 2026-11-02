@@ -56,3 +56,7 @@ service-account*.json
 
 .git/
 benchmarks/device-results.json
+
+# PC-only comparison artifacts
+assets/models/model.onnx
+assets/models/model_matmul_int8.onnx

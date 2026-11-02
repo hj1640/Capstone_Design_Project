@@ -73,5 +73,14 @@
     "productionModelSelected": false,
     "thresholdCalibrated": false,
     "physicalDeviceMeasured": false
+  },
+  "stage5": {
+    "decision": "D-046",
+    "status": "cpu_comparison_and_developer_integration_implemented",
+    "localQuantizationPerformed": true,
+    "pytorchExportParityVerified": false,
+    "physicalDeviceMeasured": false,
+    "realCatalogIntegrated": false,
+    "productionModelSelected": false
   }
 }

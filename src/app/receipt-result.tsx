@@ -72,6 +72,9 @@ export default function ReceiptResultScreen() {
             <View style={{ flex: 1 }}>
               <Text style={styles.rawText}>{c.rawText}</Text>
               <Text style={styles.guessedName}>→ {c.guessedName}</Text>
+              {__DEV__ && <Pressable onPress={()=>router.push({pathname:'/catalog-probe',params:{query:c.rawText}})}>
+                <Text style={styles.rejectText}>개발용: 이 입력의 MiniLM 후보 확인</Text>
+              </Pressable>}
               {__DEV__ && c.catalogMatch && c.catalogMatch.candidates.length > 0 && (
                 <Text style={styles.rawText}>
                   상품명 후보(합성 DB · 검증용): {c.catalogMatch.candidates.map(x => x.title).join(' / ')}

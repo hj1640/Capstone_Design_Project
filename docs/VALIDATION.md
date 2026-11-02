@@ -53,3 +53,10 @@ GitHub 연결의 저장소 메타데이터에는 push=true가 표시됐으나 �
 - 지표 집계 테스트 4개 / 기존 카탈로그 회귀 검사 20개 통과. TypeScript 통과, lint 오류 0 / 기존 경고 2.
 - 캐시 재사용 실행 확인. 미등록·모호 사례는 known 정확도 분모에서 제외, 임계값 미정으로 MiniLM 자동 승인 없음.
 - 실제 상품 평가·모바일 성능·FP32 비교 미실행. 원시 기록 benchmarks/stage4-report.json.
+
+## 5단계 구현 검증 — 2026-11-02 (D-046)
+- FP32/upstream INT8/local MatMul+Gather INT8/local MatMul-only INT8, 총 4종 실제 ONNX CPU 비교. 동일 합성 25개 입력/상품 색인.
+- Python/TypeScript 의미 검색 Top-3 25개 일치 및 모델·카탈로그·벡터 검증 통과.
+- TypeScript 통과. ESLint 오류 0/경고 3. Android Metro export 성공(1,330 modules, 모델 asset 2개).
+- 초기 sandbox 임시 경로 제한 후 정상 권한에서 양자화/비교 실행. ORT 전처리 권고 경고 기록.
+- PyTorch export/실기기/실제 상품 통합 미검증. 원시 실측 benchmarks/stage5-report.json.

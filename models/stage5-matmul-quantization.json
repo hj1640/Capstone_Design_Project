@@ -1,0 +1,30 @@
+{
+  "source": {
+    "repository": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+    "revision": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+    "files": [
+      {
+        "path": "onnx/model.onnx",
+        "bytes": 470268510,
+        "sha256": "185ae63f47e17a7e8d30d0e6a3cde6a6e4b79bc5b81666ecffc279a6856ca113"
+      }
+    ]
+  },
+  "recipe": {
+    "weight_type": "QInt8",
+    "per_channel": true,
+    "reduce_range": true,
+    "op_types": [
+      "MatMul"
+    ],
+    "MatMulConstBOnly": true
+  },
+  "onnxruntime": "1.30.0",
+  "onnx": "1.23.2",
+  "elapsed_seconds": 8.846694399951957,
+  "output": {
+    "path": "model_matmul_int8.onnx",
+    "sha256": "bbe48ef41cb21dbe40f4f8f506176312577822b13c5eeb6337f33ac3a91c8833",
+    "bytes": 406942288
+  }
+}

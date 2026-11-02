@@ -22,3 +22,5 @@
 3단계: [상품 DB 검색과 표준 식품 연결](STAGE_3_CATALOG.md). 합성 자료 검증 및 앱 개발용 검색 화면.
 
 4단계: [Jaccard / MiniLM 실측 비교](STAGE_4_COMPARISON.md), [결과표](../benchmarks/STAGE4_RESULTS.md).
+
+5단계: [모델 비교·앱 개발용 연결](STAGE_5_MODEL_AND_APP.md), [실측 결과표](../benchmarks/STAGE5_RESULTS.md). 새 clone에서는 5단계 모델 준비 명령을 먼저 실행한다.
