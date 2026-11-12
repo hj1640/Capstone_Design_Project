@@ -33,11 +33,14 @@
         "expo-image-picker",
         {
           "photosPermission": "영수증 사진을 선택하기 위해 사진 보관함 접근 권한이 필요해요.",
-          "cameraPermission": "영수증을 촬영하기 위해 카메라 접근 권한이 필요해요."
+          "cameraPermission": "영수증을 촬영하기 위해 카메라 접근 권한이 필요해요.",
+          "microphonePermission": false
         }
       ],
       "onnxruntime-react-native",
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-secure-store",
+      "expo-asset"
     ]
   }
 }

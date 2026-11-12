@@ -18,3 +18,14 @@ class ReviewContractTests(unittest.TestCase):
         self.assertFalse(policy['productionAuthentication'])
         self.assertFalse(policy['nativeDeviceVerified'])
         self.assertFalse(contract['stage7']['communityPublicationEnabled'])
+
+    def test_deployment_is_implemented_but_not_misreported_as_live(self):
+        contract=json.loads((ROOT/'docs/project-contract.json').read_text(encoding='utf-8'))
+        service=contract['deployment']
+        self.assertEqual(service['decision'],'D-051')
+        self.assertEqual(service['authentication'],'operator_enrollment_hashed_device_sessions')
+        self.assertTrue(service['nativeSecureStorageImplemented'])
+        for key in ['publicServerDeployed','apkBuilt','physicalDeviceAccepted']:
+            self.assertFalse(service[key])
+        self.assertIsNone(service['confirmedProjectId'])
+        self.assertIsNone(service['confirmedAndroidPackage'])

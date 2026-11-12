@@ -61,4 +61,6 @@ service-account*.json
 
 # Python experiment caches
 __pycache__/
+.secrets/
+backups/
 *.pyc

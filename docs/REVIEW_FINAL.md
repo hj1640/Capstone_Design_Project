@@ -1,3 +1,5 @@
+> **D-051 현재 적용 안내:** 이 파일은 이전 검토/개발 실행 기록입니다. 최신 앱 연결·코드 등록·재시도·배포는 [APP_DEPLOYMENT.md](APP_DEPLOYMENT.md), 상세 결과는 [APP_INTEGRATION_REPORT.md](APP_INTEGRATION_REPORT.md)를 따릅니다. 과거 토큰 직접 입력 및 재시작 시 재입력 안내는 현재 화면과 다릅니다.
+
 # D-050 검토 결과와 설계 근거
 
 ## 1. 확인한 실제 대상과 최신 요구

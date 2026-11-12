@@ -1,3 +1,5 @@
+> **D-051 현재 적용 안내:** 이 파일은 이전 검토/개발 실행 기록입니다. 최신 앱 연결·코드 등록·재시도·배포는 [APP_DEPLOYMENT.md](APP_DEPLOYMENT.md), 상세 결과는 [APP_INTEGRATION_REPORT.md](APP_INTEGRATION_REPORT.md)를 따릅니다. 과거 토큰 직접 입력 및 재시작 시 재입력 안내는 현재 화면과 다릅니다.
+
 # PR 제목
 개인별 포장지 잔여일수 통계와 지류·쿠팡 등록 경로를 연결하고 0~8단계 검증 근거 정리
 

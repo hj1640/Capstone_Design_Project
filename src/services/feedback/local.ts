@@ -1,58 +1,90 @@
 import Storage from 'expo-sqlite/kv-store';
-import { randomUUID } from 'expo-crypto';
+import * as SecureStore from 'expo-secure-store';
+import { getRandomBytesAsync, randomUUID } from 'expo-crypto';
 import { createFeedbackStore } from './store';
 import type { Transport } from './store';
 import { createPersonalSync } from './personal';
+import type { PersonalStatistic } from './personal';
+import { createSessionManager, serverOrigin } from './session';
+import { createSyncController } from './controller';
 
-export const feedbackStore=createFeedbackStore({getItem:key=>Storage.getItemSync(key),
-  setItem:(key,value)=>Storage.setItemSync(key,value)},randomUUID);
+const adapter={getItem:(key:string)=>Storage.getItemSync(key),setItem:(key:string,value:string)=>Storage.setItemSync(key,value)};
+export const feedbackStore=createFeedbackStore(adapter,randomUUID);
+export const personalSync=createPersonalSync(adapter,randomUUID,()=>feedbackStore.state().records);
+export const configuredServerUrl=process.env.EXPO_PUBLIC_API_URL ?? '';
+let statistics: PersonalStatistic[]=[];
+const listeners=new Set<()=>void>();
+const notify=()=>listeners.forEach(listener=>listener());
+export function subscribePersonalState(listener:()=>void) {listeners.add(listener);return ()=>{listeners.delete(listener);};}
+const sessions=createSessionManager({
+  get:()=>SecureStore.getItemAsync('fridge-service-session-v1'),
+  set:value=>SecureStore.setItemAsync('fridge-service-session-v1',value),
+  clear:()=>SecureStore.deleteItemAsync('fridge-service-session-v1'),
+},async()=>Array.from(await getRandomBytesAsync(32),value=>value.toString(16).padStart(2,'0')).join(''),
+  developmentTransport,async candidate=>{statistics=await personalSync.statistics(candidate.transport,candidate.url);},__DEV__);
 
-export const personalSync=createPersonalSync({getItem:key=>Storage.getItemSync(key),
-  setItem:(key,value)=>Storage.setItemSync(key,value)},randomUUID,()=>feedbackStore.state().records);
-let connection: {transport: Transport; identity: string} | undefined;
-let lastError: string | undefined;
-export const personalConnectionStatus=()=>({connected:!!connection,lastError});
-export async function connectPersonalServer(url: string, token: string) {
-  const candidate={transport:developmentTransport(url,token),identity:new URL(url).origin};
-  await personalSync.statistics(candidate.transport,candidate.identity);
-  connection=candidate;
+const controller=createSyncController({
+  async run(){
+    await sessions.restore();
+    const connection=sessions.client();
+    if(!connection) return statistics;
+    await personalSync.sync(connection.transport,connection.url);
+    statistics=await personalSync.statistics(connection.transport,connection.url);
+    return statistics;
+  },
+  pending:()=>personalSync.statuses().some(job=>(job.localPending || job.request) && !job.error),
+  hasCredential:()=>sessions.status().saved,
+  changed:notify,
+  later:(callback,ms)=>{const timer=setTimeout(callback,ms);return ()=>clearTimeout(timer);},
+});
+export const personalConnectionStatus=()=>({...sessions.status(),lastError:controller.error()});
+export const personalStatistics=()=>statistics;
+export async function connectPersonalServer(url:string,code:string) {
+  await sessions.enroll(url,code);
+  notify();
   return syncPersonalNow();
 }
-export async function syncPersonalNow() {
-  if (!connection) throw new Error('시험 서버에 먼저 연결해 주세요');
-  await personalSync.sync(connection.transport,connection.identity);
-  const statistics=await personalSync.statistics(connection.transport,connection.identity);
-  lastError=undefined;
-  return statistics;
+export async function disconnectPersonalServer() {
+  controller.reset();
+  await controller.current()?.catch(()=>undefined);
+  await sessions.disconnect();statistics=[];controller.reset();
+  notify();
 }
-export async function resolvePersonalConflict(id: string) {
-  if (!connection) throw new Error('시험 서버에 먼저 연결해 주세요');
-  await personalSync.resolveWithLocal(id,connection.transport,connection.identity);
+export function syncPersonalNow(): Promise<PersonalStatistic[]> {
+  return controller.sync();
+}
+export async function resolvePersonalConflict(id:string) {
+  await controller.current();
+  await sessions.restore();
+  const connection=sessions.client();
+  if(!connection) throw new Error('서버에 먼저 연결해 주세요');
+  await personalSync.resolveWithLocal(id,connection.transport,connection.url);
   return syncPersonalNow();
 }
 export function schedulePersonalSync() {
-  if (connection) void syncPersonalNow().catch(error=>{lastError=String(error);});
+  controller.schedule();
+}
+export function setPersonalAppActive(value:boolean) {
+  controller.setActive(value);
 }
 
-export function developmentTransport(url: string,token: string): Transport {
-  const base=new URL(url);
-  if (!['http:','https:'].includes(base.protocol) || base.username || base.password || base.search || base.hash)
-    throw new Error('서버 주소를 확인해 주세요');
-  return async (method,path,body,key)=>{
+export function developmentTransport(url:string,token:string): Transport {
+  const base=serverOrigin(url,__DEV__);
+  return async(method,path,body,key)=>{
     const legacyBinding=feedbackStore.state().binding;
-    // Existing v1 data must not silently move to another owner's account.
-    if(path==='/v1/me' && legacyBinding && !legacyBinding.startsWith(`${base.origin}|`))
+    if(path==='/v1/me' && legacyBinding && !legacyBinding.startsWith(`${base}|`))
       throw new Error('기존 기록의 서버로 연결해 주세요');
     const controller=new AbortController();
-    const timeout=setTimeout(()=>controller.abort(),30000); // Development network timeout, not a model policy.
+    const timeout=setTimeout(()=>controller.abort(),30000);
     try {
       const response=await fetch(new URL(path,base).toString(),{method,signal:controller.signal,
         headers:{Authorization:`Bearer ${token}`,'Content-Type':'application/json',...(key ? {'Idempotency-Key':key} : {})},
         body:method==='GET' ? undefined : JSON.stringify(body ?? {})});
       const retry=response.headers.get('Retry-After');
-      const retryAfterMs=retry ? (/^\d+$/.test(retry) ? Number(retry)*1000 : Math.max(0,Date.parse(retry)-Date.now())) : undefined;
+      const parsed=retry ? (/^\d+$/.test(retry) ? Number(retry)*1000 : Math.max(0,Date.parse(retry)-Date.now())) : undefined;
+      const retryAfterMs=parsed!==undefined && Number.isFinite(parsed) ? parsed : undefined;
       const data=await response.json();
-      if(path==='/v1/me' && response.status===200 && legacyBinding && legacyBinding!==`${base.origin}|${data.ownerId}`)
+      if(path==='/v1/me' && response.status===200 && legacyBinding && legacyBinding!==`${base}|${data.ownerId}`)
         throw new Error('기존 기록의 계정으로 연결해 주세요');
       return {status:response.status,body:data,retryAfterMs};
     } finally {clearTimeout(timeout);}

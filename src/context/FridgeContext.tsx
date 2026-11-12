@@ -5,7 +5,7 @@ import type { DiscardEntry } from '@/data/discardLog';
 import { buildRegistration } from '@/services/registration';
 import { randomUUID } from 'expo-crypto';
 import { todayIso } from '@/utils/date';
-import { feedbackStore, schedulePersonalSync } from '@/services/feedback/local';
+import { feedbackStore, schedulePersonalSync, setPersonalAppActive } from '@/services/feedback/local';
 import type { EditSource } from '@/services/feedback/store';
 
 // Registered purchases and label edits are persisted by the SQLite-backed feedback store.
@@ -52,9 +52,11 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
   const [discardLog, setDiscardLog] = useState<DiscardEntry[]>([]);
   const [pendingReceipt, setPendingReceipt] = useState<MockReceipt | null>(null);
   const refreshPersonalExpiry=useCallback(()=>setFridgeItems(previous=>feedbackStore.overlay(previous)),[]);
-  useEffect(()=>{const listener=AppState.addEventListener('change',state=>{
-    if(state==='active') schedulePersonalSync();
-  });return ()=>listener.remove();},[]);
+  useEffect(()=>{
+    setPersonalAppActive(true);
+    const listener=AppState.addEventListener('change',state=>setPersonalAppActive(state==='active'));
+    return ()=>{listener.remove();setPersonalAppActive(false);};
+  },[]);
   const savePersonalExpiry=useCallback((item: FoodItem,expiry: string | null,source: EditSource | null,personalAverage?: boolean)=>{
     feedbackStore.edit(item,expiry,source,personalAverage); // Durable save precedes visible success.
     setFridgeItems(previous=>feedbackStore.overlay(previous));

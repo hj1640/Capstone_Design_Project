@@ -1,3 +1,5 @@
+> **D-051 현재 적용 안내:** 이 파일은 이전 검토/개발 실행 기록입니다. 최신 앱 연결·코드 등록·재시도·배포는 [APP_DEPLOYMENT.md](APP_DEPLOYMENT.md), 상세 결과는 [APP_INTEGRATION_REPORT.md](APP_INTEGRATION_REPORT.md)를 따릅니다. 과거 토큰 직접 입력 및 재시작 시 재입력 안내는 현재 화면과 다릅니다.
+
 # 팀 실행·연결 안내 — D-050
 
 이 문서는 현재 개인 평균 검토본용이다. 과거 0~8단계 안내보다 우선한다. 소스만 받은 경우 아래 준비가 필요하다. GitHub에 올라간 커밋은 설치된 APK를 자동 갱신하지 않는다.
@@ -64,7 +66,7 @@ pnpm exec expo start --dev-client
 
 제공된 [팀 개발 APK 페이지](https://expo.dev/accounts/hj1640/projects/fridge-app/builds/ae1cdfc7-f4ef-4862-9024-4b00b5b70ac2)는 기준 연결 자료다. 이 APK가 이번 소스/Expo57/SQLite/ONNX 의존성을 포함한다는 근거는 확보하지 못했다.
 
-현재 `app.json`에는 기존 EAS `projectId`, owner, Android package가 없고 `eas.json`도 없다. 빌드 담당자가 기존 프로젝트의 실제 설정과 소스 커밋을 확인해야 한다. 임의의 새 앱 ID를 만들어 기존 앱이라고 배포하지 않는다.
+정정: D-050 당시 `app.json`에는 기존 EAS `projectId`, owner, Android package가 없었다. `eas.json`은 존재했으며 없다는 이전 안내는 오류였다. D-051에서 실제 값 기반 동적 설정과 preview 프로필을 추가했다. 빌드 담당자가 기존 프로젝트의 실제 설정과 소스 커밋을 확인해야 한다. 임의의 새 앱 ID를 만들어 기존 앱이라고 배포하지 않는다.
 
 설정 확인 후 팀의 기존 계정으로 개발 APK를 빌드하고 설치한 뒤 이 브랜치의 개발 서버에 연결한다. EAS 작업을 진행할 때 [공식 개발 빌드 안내](https://docs.expo.dev/develop/development-builds/create-a-build/)를 따른다. 이번 검토에서는 새 APK 생성/설치 또는 운영 서버 배포를 하지 않았다.
 

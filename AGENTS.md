@@ -1,6 +1,6 @@
 This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
 
-Current requirements: read `docs/REVIEW_FINAL.md`, `docs/DECISIONS.md` and `docs/project-contract.json` first. D-050 supersedes the earlier online-only/community-average assumption: paper receipts plus Coupang, package-label dates, personal per-purchase statistics. Historical stage documents are not production approval. Do not reactivate unvalidated community or expiry-risk thresholds, silently migrate legacy feedback, or claim native-device validation from PC tests.
+Current requirements: read `docs/APP_INTEGRATION_REPORT.md`, `docs/APP_DEPLOYMENT.md`, `docs/DECISIONS.md` and `docs/project-contract.json` first. D-050 supersedes the earlier online-only/community-average assumption: paper receipts plus Coupang, package-label dates, personal per-purchase statistics. D-051 adds persistent device sessions and foreground retries, with external hosting/Expo identity and native acceptance still required. Historical stage documents are not production approval. Do not reactivate unvalidated community or expiry-risk thresholds, silently migrate legacy feedback, or claim native-device validation from PC tests.
 
 ## Expo has changed — do not trust your training data
 

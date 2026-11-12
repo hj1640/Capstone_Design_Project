@@ -141,5 +141,21 @@
     "decision": "D-050",
     "method": "calendar_past_today_future_unknown",
     "unvalidatedRiskCutoffsEnabled": false
+  },
+  "deployment": {
+    "decision": "D-051",
+    "authentication": "operator_enrollment_hashed_device_sessions",
+    "nativeSecureStorageImplemented": true,
+    "automaticForegroundRetry": true,
+    "publicServerDeployed": false,
+    "apkBuilt": false,
+    "physicalDeviceAccepted": false,
+    "confirmedProjectId": null,
+    "confirmedAndroidPackage": null,
+    "confirmedServerUrl": null,
+    "status": "implemented_awaiting_external_configuration_and_device_acceptance",
+    "hostingAvailability": "user_confirmed_none",
+    "expoAccess": "user_has_build_url_only_no_login",
+    "projectContinuationChoice": "pending_user_existing_access_or_new_project"
   }
 }

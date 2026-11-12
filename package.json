@@ -5,24 +5,28 @@
   "dependencies": {
     "@huggingface/tokenizers": "^0.2.0",
     "@react-native-ml-kit/text-recognition": "^2.0.0",
-    "expo": "~57.0.27",
-    "expo-asset": "~57.0.20",
-    "expo-constants": "^57.0.21",
+    "@react-native/metro-config": "0.86.3",
+    "expo": "~57.0.32",
+    "expo-asset": "~57.0.21",
+    "expo-constants": "^57.0.23",
     "expo-crypto": "~57.0.4",
-    "expo-dev-client": "^57.0.19",
+    "expo-dev-client": "^57.0.21",
     "expo-device": "~57.0.2",
     "expo-file-system": "~57.0.7",
-    "expo-image-picker": "^57.0.20",
+    "expo-image-picker": "^57.0.21",
     "expo-linking": "^57.0.12",
-    "expo-router": "^57.0.25",
+    "expo-router": "^57.0.30",
+    "expo-secure-store": "~57.0.4",
     "expo-sqlite": "~57.0.4",
     "expo-status-bar": "~57.0.1",
     "onnxruntime-react-native": "^1.24.3",
     "react": "19.2.3",
     "react-native": "0.86.3",
-    "react-native-safe-area-context": "^5.10.1",
-    "react-native-screens": "^4.29.0",
-    "react-native-web": "^0.21.4"
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "^5.7.0",
+    "react-native-screens": "^4.26.2",
+    "react-native-web": "^0.21.4",
+    "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
@@ -58,7 +62,13 @@
     "test:stage8:flow": "python server/check_full_flow.py",
     "experiment:purchase": "node scripts/stage8-purchase-eval.mjs",
     "test:personal": "python server/check_personal_flow.py",
-    "verify:review": "python scripts/verify_review.py"
+    "verify:review": "python scripts/verify_review.py",
+    "server:service": "python server/service.py",
+    "test:service": "python server/check_service_flow.py",
+    "test:sync": "node scripts/sync-controller-check.mjs",
+    "check:deployment": "node --env-file-if-exists=.env scripts/check-deployment.mjs",
+    "verify:deployment": "python scripts/verify_deployment.py",
+    "build:preview": "node scripts/build-preview.mjs"
   },
   "private": true
 }

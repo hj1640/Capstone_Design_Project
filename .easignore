@@ -63,5 +63,8 @@ assets/models/model_matmul_int8.onnx
 
 # Local development API is deployed separately
 server/
+.secrets/
+backups/
+deploy/
 __pycache__/
 *.pyc
