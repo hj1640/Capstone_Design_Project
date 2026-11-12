@@ -17,6 +17,10 @@ assert.deepEqual(contract.scope.inputKinds.value, ['paper', 'coupang'], 'D-050')
 assert.equal(contract.scope.hardwareRequired.value, false, 'D-001');
 assert.equal(contract.scope.showEstimatedRemainingAmount.value, false, 'D-007');
 for (const [key, value] of Object.entries(contract.unresolved)) {
+  if (key === 'feedbackDurationMeaning') {
+    assert.equal(value, 'package_label_expiry_minus_purchase_date', 'D-050');
+    continue;
+  }
   assert.equal(value, null, `Unapproved policy value: ${key}`);
 }
 let head = null;

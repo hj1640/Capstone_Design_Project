@@ -179,6 +179,8 @@
       "pnpm": "11.25.0",
       "lockfile": "pnpm-lock.yaml",
       "reason": "D-052: first EAS build selected stale npm lockfile and failed; use the validated pnpm install consistently"
-    }
+    },
+    "androidCompatibilityPatch": "patches/onnxruntime-react-native@1.24.3.patch",
+    "nativeAutolinkingVerified": true
   }
 }

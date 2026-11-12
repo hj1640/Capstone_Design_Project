@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {deployment} from '../config/deployment.cjs';
 try {
   const values=deployment(process.env,true);
@@ -22,5 +24,6 @@ try {
     if(crypto.createHash('sha256').update(bytes).digest('hex')!==file.sha) throw new Error('모델 SHA-256 불일치: '+file.name);
   }
   console.log('PASS: 앱 식별자 형식, 빌드 모드에 필요한 설정, 모델 SHA-256 확인');
+  execFileSync(process.execPath,[fileURLToPath(new URL('./check-native-linking.mjs',import.meta.url))],{stdio:'inherit'});
   console.log('eas project:info에서 실제 새 프로젝트 소유 계정과 projectId를 확인해야 합니다.');
 } catch(error) {console.error(String(error));process.exitCode=1;}

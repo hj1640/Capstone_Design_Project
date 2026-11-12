@@ -38,7 +38,7 @@ report=dict(decision='D-052',timestamp=datetime.now(timezone.utc).isoformat(),pl
  python=platform.python_version(),node=subprocess.check_output(['node','--version'],text=True).strip(),
  passed=all(r['passed'] for r in results),checks=results,synthetic_fixtures=True,
  source_sha256={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in files},
- not_verified=['Expo project creation without user login','Android cloud APK build and signing','Physical device installation and native behavior','Public statistics server hosting'])
+ not_verified=['Cloud build state is not checked by this PC script; see ANDROID_BUILD_RESULTS.md','Physical device installation and native behavior','Public statistics server hosting'])
 (ROOT/'benchmarks/new-expo-verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 lines=['# D-052 새 Expo 프로젝트 설정 검사','',f"UTC: {report['timestamp']}",
  f"환경: {report['platform']} / Python {report['python']} / Node {report['node']}",'',

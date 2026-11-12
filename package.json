@@ -71,7 +71,8 @@
     "verify:deployment": "python scripts/verify_deployment.py",
     "build:preview": "node scripts/build-preview.mjs",
     "build:preview:local": "node scripts/build-preview.mjs --local",
-    "test:project-config": "node scripts/project-config-check.mjs"
+    "test:project-config": "node scripts/project-config-check.mjs",
+    "test:native-linking": "node scripts/check-native-linking.mjs"
   },
   "private": true
 }

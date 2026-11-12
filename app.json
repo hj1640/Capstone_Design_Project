@@ -37,7 +37,6 @@
           "microphonePermission": false
         }
       ],
-      "onnxruntime-react-native",
       "expo-sqlite",
       "expo-secure-store",
       "expo-asset"
