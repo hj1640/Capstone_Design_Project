@@ -5,8 +5,10 @@
 ## 현재 상태
 
 - 별도 앱 구성: 이름 `스마트 냉장고 개인판`, slug `fridge-app-personal`, 링크 scheme `fridgepersonal`.
-- 실제 소유자·projectId·Android package: 로그인 및 프로젝트 생성 후 `config/expo-project.json`에 기록한다. 이 파일의 null을 실제 생성 완료로 읽으면 안 된다.
-- 사용자 본인 Expo 계정의 로그인 승인이 필요하다. 기존 팀원 계정일 필요는 없다. [계정 가입](https://expo.dev/signup) 후 CLI의 기기 로그인 페이지에서 승인할 수 있다. 비밀번호·토큰은 채팅이나 Git에 넣지 않는다.
+- **Expo 프로젝트 실제 생성 완료:** [juuuuuuun/fridge-app-personal](https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal).
+- 실제 projectId: `6899818e-50b4-41b0-8fae-e4f27ac65566`. 공식 CLI가 `status: created`를 반환했다.
+- 새 Android package: `com.capstoneteam7.fridge.personal6899818e`. 기존 앱과 별도로 설치할 새 식별자이며 기존 APK의 식별자를 추측한 값이 아니다.
+- 계정 로그인과 프로젝트 생성은 완료했다. 로그인 파일·비밀번호·토큰은 Git에 넣지 않는다. 공개 앱 식별자는 `config/expo-project.json`에 기록했다.
 - 새 APK 성공 여부는 Expo 빌드 결과와 실제 설치 결과로 판단한다. 설정/JS 번들만으로 APK가 만들어졌다고 말하지 않는다.
 
 ## 앱은 어디까지 작동하는가
@@ -55,4 +57,4 @@ pnpm build:preview:local
 
 기존 GitHub 업로드 구성에 새 프로젝트 설정·이 문서·검사 스크립트를 포함한다. 로그인 파일/토큰·서명키·개인 DB·모델 바이너리는 제외한다. D-051 패키지는 이전 스냅샷이고, D-052 이후 소스로 빌드해야 새 프로젝트 설정이 반영된다.
 
-현재 실제 클라우드 생성/빌드 상태는 `config/expo-project.json`, `docs/project-contract.json` 및 최종 전달 기록을 확인한다. 계정 승인이 없으면 로컬 준비까지 가능하며 원격 생성·빌드를 완료할 수 없다.
+현재 실제 클라우드 생성/빌드 상태는 `config/expo-project.json`, `docs/project-contract.json` 및 최종 전달 기록을 확인한다. 프로젝트 생성 완료와 APK 빌드·실기기 설치 완료는 별도로 판단한다.

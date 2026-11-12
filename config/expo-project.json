@@ -4,8 +4,9 @@
   "name": "스마트 냉장고 개인판",
   "slug": "fridge-app-personal",
   "scheme": "fridgepersonal",
-  "owner": null,
-  "projectId": null,
-  "androidPackage": null,
-  "createdOnExpo": false
+  "owner": "juuuuuuun",
+  "projectId": "6899818e-50b4-41b0-8fae-e4f27ac65566",
+  "androidPackage": "com.capstoneteam7.fridge.personal6899818e",
+  "createdOnExpo": true,
+  "dashboardUrl": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal"
 }

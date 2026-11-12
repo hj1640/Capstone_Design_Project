@@ -41,6 +41,13 @@
       "expo-sqlite",
       "expo-secure-store",
       "expo-asset"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6899818e-50b4-41b0-8fae-e4f27ac65566"
+      }
+    },
+    "owner": "juuuuuuun"
   }
 }

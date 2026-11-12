@@ -68,3 +68,7 @@ D-051 사용자 확인 갱신: 별도 서버 없음. Expo 로그인 가능이라
 출처: 사용자 “expo 2번으로 만들면 앱이 작동이 되나? 일단 2번으로 만들어봐”. 기존 GitHub 앱 소스를 새 사용자 소유 Expo 프로젝트에 연결하여 별도 Android 앱으로 빌드하는 작업을 승인했다. D-051의 기존 Expo 식별자 유지 경로를 현재 배포 작업에 한해 대체한다. 기존 앱 데이터 자동 이전이나 프로젝트/서명 자동 병합을 뜻하지 않는다. 앱 이름/slug/scheme은 구분 가능한 개인판으로 정하고 owner/projectId/package는 실제 로그인·프로젝트 생성 결과로 기록한다. 로그인 승인 전에는 실제 클라우드 프로젝트가 생겼다고 주장하지 않는다.
 
 서버가 아직 없으므로 `preview-local` 독립 APK 프로필을 추가한다. 이 프로필만 API 주소 미설정을 허용하며, 구매/날짜는 기기에 저장되고 서버 평균은 실제 HTTPS 주소와 개인 코드로 연결한 뒤 갱신됨을 화면에 표시한다. 연결형 `preview`는 실제 HTTPS 상태 검사를 유지한다. 식품 평균의 범위·날짜 의미·필터는 D-050 그대로다. 호스팅 구매·유료 플랜 업그레이드·기존 앱 삭제는 승인 범위에 포함하지 않는다. 상세: team-mobile/docs/NEW_EXPO_PROJECT.md.
+
+D-052 실제 생성 확인: 기기 로그인 확인 숫자를 사용자가 화면으로 제공하여 Expo 계정 juuuuuuun 로그인을 완료했다. 공식 CLI project:init가 status=created, projectId=6899818e-50b4-41b0-8fae-e4f27ac65566, slug=fridge-app-personal을 반환했다. 대시보드 https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal . 별도 Android package는 프로젝트 ID에서 구분자를 만든 com.capstoneteam7.fridge.personal6899818e로 선택했다(기존 APK 식별자가 아님). 아직 APK 빌드 성공/설치 증거는 없다. 사용자가 아이폰을 사용한다고 밝혀 설치 대상 확인을 요청했다.
+
+D-052 설치 대상 확정: 사용자가 “우선 팀에서 시험할 Android APK 만들기”를 선택했다. 새 개인판 프로젝트의 preview-local Android APK를 빌드한다. iPhone 설치용 iOS 빌드나 유료 Apple 개발자 등록은 이번 작업 범위가 아니다.

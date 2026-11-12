@@ -27,8 +27,13 @@ class ReviewContractTests(unittest.TestCase):
         self.assertTrue(service['nativeSecureStorageImplemented'])
         for key in ['publicServerDeployed','apkBuilt','physicalDeviceAccepted']:
             self.assertFalse(service[key])
-        self.assertIsNone(service['confirmedProjectId'])
-        self.assertIsNone(service['confirmedAndroidPackage'])
+        project=contract['newExpoProject']
+        if project['created']:
+            self.assertEqual(service['confirmedProjectId'],project['projectId'])
+            self.assertEqual(service['confirmedAndroidPackage'],project['androidPackage'])
+        else:
+            self.assertIsNone(service['confirmedProjectId'])
+            self.assertIsNone(service['confirmedAndroidPackage'])
 
     def test_new_expo_choice_does_not_claim_cloud_or_device_completion(self):
         contract=json.loads((ROOT/'docs/project-contract.json').read_text(encoding='utf-8'))

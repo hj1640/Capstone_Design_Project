@@ -150,26 +150,29 @@
     "publicServerDeployed": false,
     "apkBuilt": false,
     "physicalDeviceAccepted": false,
-    "confirmedProjectId": null,
-    "confirmedAndroidPackage": null,
+    "confirmedProjectId": "6899818e-50b4-41b0-8fae-e4f27ac65566",
+    "confirmedAndroidPackage": "com.capstoneteam7.fridge.personal6899818e",
     "confirmedServerUrl": null,
     "status": "implemented_awaiting_external_configuration_and_device_acceptance",
     "hostingAvailability": "user_confirmed_none",
-    "expoAccess": "user_has_build_url_only_no_login",
+    "expoAccess": "authenticated_new_project_owner",
     "projectContinuationChoice": "new_separate_expo_project",
     "projectContinuationDecision": "D-052"
   },
   "newExpoProject": {
     "decision": "D-052",
     "authorized": true,
-    "created": false,
-    "owner": null,
-    "projectId": null,
-    "androidPackage": null,
+    "created": true,
+    "owner": "juuuuuuun",
+    "projectId": "6899818e-50b4-41b0-8fae-e4f27ac65566",
+    "androidPackage": "com.capstoneteam7.fridge.personal6899818e",
     "slug": "fridge-app-personal",
     "standaloneLocalProfile": "preview-local",
     "serverOptionalOnlyForLocalProfile": true,
     "apkBuilt": false,
-    "physicalDeviceAccepted": false
+    "physicalDeviceAccepted": false,
+    "dashboardUrl": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal",
+    "requestedPlatform": "android",
+    "buildProfile": "preview-local"
   }
 }
