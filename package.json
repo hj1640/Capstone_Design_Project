@@ -1,6 +1,7 @@
 {
   "name": "fridge-app",
   "version": "1.0.0",
+  "packageManager": "pnpm@11.25.0",
   "main": "expo-router/entry",
   "dependencies": {
     "@huggingface/tokenizers": "^0.2.0",

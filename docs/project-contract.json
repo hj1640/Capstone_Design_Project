@@ -173,6 +173,12 @@
     "physicalDeviceAccepted": false,
     "dashboardUrl": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal",
     "requestedPlatform": "android",
-    "buildProfile": "preview-local"
+    "buildProfile": "preview-local",
+    "buildToolchain": {
+      "node": "24.22.1",
+      "pnpm": "11.25.0",
+      "lockfile": "pnpm-lock.yaml",
+      "reason": "D-052: first EAS build selected stale npm lockfile and failed; use the validated pnpm install consistently"
+    }
   }
 }

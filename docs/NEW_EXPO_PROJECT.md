@@ -58,3 +58,7 @@ pnpm build:preview:local
 기존 GitHub 업로드 구성에 새 프로젝트 설정·이 문서·검사 스크립트를 포함한다. 로그인 파일/토큰·서명키·개인 DB·모델 바이너리는 제외한다. D-051 패키지는 이전 스냅샷이고, D-052 이후 소스로 빌드해야 새 프로젝트 설정이 반영된다.
 
 현재 실제 클라우드 생성/빌드 상태는 `config/expo-project.json`, `docs/project-contract.json` 및 최종 전달 기록을 확인한다. 프로젝트 생성 완료와 APK 빌드·실기기 설치 완료는 별도로 판단한다.
+
+## 빌드 설치 기준
+
+D-052: `pnpm install --frozen-lockfile`을 사용한다. `package-lock.json`을 추가하지 않는다. 두 잠금 파일 공존으로 첫 클라우드 빌드의 `npm ci`가 실제 실패했기 때문이다. 로컬·CI·EAS는 pnpm 11.25.0, EAS Node는 검증 환경과 같은 24.22.1로 고정한다. EAS의 버전 지정은 [공식 설정 문서](https://docs.expo.dev/eas/json/#common-properties-for-native-platforms)를 따른다.

@@ -2,6 +2,8 @@
   "cli": { "appVersionSource": "remote" },
   "build": {
     "development": {
+      "node": "24.22.1",
+      "pnpm": "11.25.0",
       "developmentClient": true,
       "distribution": "internal",
       "android": { "buildType": "apk" }
@@ -10,6 +12,8 @@
       "extends": "preview"
     },
     "preview": {
+      "node": "24.22.1",
+      "pnpm": "11.25.0",
       "developmentClient": false,
       "distribution": "internal",
       "autoIncrement": true,

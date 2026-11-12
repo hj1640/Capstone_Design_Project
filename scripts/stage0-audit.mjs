@@ -13,7 +13,7 @@ const hash = (name) => crypto.createHash('sha256').update(fs.readFileSync(path.j
 const pkg = JSON.parse(read('package.json'));
 const app = JSON.parse(read('app.json')).expo;
 const contract = JSON.parse(read('docs/project-contract.json'));
-assert.equal(contract.scope.onlineOrdersOnly.value, true, 'D-002');
+assert.deepEqual(contract.scope.inputKinds.value, ['paper', 'coupang'], 'D-050');
 assert.equal(contract.scope.hardwareRequired.value, false, 'D-001');
 assert.equal(contract.scope.showEstimatedRemainingAmount.value, false, 'D-007');
 for (const [key, value] of Object.entries(contract.unresolved)) {
@@ -36,7 +36,7 @@ const report = {
   platform: process.platform,
   sourceCommit: head,
   sourceInventoryAvailable: tracked.length > 0,
-  packageLockSha256: hash('package-lock.json'),
+  pnpmLockSha256: hash('pnpm-lock.yaml'),
   dependencies: pkg.dependencies,
   foodEntryCount: foodCount,
   eas: {

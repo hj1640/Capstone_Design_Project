@@ -72,3 +72,5 @@ D-051 사용자 확인 갱신: 별도 서버 없음. Expo 로그인 가능이라
 D-052 실제 생성 확인: 기기 로그인 확인 숫자를 사용자가 화면으로 제공하여 Expo 계정 juuuuuuun 로그인을 완료했다. 공식 CLI project:init가 status=created, projectId=6899818e-50b4-41b0-8fae-e4f27ac65566, slug=fridge-app-personal을 반환했다. 대시보드 https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal . 별도 Android package는 프로젝트 ID에서 구분자를 만든 com.capstoneteam7.fridge.personal6899818e로 선택했다(기존 APK 식별자가 아님). 아직 APK 빌드 성공/설치 증거는 없다. 사용자가 아이폰을 사용한다고 밝혀 설치 대상 확인을 요청했다.
 
 D-052 설치 대상 확정: 사용자가 “우선 팀에서 시험할 Android APK 만들기”를 선택했다. 새 개인판 프로젝트의 preview-local Android APK를 빌드한다. iPhone 설치용 iOS 빌드나 유료 Apple 개발자 등록은 이번 작업 범위가 아니다.
+
+D-052 빌드 수정: 첫 실제 빌드 `c7c21b15-0d02-4a6b-ad17-bef12429478c`는 오래된 `package-lock.json`을 선택한 `npm ci`의 EUSAGE로 실패했다. 현행 로컬/CI와 같은 pnpm만 사용하도록 이전 npm 잠금 파일을 제거하고 packageManager 및 EAS Node 24.22.1/pnpm 11.25.0을 고정한다. 앱 기능·개인 평균 정의 변경은 아니다.

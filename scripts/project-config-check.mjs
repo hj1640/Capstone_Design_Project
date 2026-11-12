@@ -29,4 +29,11 @@ const profiles=JSON.parse(fs.readFileSync(new URL('../eas.json',import.meta.url)
 assert.equal(profiles['preview-local'].extends,'preview');
 assert.equal(profiles.preview.developmentClient,false);
 assert.equal(profiles.preview.android.buildType,'apk');
+// Two lockfiles caused the first real EAS build to choose stale npm ci.
+assert.equal(fs.existsSync(new URL('../package-lock.json',import.meta.url)),false,
+  'Use only pnpm-lock.yaml; a stale npm lock changes EAS dependency installation');
+const pkg=JSON.parse(fs.readFileSync(new URL('../package.json',import.meta.url),'utf8'));
+assert.equal(pkg.packageManager,`pnpm@${profiles.preview.pnpm}`);
+assert.equal(profiles.development.pnpm,profiles.preview.pnpm);
+assert.ok(fs.existsSync(new URL('../pnpm-lock.yaml',import.meta.url)));
 console.log('PASS: separate project identity; local APK without server; connected builds require HTTPS; supplied bad URLs rejected');
