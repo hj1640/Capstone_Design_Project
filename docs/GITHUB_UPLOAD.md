@@ -13,7 +13,7 @@
 - `src/`: 앱 화면, OCR 파서, 구매 저장, 날짜 수정, 개인 평균 연결/재시도.
 - `server/`: 개인 통계, 서비스 API, 코드 발급/백업, 자동 검사.
 - `scripts/`, `config/`, `models/` manifest, 합성 fixture: 실행·검사·모델 재현 설정.
-- `app.json`, `app.config.js`, `eas.json`, `package.json`, `pnpm-lock.yaml`, `requirements-*.txt`, `.env.example`.
+- `app.json`, `app.config.js`, `eas.json`, `package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`, `patches/`, `requirements-*.txt`, `.env.example`. ONNX 호환 패치와 workspace 파일을 빠뜨리면 클라우드 빌드에서 다시 실패한다. 오래된 `package-lock.json`은 제거된 상태를 유지한다.
 - `deploy/`, `.dockerignore`, `.github/workflows/`: 서버 및 CI 구성.
 - `docs/`, 검토된 `benchmarks/`, `README.md`: 결정·실행·팀 공유·검증 기록.
 
@@ -49,8 +49,8 @@ git push -u origin codex/new-expo-project-2026-11-12
 
 - base: `main`
 - compare: `codex/new-expo-project-2026-11-12`
-- 제목: `feat: 포장지 소비기한 개인 평균과 앱·서버 재전송 및 배포 경로 연결`
-- 본문: `docs/PR_APP_INTEGRATION.md`에 `docs/PR_NEW_EXPO.md`의 후속 변경을 함께 적는다.
+- 제목: `feat: 개인 구매 평균 연동과 별도 Android 시험 앱 전달`
+- 본문: 현재 전체 변경을 정리한 `docs/PR_ANDROID_DELIVERY.md`를 사용한다. 이전 PR 문서는 작업 이력이다.
 - 실기기/서버 배포가 끝나지 않은 상태임을 남기고 검토용 draft PR로 공유한다.
 
 이 브랜치는 원격 main에 없던 0~8단계와 개인 평균 재검토를 모두 포함한다. 최신 몇 개 파일만 검토하는 PR로 오해하면 안 된다. 팀원이 읽을 보고서는 `APP_INTEGRATION_REPORT.md`, 적용 담당자가 읽을 문서는 `APP_DEPLOYMENT.md`다. GitHub 병합 후에도 서버 실행과 APK 재빌드는 따로 해야 한다.

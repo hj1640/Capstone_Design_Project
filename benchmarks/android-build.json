@@ -1,0 +1,67 @@
+{
+  "decision": "D-052",
+  "updatedAtUtc": "2026-11-12T16:43:20.496878+00:00",
+  "projectId": "6899818e-50b4-41b0-8fae-e4f27ac65566",
+  "profile": "preview-local",
+  "attempts": [
+    {
+      "id": "c7c21b15-0d02-4a6b-ad17-bef12429478c",
+      "status": "ERRORED",
+      "createdAt": "2026-11-12T12:31:21.173Z",
+      "updatedAt": "2026-11-12T12:34:27.635Z",
+      "completedAt": "2026-11-12T12:34:27.417Z",
+      "appIdentifier": "com.capstoneteam7.fridge.personal6899818e",
+      "appBuildVersion": "2",
+      "gitCommitHash": "301d5424ebe64e88020fc564c0c1014261f4eb63",
+      "sdkVersion": "57.0.0",
+      "url": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal/builds/c7c21b15-0d02-4a6b-ad17-bef12429478c",
+      "failureReason": "npm ci EUSAGE: stale package-lock.json selected alongside pnpm-lock.yaml"
+    },
+    {
+      "id": "8c361e1f-75b9-401f-8786-d4b94f070e43",
+      "status": "ERRORED",
+      "createdAt": "2026-11-12T12:41:38.747Z",
+      "updatedAt": "2026-11-12T12:47:06.780Z",
+      "completedAt": "2026-11-12T12:47:06.680Z",
+      "appIdentifier": "com.capstoneteam7.fridge.personal6899818e",
+      "appBuildVersion": "3",
+      "gitCommitHash": "b207421639619eb0c96ea66bb20049f0639f4fa5",
+      "sdkVersion": "57.0.0",
+      "url": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal/builds/8c361e1f-75b9-401f-8786-d4b94f070e43",
+      "failureReason": "Gradle: ONNX 1.24.3 VersionNumber property unavailable"
+    },
+    {
+      "id": "0a220d0e-cd8e-48de-9315-474e560b04f6",
+      "status": "FINISHED",
+      "createdAt": "2026-11-12T12:55:36.554Z",
+      "updatedAt": "2026-11-12T16:30:15.251Z",
+      "completedAt": "2026-11-12T13:20:55.137Z",
+      "appIdentifier": "com.capstoneteam7.fridge.personal6899818e",
+      "appBuildVersion": "4",
+      "gitCommitHash": "611cdc6228d61798c33d63ba71d4d3a46ec04b27",
+      "sdkVersion": "57.0.0",
+      "url": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal/builds/0a220d0e-cd8e-48de-9315-474e560b04f6",
+      "artifactUrl": "https://expo.dev/artifacts/eas/FXHf81oi6s7yav1VNIZaDnUG0bfmLGeJF209AHFDpfs.apk",
+      "failureReason": null
+    }
+  ],
+  "apkBuilt": true,
+  "publicServerDeployed": false,
+  "physicalDeviceAccepted": false,
+  "sourceRestoreEvidence": "android-source-restore.json",
+  "successfulBuild": {
+    "id": "0a220d0e-cd8e-48de-9315-474e560b04f6",
+    "status": "FINISHED",
+    "createdAt": "2026-11-12T12:55:36.554Z",
+    "updatedAt": "2026-11-12T16:30:15.251Z",
+    "completedAt": "2026-11-12T13:20:55.137Z",
+    "appIdentifier": "com.capstoneteam7.fridge.personal6899818e",
+    "appBuildVersion": "4",
+    "gitCommitHash": "611cdc6228d61798c33d63ba71d4d3a46ec04b27",
+    "sdkVersion": "57.0.0",
+    "url": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal/builds/0a220d0e-cd8e-48de-9315-474e560b04f6",
+    "artifactUrl": "https://expo.dev/artifacts/eas/FXHf81oi6s7yav1VNIZaDnUG0bfmLGeJF209AHFDpfs.apk",
+    "failureReason": null
+  },
+  "artifactInspection": "apk-inspection.json"
+}

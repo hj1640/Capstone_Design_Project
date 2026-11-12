@@ -1,0 +1,19 @@
+{
+  "decision": "D-052",
+  "observedAtUtc": "2026-11-12T12:59:44.229920+00:00",
+  "sourceCommit": "611cdc6228d61798c33d63ba71d4d3a46ec04b27",
+  "machine": "Windows-11-10.0.26200-SP0",
+  "node": "v24.22.1",
+  "pnpm": "11.25.0",
+  "commands": [
+    "git archive --format=zip 611cdc6228d61798c33d63ba71d4d3a46ec04b27",
+    "pnpm install --offline --frozen-lockfile",
+    "node scripts/check-native-linking.mjs",
+    "node scripts/project-config-check.mjs"
+  ],
+  "passed": true,
+  "limitations": [
+    "Used this PC and its pnpm package cache; not a new-computer online install",
+    "No physical Android execution or inference"
+  ]
+}

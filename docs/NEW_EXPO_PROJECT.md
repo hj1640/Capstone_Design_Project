@@ -4,6 +4,8 @@
 
 ## 현재 상태
 
+**Android APK 생성 완료:** versionCode 4, EAS FINISHED. [다운로드·검증 기록](../benchmarks/ANDROID_BUILD_RESULTS.md). 실제 휴대폰 설치·서버 연결은 아직 미실행.
+
 - 별도 앱 구성: 이름 `스마트 냉장고 개인판`, slug `fridge-app-personal`, 링크 scheme `fridgepersonal`.
 - **Expo 프로젝트 실제 생성 완료:** [juuuuuuun/fridge-app-personal](https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal).
 - 실제 projectId: `6899818e-50b4-41b0-8fae-e4f27ac65566`. 공식 CLI가 `status: created`를 반환했다.
@@ -54,6 +56,8 @@ pnpm build:preview:local
 새 앱과 기존 앱의 기기 내 데이터는 분리된다. 새 앱을 기존 앱 위에 강제로 설치하거나 기존 앱을 먼저 삭제하지 않는다. 두 앱의 구매 기록 자동 병합/가져오기 기능은 현재 없다. 실제 서버를 함께 쓰려면 개인 owner와 연결 코드·중복 구매 처리도 확인해야 한다.
 
 ## 공유와 검증
+
+Android 팀원은 [시험 안내](ANDROID_TEAM_TRIAL.md), 빌드 담당자는 [ONNX 호환 패치 근거](ONNX_ANDROID_COMPATIBILITY.md)와 [실제 빌드 결과](../benchmarks/ANDROID_BUILD_RESULTS.md)를 확인한다. 성공 여부는 마지막 문서의 실제 EAS 상태로 판단한다.
 
 기존 GitHub 업로드 구성에 새 프로젝트 설정·이 문서·검사 스크립트를 포함한다. 로그인 파일/토큰·서명키·개인 DB·모델 바이너리는 제외한다. D-051 패키지는 이전 스냅샷이고, D-052 이후 소스로 빌드해야 새 프로젝트 설정이 반영된다.
 

@@ -148,12 +148,12 @@
     "nativeSecureStorageImplemented": true,
     "automaticForegroundRetry": true,
     "publicServerDeployed": false,
-    "apkBuilt": false,
+    "apkBuilt": true,
     "physicalDeviceAccepted": false,
     "confirmedProjectId": "6899818e-50b4-41b0-8fae-e4f27ac65566",
     "confirmedAndroidPackage": "com.capstoneteam7.fridge.personal6899818e",
     "confirmedServerUrl": null,
-    "status": "implemented_awaiting_external_configuration_and_device_acceptance",
+    "status": "android_trial_apk_built_server_and_device_acceptance_pending",
     "hostingAvailability": "user_confirmed_none",
     "expoAccess": "authenticated_new_project_owner",
     "projectContinuationChoice": "new_separate_expo_project",
@@ -169,7 +169,7 @@
     "slug": "fridge-app-personal",
     "standaloneLocalProfile": "preview-local",
     "serverOptionalOnlyForLocalProfile": true,
-    "apkBuilt": false,
+    "apkBuilt": true,
     "physicalDeviceAccepted": false,
     "dashboardUrl": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal",
     "requestedPlatform": "android",
@@ -181,6 +181,8 @@
       "reason": "D-052: first EAS build selected stale npm lockfile and failed; use the validated pnpm install consistently"
     },
     "androidCompatibilityPatch": "patches/onnxruntime-react-native@1.24.3.patch",
-    "nativeAutolinkingVerified": true
+    "nativeAutolinkingVerified": true,
+    "successfulBuildId": "0a220d0e-cd8e-48de-9315-474e560b04f6",
+    "buildSourceCommit": "611cdc6228d61798c33d63ba71d4d3a46ec04b27"
   }
 }

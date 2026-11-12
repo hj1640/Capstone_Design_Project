@@ -1,0 +1,44 @@
+{
+  "decision": "D-052",
+  "observedAtUtc": "2026-11-12T16:44:31.606871+00:00",
+  "filename": "fridge-personal-1.0.0-4.apk",
+  "bytes": 424692074,
+  "sha256": "59007ce4683d6def33813cc4e1d5cbc24ba60557739003408994cfdd5ad11230",
+  "zipCrcValid": true,
+  "androidPackage": "com.capstoneteam7.fridge.personal6899818e",
+  "manifestPackagePresent": true,
+  "jsBundlePresent": true,
+  "onnxLibrariesByAbi": {
+    "arm64-v8a": true,
+    "armeabi-v7a": true,
+    "x86": true,
+    "x86_64": true
+  },
+  "dexPackageClasses": {
+    "onnxPackageClass": true,
+    "mlkitPackageClass": true
+  },
+  "models": [
+    {
+      "model": "onnx/model_int8.onnx",
+      "sha256": "d6ea442ff6a891daefed7c83b2f596fc5dc66bf697e4d006236f64f34bbcf4c8",
+      "entries": [
+        "res/Ck.onnx"
+      ]
+    },
+    {
+      "model": "model_local_int8.onnx",
+      "sha256": "a621ad502961ec86088e4bf9d12e73bd29a7d12afbbf83f62aa0477254f61b29",
+      "entries": [
+        "res/pt.onnx"
+      ]
+    }
+  ],
+  "passed": true,
+  "signatureIndependentlyVerified": false,
+  "physicalDeviceExecuted": false,
+  "limitations": [
+    "ZIP integrity and included bytes only; not signature trust or Android execution",
+    "No OCR/model accuracy, performance, or public-server verification"
+  ]
+}

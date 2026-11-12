@@ -19,15 +19,24 @@ class ReviewContractTests(unittest.TestCase):
         self.assertFalse(policy['nativeDeviceVerified'])
         self.assertFalse(contract['stage7']['communityPublicationEnabled'])
 
-    def test_deployment_is_implemented_but_not_misreported_as_live(self):
+    def test_build_evidence_does_not_imply_live_service_or_device_acceptance(self):
         contract=json.loads((ROOT/'docs/project-contract.json').read_text(encoding='utf-8'))
         service=contract['deployment']
         self.assertEqual(service['decision'],'D-051')
         self.assertEqual(service['authentication'],'operator_enrollment_hashed_device_sessions')
         self.assertTrue(service['nativeSecureStorageImplemented'])
-        for key in ['publicServerDeployed','apkBuilt','physicalDeviceAccepted']:
+        for key in ['publicServerDeployed','physicalDeviceAccepted']:
             self.assertFalse(service[key])
         project=contract['newExpoProject']
+        self.assertEqual(service['apkBuilt'],project['apkBuilt'])
+        if service['apkBuilt']:
+            evidence=json.loads((ROOT/'benchmarks/android-build.json').read_text(encoding='utf-8'))
+            build=evidence['successfulBuild']
+            self.assertTrue(evidence['apkBuilt'])
+            self.assertEqual(build['status'],'FINISHED')
+            self.assertEqual(build['appIdentifier'],service['confirmedAndroidPackage'])
+            self.assertRegex(build['gitCommitHash'],r'^[0-9a-f]{40}$')
+            self.assertTrue(build['artifactUrl'].endswith('.apk'))
         if project['created']:
             self.assertEqual(service['confirmedProjectId'],project['projectId'])
             self.assertEqual(service['confirmedAndroidPackage'],project['androidPackage'])

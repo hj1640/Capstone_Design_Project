@@ -76,3 +76,5 @@ D-052 설치 대상 확정: 사용자가 “우선 팀에서 시험할 Android A
 D-052 빌드 수정: 첫 실제 빌드 `c7c21b15-0d02-4a6b-ad17-bef12429478c`는 오래된 `package-lock.json`을 선택한 `npm ci`의 EUSAGE로 실패했다. 현행 로컬/CI와 같은 pnpm만 사용하도록 이전 npm 잠금 파일을 제거하고 packageManager 및 EAS Node 24.22.1/pnpm 11.25.0을 고정한다. 앱 기능·개인 평균 정의 변경은 아니다.
 
 D-052 네이티브 호환 수정: 두 번째 EAS 빌드는 ONNX 1.24.3의 VersionNumber 사용으로 실패. 공식 PR #27385를 적용하고, 실제로 재현한 autolinking 누락을 unimodule 표시 제거로 수정했다. Maven AAR을 동일 릴리스 1.24.3으로 고정하며 RN 0.86의 직접 CallInvoker API를 사용한다. 실제 autolinking 재검사에서 ONNX/ML Kit 등록 확인. patches 및 ONNX_ANDROID_COMPATIBILITY.md를 함께 공유한다. APK 성공과 실기기 추론은 아직 별도 검증 대상이다.
+
+D-052 최종 빌드 확인(정리일 2026-11-13 KST): EAS build 0a220d0e-cd8e-48de-9315-474e560b04f6 FINISHED, versionCode 4, 소스 611cdc6228d61798c33d63ba71d4d3a46ec04b27. 새 Android 시험 APK 생성 완료. 공개 서버와 실기기 인수는 여전히 미완료. 기록: team-mobile/benchmarks/ANDROID_BUILD_RESULTS.md.
