@@ -44,7 +44,10 @@ yarn-error.*
 .stage0*/
 *.sqlite
 *.sqlite3
+*.sqlite-*
+*.sqlite3-*
 *.db
+*.db-*
 .env
 .env.*
 !.env.example
