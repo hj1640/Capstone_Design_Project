@@ -2,6 +2,8 @@
 
 현재 기준은 **D-050: 지류 영수증 + 쿠팡 주문내역, 포장지 소비기한, 개인별 평균**이다. 기존 0~8단계의 공용 평균 실험과 구분한다.
 
+**D-052 최신 배포 선택:** 사용자 승인으로 새 Expo 프로젝트에 별도 앱을 만든다. [새 프로젝트 진행 안내](docs/NEW_EXPO_PROJECT.md)를 먼저 읽는다. 서버 없이 기기 내 등록·수정을 시험할 `preview-local`을 추가했으며, 서버 평균은 실제 서버 연결 후 갱신한다. 프로젝트 생성·APK 성공 여부는 실제 계정/빌드 결과를 확인해야 한다.
+
 - [상세 구현·검토 보고서](docs/APP_INTEGRATION_REPORT.md)
 - [실제 서버 배포·기존 Expo 앱 빌드·설치 순서](docs/APP_DEPLOYMENT.md)
 - [실행한 검사 결과](benchmarks/DEPLOYMENT_RESULTS.md)

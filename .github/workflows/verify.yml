@@ -25,5 +25,6 @@ jobs:
       - run: pnpm test:service
       - run: pnpm test:sync
       - run: node scripts/session-state-check.mjs
+      - run: pnpm test:project-config
       - run: pnpm typecheck
       - run: pnpm lint

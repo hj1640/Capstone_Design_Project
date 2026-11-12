@@ -30,6 +30,7 @@ export default function FeedbackSync() {
   return <ScrollView contentContainerStyle={{padding:24,gap:12}}>
     <Text style={{fontSize:22}}>내 구매 기록 평균</Text>
     <Text>포장지 날짜에서 구매일을 뺀 일수를 계산합니다. 다른 사람의 기록은 섞지 않습니다. 평균이 포장지 날짜나 섭취 가능 여부를 대신하지 않습니다.</Text>
+    {!configuredServerUrl && !connection.saved && <Text>서버 연결 전에는 구매와 날짜 수정이 이 기기에 저장됩니다. 개인 평균은 담당자에게 서버 주소와 연결 코드를 받아 등록한 뒤 갱신됩니다.</Text>}
     <Text>{connection.connected ? '개인 서버에 연결됨' : connection.saved ? '저장된 연결 확인 필요' : '개인 연결 코드 등록'}</Text>
     {!connection.saved && <>
       {(!configuredServerUrl || __DEV__) && <TextInput accessibilityLabel="서버 주소" editable={!busy}

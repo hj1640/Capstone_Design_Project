@@ -3,10 +3,14 @@ import crypto from 'node:crypto';
 import {deployment} from '../config/deployment.cjs';
 try {
   const values=deployment(process.env,true);
-  const response=await fetch(`${values.apiUrl.replace(/\/$/,'')}/healthz`,{signal:AbortSignal.timeout(10000)});
-  const body=await response.json();
-  if(!response.ok || body.api!=='personal-v1' || body.mode!=='service' || body.status!=='ok')
-    throw new Error('실제 개인 평균 서버의 상태 응답이 아닙니다');
+  if(values.apiUrl){
+    const response=await fetch(`${values.apiUrl.replace(/\/$/,'')}/healthz`,{signal:AbortSignal.timeout(10000)});
+    const body=await response.json();
+    if(!response.ok || body.api!=='personal-v1' || body.mode!=='service' || body.status!=='ok')
+      throw new Error('실제 개인 평균 서버의 상태 응답이 아닙니다');
+  } else {
+    console.log('LOCAL PREVIEW: 서버 미설정. 구매·날짜는 기기에 보관하며 서버 평균 갱신은 연결 후 가능합니다.');
+  }
   const missing=['model_int8.onnx','model_local_int8.onnx','tokenizer.json','tokenizer_config.json']
     .filter(name=>!fs.existsSync(new URL('../assets/models/'+name,import.meta.url)));
   if(missing.length) throw new Error('빌드에 필요한 모델 준비 누락: '+missing.join(', '));
@@ -17,6 +21,6 @@ try {
     const bytes=fs.readFileSync(new URL('../assets/models/'+file.name,import.meta.url));
     if(crypto.createHash('sha256').update(bytes).digest('hex')!==file.sha) throw new Error('모델 SHA-256 불일치: '+file.name);
   }
-  console.log('PASS: 기존 앱 식별자 형식, HTTPS 서버 상태, 필요한 모델 파일 확인');
-  console.log('별도로 eas project:info에서 hj1640/fridge-app의 실제 projectId와 일치하는지 확인해야 합니다.');
+  console.log('PASS: 앱 식별자 형식, 빌드 모드에 필요한 설정, 모델 SHA-256 확인');
+  console.log('eas project:info에서 실제 새 프로젝트 소유 계정과 projectId를 확인해야 합니다.');
 } catch(error) {console.error(String(error));process.exitCode=1;}

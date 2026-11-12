@@ -1,0 +1,11 @@
+{
+  "decision": "D-052",
+  "mode": "new_separate_app",
+  "name": "스마트 냉장고 개인판",
+  "slug": "fridge-app-personal",
+  "scheme": "fridgepersonal",
+  "owner": null,
+  "projectId": null,
+  "androidPackage": null,
+  "createdOnExpo": false
+}

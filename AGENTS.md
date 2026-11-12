@@ -2,6 +2,8 @@ This is an Expo/React Native mobile application. Prioritize mobile-first pattern
 
 Current requirements: read `docs/APP_INTEGRATION_REPORT.md`, `docs/APP_DEPLOYMENT.md`, `docs/DECISIONS.md` and `docs/project-contract.json` first. D-050 supersedes the earlier online-only/community-average assumption: paper receipts plus Coupang, package-label dates, personal per-purchase statistics. D-051 adds persistent device sessions and foreground retries, with external hosting/Expo identity and native acceptance still required. Historical stage documents are not production approval. Do not reactivate unvalidated community or expiry-risk thresholds, silently migrate legacy feedback, or claim native-device validation from PC tests.
 
+D-052: the user approved a NEW separate Expo project using the same source. Read `docs/NEW_EXPO_PROJECT.md` for the current app build path. Do not reuse the old owner's project ID/signing identity. The standalone `preview-local` profile permits a missing API URL with explicit disconnected behavior; connected `preview` still requires a real HTTPS service. Record actual cloud creation/build evidence, never substitute a synthetic UUID for a real project.
+
 ## Expo has changed — do not trust your training data
 
 Expo ships breaking changes every SDK release. APIs you remember are likely renamed, moved, or removed. Before writing any code that touches an Expo, EAS, or React Native API:

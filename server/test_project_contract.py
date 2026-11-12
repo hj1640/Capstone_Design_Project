@@ -29,3 +29,17 @@ class ReviewContractTests(unittest.TestCase):
             self.assertFalse(service[key])
         self.assertIsNone(service['confirmedProjectId'])
         self.assertIsNone(service['confirmedAndroidPackage'])
+
+    def test_new_expo_choice_does_not_claim_cloud_or_device_completion(self):
+        contract=json.loads((ROOT/'docs/project-contract.json').read_text(encoding='utf-8'))
+        project=json.loads((ROOT/'config/expo-project.json').read_text(encoding='utf-8'))
+        self.assertEqual(contract['deployment']['projectContinuationChoice'],'new_separate_expo_project')
+        self.assertEqual(contract['newExpoProject']['decision'],'D-052')
+        self.assertTrue(contract['newExpoProject']['authorized'])
+        self.assertEqual(project['decision'],'D-052')
+        self.assertEqual(project['slug'],'fridge-app-personal')
+        self.assertEqual(project['createdOnExpo'],contract['newExpoProject']['created'])
+        if project['createdOnExpo']:
+            for key in ['owner','projectId','androidPackage']:
+                self.assertTrue(project[key])
+                self.assertEqual(project[key],contract['newExpoProject'][key])

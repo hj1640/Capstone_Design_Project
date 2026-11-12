@@ -16,6 +16,7 @@ checks=[
  ('service_http_restart',[sys.executable,'server/check_service_flow.py']),
  ('foreground_retry_controller',['node','scripts/sync-controller-check.mjs']),
  ('secure_storage_failures',['node','scripts/session-state-check.mjs']),
+ ('project_configuration',['node','scripts/project-config-check.mjs']),
  ('legacy_order_counterexample',[sys.executable,'server/check_legacy_counterexample.py']),
  ('stage2_token_parity',['node','scripts/stage2-parity.mjs']),
  ('stage3_catalog',['node','scripts/stage3-catalog-check.mjs']),

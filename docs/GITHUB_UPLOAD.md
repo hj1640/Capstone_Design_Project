@@ -2,7 +2,7 @@
 
 대상 저장소: https://github.com/hj1640/Capstone_Design_Project
 
-검토 브랜치: `codex/app-deployment-2026-11-12`. 원격 업로드 여부는 최종 전달 기록의 실제 링크/커밋을 확인한다. 이 문서를 만든 것만으로 push를 완료한 것은 아니다.
+최신 검토 브랜치: `codex/new-expo-project-2026-11-12` (D-052 새 Expo 별도 앱). 이전 D-051 브랜치는 `codex/app-deployment-2026-11-12`다. 원격 업로드 여부는 실제 링크/커밋을 확인한다. 이 문서를 만든 것만으로 push를 완료한 것은 아니다. 아래 명령의 브랜치를 최신 브랜치로 사용한다.
 
 ## 올릴 단위
 
@@ -26,7 +26,7 @@
 ```powershell
 git status --short
 git log -1 --oneline
-git push -u origin codex/app-deployment-2026-11-12
+git push -u origin codex/new-expo-project-2026-11-12
 ```
 
 쓰기 권한 오류면 저장소 소유자가 해당 GitHub 계정에 권한을 부여하거나 권한 있는 팀원이 같은 브랜치를 올린다. Expo 로그인과 GitHub 쓰기 권한은 별개다.
@@ -36,11 +36,11 @@ git push -u origin codex/app-deployment-2026-11-12
 bundle에는 소스 이력이 들어 있다. 별도 새 폴더에서 복원한다.
 
 ```powershell
-git clone --branch codex/app-deployment-2026-11-12 ./capstone-app-integration.bundle Capstone_App_Integration
+git clone --branch codex/new-expo-project-2026-11-12 ./capstone-new-expo.bundle Capstone_App_Integration
 cd Capstone_App_Integration
 git remote rename origin delivery-bundle
 git remote add origin https://github.com/hj1640/Capstone_Design_Project.git
-git push -u origin codex/app-deployment-2026-11-12
+git push -u origin codex/new-expo-project-2026-11-12
 ```
 
 원격 main이 이후 바뀌었다면 먼저 `git fetch origin`으로 받아 차이를 검토한다. 아직 편집 중인 팀원의 파일을 덮어쓰는 파일 복사 방식은 피한다.
@@ -48,9 +48,9 @@ git push -u origin codex/app-deployment-2026-11-12
 ## PR 만들기
 
 - base: `main`
-- compare: `codex/app-deployment-2026-11-12`
+- compare: `codex/new-expo-project-2026-11-12`
 - 제목: `feat: 포장지 소비기한 개인 평균과 앱·서버 재전송 및 배포 경로 연결`
-- 본문: `docs/PR_APP_INTEGRATION.md`의 내용을 사용한다.
+- 본문: `docs/PR_APP_INTEGRATION.md`에 `docs/PR_NEW_EXPO.md`의 후속 변경을 함께 적는다.
 - 실기기/서버 배포가 끝나지 않은 상태임을 남기고 검토용 draft PR로 공유한다.
 
 이 브랜치는 원격 main에 없던 0~8단계와 개인 평균 재검토를 모두 포함한다. 최신 몇 개 파일만 검토하는 PR로 오해하면 안 된다. 팀원이 읽을 보고서는 `APP_INTEGRATION_REPORT.md`, 적용 담당자가 읽을 문서는 `APP_DEPLOYMENT.md`다. GitHub 병합 후에도 서버 실행과 APK 재빌드는 따로 해야 한다.

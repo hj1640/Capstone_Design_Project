@@ -68,7 +68,9 @@
     "test:sync": "node scripts/sync-controller-check.mjs",
     "check:deployment": "node --env-file-if-exists=.env scripts/check-deployment.mjs",
     "verify:deployment": "python scripts/verify_deployment.py",
-    "build:preview": "node scripts/build-preview.mjs"
+    "build:preview": "node scripts/build-preview.mjs",
+    "build:preview:local": "node scripts/build-preview.mjs --local",
+    "test:project-config": "node scripts/project-config-check.mjs"
   },
   "private": true
 }
