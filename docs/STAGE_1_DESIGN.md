@@ -1,3 +1,5 @@
+> **현재 기준: D-050 (2026-11-12).** 지류+쿠팡, 포장지 날짜, 개인별 평균. 이 문서의 이전 공용/온라인 전용 설명은 당시 기록이며 [최신 검토](REVIEW_FINAL.md)와 [실행 안내](TEAM_SETUP.md)를 우선합니다.
+
 # 1단계 — 데이터 구조와 API 계약 초안
 
 2026-11-02. D-039/D-040/D-041에 따른 설계 산출물. 이번 단계는 앱/서버 구현 이전의 검토 가능한 계약이다. 기존 Expo 앱의 동작과 미정 운영값을 변경하지 않는다. 구현용 타입: [catalog-v1.ts](../src/contracts/catalog-v1.ts), [예제](../src/contracts/catalog-v1.examples.ts), [API](STAGE_1_API.md).

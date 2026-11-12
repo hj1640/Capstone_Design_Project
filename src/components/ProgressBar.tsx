@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { colors, radius } from '@/constants/theme';
+import { colors } from '@/constants/theme';
 
 export function ProgressBar({
   ratio,

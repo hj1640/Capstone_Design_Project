@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewDate": "2026-11-02",
+  "reviewDate": "2026-11-12",
   "stage1": {
     "decision": "D-042",
     "status": "design_proposed",
@@ -13,8 +13,9 @@
   "workingPlatform": "existing_react_native_expo_app",
   "scope": {
     "onlineOrdersOnly": {
-      "value": true,
-      "decision": "D-002"
+      "value": false,
+      "decision": "D-050",
+      "supersedes": "D-002"
     },
     "hardwareRequired": {
       "value": false,
@@ -23,6 +24,13 @@
     "showEstimatedRemainingAmount": {
       "value": false,
       "decision": "D-007"
+    },
+    "inputKinds": {
+      "value": [
+        "paper",
+        "coupang"
+      ],
+      "decision": "D-050"
     }
   },
   "requirements": {
@@ -39,7 +47,7 @@
     "outlierWeight": null,
     "sharedStatisticsMethod": null,
     "purchaseIntervalStatisticsMethod": null,
-    "feedbackDurationMeaning": null,
+    "feedbackDurationMeaning": "package_label_expiry_minus_purchase_date",
     "serverDeployment": null
   },
   "evidence": {
@@ -110,5 +118,28 @@
     "implicitPurchaseDateFallback": false,
     "unknownExpirySupported": true,
     "purchaseForecastEnabled": false
+  },
+  "personalAverage": {
+    "decision": "D-050",
+    "scope": "personal",
+    "source": "package_label",
+    "method": "incremental_arithmetic_mean",
+    "groupBy": [
+      "authenticated_owner",
+      "confirmed_normalized_food_name",
+      "storage"
+    ],
+    "oneContributionPer": "purchase_item_id",
+    "statisticalOutlierCutoff": null,
+    "minimumPeople": null,
+    "automaticallyReplacesLabelDate": false,
+    "productionAuthentication": false,
+    "nativeDeviceVerified": false,
+    "openedMeaning": "opened_at_label_recording_excluded"
+  },
+  "expiryStatus": {
+    "decision": "D-050",
+    "method": "calendar_past_today_future_unknown",
+    "unvalidatedRiskCutoffsEnabled": false
   }
 }

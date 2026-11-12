@@ -103,6 +103,7 @@ export interface OcrCandidate {
 }
 
 export interface MockReceipt {
+  inputKind?: 'paper' | 'coupang'; // Missing in v1 means the former online-only flow.
   id: string;
   storeName: string;
   date: string | null;

@@ -1,5 +1,7 @@
 This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
 
+Current requirements: read `docs/REVIEW_FINAL.md`, `docs/DECISIONS.md` and `docs/project-contract.json` first. D-050 supersedes the earlier online-only/community-average assumption: paper receipts plus Coupang, package-label dates, personal per-purchase statistics. Historical stage documents are not production approval. Do not reactivate unvalidated community or expiry-risk thresholds, silently migrate legacy feedback, or claim native-device validation from PC tests.
+
 ## Expo has changed — do not trust your training data
 
 Expo ships breaking changes every SDK release. APIs you remember are likely renamed, moved, or removed. Before writing any code that touches an Expo, EAS, or React Native API:

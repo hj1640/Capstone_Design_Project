@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -28,6 +28,9 @@ export default function ReceiptScreen() {
   const [manualName, setManualName] = useState('');
   const [manualQuantity, setManualQuantity] = useState('1');
   const [manualDate,setManualDate]=useState('');
+  const [inputKind,setInputKind]=useState<'paper' | 'coupang'>('paper');
+  const manualSubmitted=useRef(false);
+  const recognizing=useRef(false);
 
   async function pickFromLibrary() {
     const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -50,22 +53,25 @@ export default function ReceiptScreen() {
   }
 
   async function startRecognition() {
-    if (!imageUri) return;
+    if (!imageUri || recognizing.current) return;
+    recognizing.current=true;
     setIsRecognizing(true);
     try {
       // Actual OCR failure is reported; synthetic examples use a separate developer action.
-      const result = await runReceiptOcrPipeline(imageUri);
+      const result = await runReceiptOcrPipeline(imageUri,inputKind);
       setPendingReceipt(result);
       setImageUri(null);
       router.push('/receipt-result');
     } catch(error) {
       Alert.alert('인식 실패',String(error));
     } finally {
+      recognizing.current=false;
       setIsRecognizing(false);
     }
   }
 
   function submitManualEntry() {
+    if(manualSubmitted.current) return;
     if (!validDate(manualDate)) {Alert.alert('구매일을 확인해 주세요','YYYY-MM-DD 형식으로 실제 구매일을 입력해 주세요.');return;}
     if (!manualName.trim()) {
       Alert.alert('품목명을 입력해주세요');
@@ -77,6 +83,7 @@ export default function ReceiptScreen() {
     const quantity = Number(manualQuantity);
     if (!Number.isFinite(quantity) || quantity<=0) {Alert.alert('수량을 확인해 주세요');return;}
 
+    manualSubmitted.current=true;
     try {addConfirmedReceiptItems(
       [
         {
@@ -93,7 +100,7 @@ export default function ReceiptScreen() {
       ],
       '수기입력',
       manualDate,
-    );}catch(error){Alert.alert('등록 실패',String(error));return;}
+    );}catch(error){manualSubmitted.current=false;Alert.alert('등록 실패',String(error));return;}
 
     setManualName('');
     setManualQuantity('1');
@@ -107,9 +114,16 @@ export default function ReceiptScreen() {
       contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xl }}
     >
       <SectionHeader
-        title="온라인 주문 등록"
-        subtitle="온라인 주문 화면의 캡처·사진을 선택하고 인식 결과를 확인해 주세요"
+        title="영수증·주문내역 등록"
+        subtitle="지류 영수증 또는 쿠팡 주문내역을 선택하고 인식 결과를 확인해 주세요"
       />
+
+      <View style={styles.buttonRow}>
+        {(['paper','coupang'] as const).map(kind=><Pressable key={kind} disabled={isRecognizing}
+          style={styles.actionButton} onPress={()=>setInputKind(kind)}>
+          <Text>{inputKind===kind ? '✓ ' : ''}{kind==='paper' ? '지류 영수증' : '쿠팡 주문내역'}</Text>
+        </Pressable>)}
+      </View>
 
       <View style={styles.engineBadge}>
         <Text style={styles.engineBadgeText}>
@@ -125,7 +139,7 @@ export default function ReceiptScreen() {
         ) : (
           <View style={styles.placeholder}>
             <Text style={styles.placeholderIcon}>🧾</Text>
-            <Text style={styles.placeholderText}>온라인 주문 화면의 캡처·사진을 선택해 주세요</Text>
+            <Text style={styles.placeholderText}>선택한 종류의 캡처·사진을 넣어 주세요</Text>
           </View>
         )}
 
@@ -158,7 +172,7 @@ export default function ReceiptScreen() {
         <Text>개발용: 합성 온라인 주문 예제 열기</Text>
       </Pressable>}
 
-      <Pressable style={styles.manualToggle} onPress={() => setShowManualEntry((v) => !v)}>
+      <Pressable style={styles.manualToggle} onPress={() => {manualSubmitted.current=false;setShowManualEntry((v) => !v);}}>
         <Text style={styles.manualToggleText}>
           {showManualEntry ? '수기 입력 닫기' : '영수증이 없나요? 수기로 입력하기'}
         </Text>

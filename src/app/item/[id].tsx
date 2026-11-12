@@ -60,7 +60,7 @@ export default function ItemDetailScreen() {
 
         <View style={styles.dateRow}>
           <DateChip label="구매일" value={formatDateKo(item.purchaseDate)} />
-          <DateChip label="예상 소비기한" value={formatDateKo(item.expectedExpiryDate)} />
+          <DateChip label="입력한 기한" value={formatDateKo(item.expectedExpiryDate)} />
         </View>
         <Text style={[styles.statusDesc, { color: status.color }]}>{status.description}</Text>
       </Card>

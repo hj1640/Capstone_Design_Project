@@ -50,6 +50,9 @@ export default function HomeScreen() {
     >
       <Text style={styles.greeting}>안녕하세요 👋</Text>
       <Text style={styles.subGreeting}>오늘 냉장고 상태를 확인해보세요</Text>
+      <Pressable onPress={()=>router.push('/feedback-sync')}>
+        <Text style={styles.linkText}>내 구매 기록 평균·전송 상태</Text>
+      </Pressable>
       {__DEV__ && <Pressable onPress={() => router.push('/model-probe')}>
         <Text>개발용: 2단계 모델 실행 검사</Text>
       </Pressable>}
@@ -58,10 +61,10 @@ export default function HomeScreen() {
       </Pressable>}
 
       <View style={styles.statusRow}>
-        <StatusStat label="확인 필요" value={statusCounts.danger} color={colors.statusDanger} />
-        <StatusStat label="임박" value={statusCounts.warning} color={colors.statusWarning} />
-        <StatusStat label="정상" value={statusCounts.normal} color={colors.statusNormal} />
-        <StatusStat label="여유" value={statusCounts.fresh} color={colors.statusFresh} />
+        <StatusStat label="기한 경과" value={statusCounts.danger} color={colors.statusDanger} />
+        <StatusStat label="오늘까지" value={statusCounts.warning} color={colors.statusWarning} />
+        <StatusStat label="표시기한 전" value={statusCounts.normal} color={colors.statusNormal} />
+        <StatusStat label="기한 미정" value={statusCounts.unknown} color={colors.textMuted} />
       </View>
 
       {statusCounts.unknown>0 && <Text>기한 미정 {statusCounts.unknown}개 · 품목 상세에서 날짜를 입력해 주세요</Text>}
@@ -74,7 +77,7 @@ export default function HomeScreen() {
         <View style={{ marginTop: spacing.xl }}>
           <SectionHeader
             title="먼저 확인해주세요"
-            subtitle="임박하거나 기한이 지난 품목이에요"
+            subtitle="입력한 날짜가 오늘이거나 지난 품목이에요"
             right={
               <Pressable onPress={() => router.push('/fridge')}>
                 <Text style={styles.linkText}>전체보기</Text>

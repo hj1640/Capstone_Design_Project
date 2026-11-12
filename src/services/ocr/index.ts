@@ -1,6 +1,7 @@
 import type { MockReceipt, OcrCandidate } from '@/types/food';
 import { mlkitOcrEngine } from './mlkitEngine';
 import { parseOnlineOrder } from './onlineOrder';
+import { parsePaperReceipt } from './paperReceipt';
 import type { ParsedReceiptLine } from './receiptParser';
 import { matchFoodName } from './foodMatcher';
 import { searchCatalog } from '../catalog/search';
@@ -25,14 +26,14 @@ function candidates(items: ParsedReceiptLine[]): OcrCandidate[] {
 
 export function createOnlineOrderDemo(): MockReceipt {
   const parsed=parseOnlineOrder(syntheticOnlineOrderLines);
-  return {id:`synthetic-${Date.now()}`,storeName:'합성 온라인 주문 예제',date:parsed.orderDate,
+  return {id:`synthetic-${Date.now()}`,inputKind:'coupang',storeName:'합성 온라인 주문 예제',date:parsed.orderDate,
     dateNeedsReview:parsed.dateNeedsReview,rawLines:[...syntheticOnlineOrderLines],candidates:candidates(parsed.items),engine:'mock'};
 }
 
-export async function runReceiptOcrPipeline(imageUri: string): Promise<MockReceipt> {
+export async function runReceiptOcrPipeline(imageUri: string, inputKind: 'paper' | 'coupang'='coupang'): Promise<MockReceipt> {
   if (!mlkitOcrEngine.isAvailable()) throw new Error('실제 OCR은 ML Kit이 포함된 개발 빌드에서 사용할 수 있습니다.');
   const raw=await mlkitOcrEngine.recognize(imageUri);
-  const parsed=parseOnlineOrder(raw.lines);
-  return {id:`live-${Date.now()}`,storeName:'온라인 주문내역',date:parsed.orderDate,dateNeedsReview:parsed.dateNeedsReview,
+  const parsed=inputKind==='paper' ? parsePaperReceipt(raw.lines) : parseOnlineOrder(raw.lines);
+  return {id:`live-${Date.now()}`,inputKind,storeName:inputKind==='paper' ? '지류 영수증' : '쿠팡 주문내역',date:parsed.orderDate,dateNeedsReview:parsed.dateNeedsReview,
     rawLines:raw.lines,candidates:candidates(parsed.items),engine:'mlkit'};
 }

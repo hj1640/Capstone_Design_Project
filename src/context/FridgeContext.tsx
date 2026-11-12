@@ -1,18 +1,15 @@
-import React, { createContext, useContext, useMemo, useState, useCallback } from 'react';
+import React, { createContext, useContext, useMemo, useState, useCallback, useEffect } from 'react';
+import { AppState } from 'react-native';
 import { FoodItem, MockReceipt, OcrCandidate, PurchaseHistoryEntry, FoodCategory } from '@/types/food';
-import { fridgeItems as initialFridgeItems } from '@/data/fridgeItems';
-import { purchaseHistory as initialPurchaseHistory } from '@/data/purchaseHistory';
-import { discardLog as initialDiscardLog, DiscardEntry } from '@/data/discardLog';
+import type { DiscardEntry } from '@/data/discardLog';
 import { buildRegistration } from '@/services/registration';
 import { randomUUID } from 'expo-crypto';
 import { todayIso } from '@/utils/date';
-import { feedbackStore } from '@/services/feedback/local';
+import { feedbackStore, schedulePersonalSync } from '@/services/feedback/local';
 import type { EditSource } from '@/services/feedback/store';
 
-// 앱 전역 상태 (실제 구현에서는 "단말 내 경량 DB"로 영속화될 영역)
-// 과제계획서: "식품 표준정보, 보유 식품, 구매 이력, 수량 변경 이력을 단말 내 경량 DB에 저장"
-// 이 Context는 그 역할을 메모리 상에서 대신하는 자리표시자이며,
-// 실제 구현에서는 SQLite(expo-sqlite) 등으로 교체한다.
+// Registered purchases and label edits are persisted by the SQLite-backed feedback store.
+// Discard-value estimates remain a legacy, in-memory prototype feature.
 
 const CATEGORY_DEFAULT_VALUE_WON: Record<FoodCategory, number> = {
   채소: 1800,
@@ -37,7 +34,7 @@ interface FridgeContextValue {
   ) => void;
   adjustRemaining: (itemId: string, deltaRatio: number) => void;
   removeItem: (itemId: string, outcome: 'consumed' | 'discarded') => void;
-  savePersonalExpiry: (item: FoodItem, expiry: string | null, source: EditSource | null) => void;
+  savePersonalExpiry: (item: FoodItem, expiry: string | null, source: EditSource | null, personalAverage?: boolean) => void;
   refreshPersonalExpiry: () => void;
   // 영수증 등록 화면에서 생성되고, 인식결과 확인 화면에서 소비되는 임시 세션 데이터.
   // 복잡한 배열 데이터를 라우트 파라미터로 직렬화하는 대신 Context로 전달한다.
@@ -48,16 +45,21 @@ interface FridgeContextValue {
 const FridgeContext = createContext<FridgeContextValue | undefined>(undefined);
 
 export function FridgeProvider({ children }: { children: React.ReactNode }) {
-  const [fridgeItems, setFridgeItems] = useState<FoodItem[]>(()=>feedbackStore.overlay(__DEV__ ? initialFridgeItems : []));
+  const [fridgeItems, setFridgeItems] = useState<FoodItem[]>(()=>feedbackStore.overlay([]));
   const [purchaseHistory, setPurchaseHistory] = useState<PurchaseHistoryEntry[]>(
-    ()=>[...(__DEV__ ? initialPurchaseHistory : []),...feedbackStore.purchaseHistory()],
+    ()=>feedbackStore.purchaseHistory(),
   );
-  const [discardLog, setDiscardLog] = useState<DiscardEntry[]>(__DEV__ ? initialDiscardLog : []);
+  const [discardLog, setDiscardLog] = useState<DiscardEntry[]>([]);
   const [pendingReceipt, setPendingReceipt] = useState<MockReceipt | null>(null);
   const refreshPersonalExpiry=useCallback(()=>setFridgeItems(previous=>feedbackStore.overlay(previous)),[]);
-  const savePersonalExpiry=useCallback((item: FoodItem,expiry: string | null,source: EditSource | null)=>{
-    feedbackStore.edit(item,expiry,source); // Durable save precedes visible success.
+  useEffect(()=>{const listener=AppState.addEventListener('change',state=>{
+    if(state==='active') schedulePersonalSync();
+  });return ()=>listener.remove();},[]);
+  const savePersonalExpiry=useCallback((item: FoodItem,expiry: string | null,source: EditSource | null,personalAverage?: boolean)=>{
+    feedbackStore.edit(item,expiry,source,personalAverage); // Durable save precedes visible success.
     setFridgeItems(previous=>feedbackStore.overlay(previous));
+    setPurchaseHistory(feedbackStore.purchaseHistory());
+    schedulePersonalSync();
   },[]);
 
   const addConfirmedReceiptItems = useCallback(

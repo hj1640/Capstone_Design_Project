@@ -11,10 +11,10 @@ type FilterKey = 'all' | StatusLevel;
 const FILTERS: { key: FilterKey; label: string; color?: string }[] = [
   { key: 'all', label: '전체' },
   { key: 'unknown', label: '기한 미정', color:'#6B7280' },
-  { key: 'danger', label: '확인 필요', color: colors.statusDanger },
-  { key: 'warning', label: '임박', color: colors.statusWarning },
-  { key: 'normal', label: '정상', color: colors.statusNormal },
-  { key: 'fresh', label: '여유', color: colors.statusFresh },
+  { key: 'danger', label: '기한 경과', color: colors.statusDanger },
+  { key: 'warning', label: '오늘까지', color: colors.statusWarning },
+  { key: 'normal', label: '표시기한 전', color: colors.statusNormal },
+  { key: 'unknown', label: '기한 미정', color: colors.textMuted },
 ];
 
 export default function FridgeScreen() {

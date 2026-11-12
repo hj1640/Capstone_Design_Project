@@ -13,6 +13,7 @@ import sqlite3
 from urllib.parse import unquote, urlsplit, parse_qs
 import uuid
 from trust_stats import TrustStats, load_policy
+import personal_stats
 
 CONSENT = 'development-consent-v1'
 
@@ -73,6 +74,7 @@ class API:
             CREATE TABLE IF NOT EXISTS revoked_keys(owner TEXT, key TEXT, PRIMARY KEY(owner,key));
             ''')
             self.trust.schema(db)
+            personal_stats.schema(db)
 
     @contextmanager
     def connect(self):
@@ -132,6 +134,22 @@ class API:
             return error.status,dict(error=dict(code=error.code,message=error.code,requestId=str(uuid.uuid4())))
 
     def dispatch(self, db, owner, method, path, body, key, query=None):
+        if path == '/v1/me/personal-statistics' and method == 'GET':
+            return 200, dict(statistics=personal_stats.summaries(db, owner), basis='purchase_remaining',
+                             method='arithmetic_mean', scope='personal', source='package_label')
+        personal_match = re.fullmatch(r'/v1/me/personal-items/([^/]+)', path)
+        if personal_match:
+            item_id = unquote(personal_match[1])
+            if method == 'GET':
+                row = db.execute('SELECT * FROM personal_records WHERE owner=? AND item_id=?', (owner, item_id)).fetchone()
+                if not row:
+                    raise ApiError(404, 'NOT_FOUND')
+                return 200, dict(revision=row['revision'], data=json.loads(row['data']))
+            if method == 'PUT':
+                fields(body, ('data', 'expectedRevision'))
+                expected = revision(body['expectedRevision'])
+                personal_stats.validate(body['data'], calendar, ApiError)
+                return 200, personal_stats.update(db, owner, item_id, expected, body['data'], ApiError)
         food_match=re.fullmatch(r'/v1/foods/([^/]+)/storage-rules',path)
         if food_match and method=='GET':
             query=query or {}

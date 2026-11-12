@@ -5,6 +5,8 @@ import { encode, pool } from './core';
 async function load() {
   const ort = await import('onnxruntime-react-native');
   const tokenizer = new Tokenizer(require('../../../assets/models/tokenizer.json'), require('../../../assets/models/tokenizer_config.json'));
+  // Metro needs a static asset require to include the ONNX file in the native bundle.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const asset = Asset.fromModule(require('../../../assets/models/model_local_int8.onnx'));
   await asset.downloadAsync();
   if (!asset.localUri) throw new Error('Local INT8 asset missing; run stage5 preparation');

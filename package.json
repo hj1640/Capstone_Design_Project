@@ -56,7 +56,9 @@
     "test:stage7:http": "python server/check_trust_http.py",
     "verify:stage8": "python scripts/verify_stage8.py",
     "test:stage8:flow": "python server/check_full_flow.py",
-    "experiment:purchase": "node scripts/stage8-purchase-eval.mjs"
+    "experiment:purchase": "node scripts/stage8-purchase-eval.mjs",
+    "test:personal": "python server/check_personal_flow.py",
+    "verify:review": "python scripts/verify_review.py"
   },
   "private": true
 }

@@ -2,7 +2,7 @@ import type { FoodItem, PurchaseHistoryEntry } from '../../types/food';
 import type { PersonalItem, DurationBasis } from '../../contracts/catalog-v1';
 
 export type EditSource = 'package_label' | 'user_estimate';
-interface RecordValue {
+export interface RecordValue {
   item: FoodItem;
   baseExpiry: string | null;
   expiry: string | null;
@@ -11,6 +11,7 @@ interface RecordValue {
   serverRevision: number;
   hidden?: boolean;
   history?: PurchaseHistoryEntry;
+  personalAverage?: boolean;
 }
 interface Job {
   id: string;
@@ -69,8 +70,12 @@ export function createFeedbackStore(storage: Storage, newId: ()=>string) {
     purchaseHistory(): PurchaseHistoryEntry[] {
       return Object.values(read().records).flatMap(record=>record.history ? [record.history] : []);
     },
-    edit(item: FoodItem,expiry: string | null,source: EditSource | null) {
+    edit(item: FoodItem,expiry: string | null,source: EditSource | null,
+      personalAverage?: boolean) {
       if (expiry!==null && !validDate(expiry)) throw new Error('YYYY-MM-DD 형식의 실제 날짜를 입력해 주세요');
+      if(!item.standardName.trim() || item.standardName.normalize('NFKC').trim().length>200)
+        throw new Error('식품명을 1~200자로 확인해 주세요');
+      if(personalAverage!==undefined && !validDate(item.purchaseDate)) throw new Error('실제 구매일을 확인해 주세요');
       if ((expiry===null && source!==null) || (expiry!==null && source!=='package_label' && source!=='user_estimate'))
         throw new Error('날짜의 근거를 선택해 주세요');
       const state=read(), previous=state.records[item.id];
@@ -78,9 +83,11 @@ export function createFeedbackStore(storage: Storage, newId: ()=>string) {
       for (const job of state.jobs) if (job.itemId===item.id && job.kind==='edit' && job.status==='pending' && !job.request)
         job.status='cancelled'; // Coalesce edits which have never been sent.
       const record: RecordValue={item,baseExpiry:previous ? previous.baseExpiry : item.expectedExpiryDate,expiry,source,
-        revision:(previous?.revision ?? 0)+1,serverRevision:previous?.serverRevision ?? 0,history:previous?.history};
+        revision:(previous?.revision ?? 0)+1,serverRevision:previous?.serverRevision ?? 0,
+        history:previous?.history ? {...previous.history,standardName:item.standardName,date:item.purchaseDate} : undefined,
+        hidden:previous?.hidden,personalAverage:personalAverage ?? previous?.personalAverage};
       state.records[item.id]=record;
-      state.jobs.push({id:newId(),kind:'edit',itemId:item.id,snapshot:JSON.parse(JSON.stringify(record)),status:'pending'});
+      if(personalAverage===undefined) state.jobs.push({id:newId(),kind:'edit',itemId:item.id,snapshot:JSON.parse(JSON.stringify(record)),status:'pending'});
       write(state);
     },
     submit(itemId: string,basis: DurationBasis,consent: boolean) {
@@ -106,7 +113,9 @@ export function createFeedbackStore(storage: Storage, newId: ()=>string) {
       const merged=new Map(items.map(item=>[item.id,item]));
       for (const [id,record] of Object.entries(records)) {
         if (record.hidden) merged.delete(id);
-        else merged.set(id,{...(merged.get(id) ?? record.item),expectedExpiryDate:record.expiry ?? record.baseExpiry});
+        else merged.set(id,{...(merged.get(id) ?? record.item),standardName:record.item.standardName,
+          purchaseDate:record.item.purchaseDate,isOpened:record.item.isOpened,storageType:record.item.storageType,
+          expectedExpiryDate:record.expiry ?? record.baseExpiry});
       }
       return [...merged.values()];
     },

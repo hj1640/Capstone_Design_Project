@@ -9,6 +9,8 @@ export async function runProbe() {
   const tokenizerStart = performance.now();
   const tokenizer = new Tokenizer(require('../../../assets/models/tokenizer.json'), require('../../../assets/models/tokenizer_config.json'));
   const tokenizerLoadMs = performance.now() - tokenizerStart;
+  // Metro needs a static asset require to include the ONNX file in the native bundle.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const asset = Asset.fromModule(require('../../../assets/models/model_int8.onnx'));
   await asset.downloadAsync();
   if (!asset.localUri) throw new Error('Model asset unavailable');
