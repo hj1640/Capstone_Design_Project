@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useFridge } from '@/context/FridgeContext';
-import { runReceiptOcrPipeline, mlkitOcrEngine } from '@/services/ocr';
+import { runReceiptOcrPipeline, mlkitOcrEngine, warmUpFoodMatcher } from '@/services/ocr';
 import { foodDatabase } from '@/data/foodDatabase';
 import { Card } from '@/components/Card';
 import { SectionHeader } from '@/components/SectionHeader';
@@ -26,6 +26,11 @@ export default function ReceiptScreen() {
   const [showManualEntry, setShowManualEntry] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualQuantity, setManualQuantity] = useState('1');
+
+  // 화면에 들어오면 모델 로드 + DB 임베딩을 미리 계산해 둔다 (첫 인식 대기시간 단축)
+  useEffect(() => {
+    if (mlkitOcrEngine.isAvailable()) warmUpFoodMatcher().catch(() => undefined);
+  }, []);
 
   async function pickFromLibrary() {
     const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();

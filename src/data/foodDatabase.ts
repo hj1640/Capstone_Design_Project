@@ -3,10 +3,11 @@ import { FoodDbEntry } from '@/types/food';
 // 표준명 / 동의어 / 보관정보 / 영양정보를 담은 식품 표준 DB (모의 데이터)
 // 과제계획서 "다" 항목: "DB에는 표준명, 동의어, 상위 카테고리, 기본 보관 위치,
 // 미개봉/개봉 후 보관일수, 영양정보, 대표 이미지를 저장"
+// 2026-11-16: 매칭은 ko-sroberta 임베딩으로 하므로 식품마다 표준명 1개만 쓴다 (동의어 비움).
 export const foodDatabase: FoodDbEntry[] = [
   {
     standardName: '흰우유',
-    synonyms: ['서울우유 1L', '흰우유1L', '우유 1000ml', '목장우유'],
+    synonyms: [],
     category: '유제품',
     defaultStorage: '냉장',
     shelfLifeUnopenedDays: 14,
@@ -18,7 +19,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '계란',
-    synonyms: ['구운계란', '동물복지란', '계란 30구', '왕란'],
+    synonyms: [],
     category: '유제품',
     defaultStorage: '냉장',
     shelfLifeUnopenedDays: 21,
@@ -30,7 +31,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '대파',
-    synonyms: ['대파 1단', '손질대파', '국내산대파'],
+    synonyms: [],
     category: '채소',
     defaultStorage: '냉장',
     shelfLifeUnopenedDays: 10,
@@ -42,7 +43,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '애호박',
-    synonyms: ['애호박 1개', '국내산애호박'],
+    synonyms: [],
     category: '채소',
     defaultStorage: '냉장',
     shelfLifeUnopenedDays: 7,
@@ -54,7 +55,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '바나나',
-    synonyms: ['바나나 1송이', '수입바나나', '바나나(필리핀산)'],
+    synonyms: [],
     category: '과일',
     defaultStorage: '실온',
     shelfLifeUnopenedDays: 6,
@@ -66,7 +67,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '방울토마토',
-    synonyms: ['방울토마토500g', '대추방울토마토'],
+    synonyms: [],
     category: '과일',
     defaultStorage: '냉장',
     shelfLifeUnopenedDays: 10,
@@ -78,7 +79,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '돼지고기 삼겹살',
-    synonyms: ['냉장삼겹살', '국내산 삼겹살', '삼겹살(냉장)'],
+    synonyms: [],
     category: '육류',
     defaultStorage: '냉장',
     shelfLifeUnopenedDays: 5,
@@ -90,7 +91,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '닭가슴살',
-    synonyms: ['냉동닭가슴살', '닭가슴살 1kg', '순살닭가슴살'],
+    synonyms: [],
     category: '육류',
     defaultStorage: '냉동',
     shelfLifeUnopenedDays: 60,
@@ -102,7 +103,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '두부',
-    synonyms: ['풀무원 부침두부', '순두부', '찌개두부'],
+    synonyms: [],
     category: '가공식품',
     defaultStorage: '냉장',
     shelfLifeUnopenedDays: 10,
@@ -114,7 +115,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '즉석밥',
-    synonyms: ['햇반', '오뚜기밥', '즉석밥 210g'],
+    synonyms: [],
     category: '가공식품',
     defaultStorage: '실온',
     shelfLifeUnopenedDays: 365,
@@ -126,7 +127,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '김치',
-    synonyms: ['포기김치', '종가집김치', '맛김치'],
+    synonyms: [],
     category: '가공식품',
     defaultStorage: '냉장',
     shelfLifeUnopenedDays: 60,
@@ -138,7 +139,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '생수',
-    synonyms: ['삼다수 2L', '아이시스', '생수 2000ml'],
+    synonyms: [],
     category: '음료',
     defaultStorage: '실온',
     shelfLifeUnopenedDays: 365,
@@ -150,7 +151,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '두유',
-    synonyms: ['베지밀', '두유 190ml', '검은콩두유'],
+    synonyms: [],
     category: '음료',
     defaultStorage: '실온',
     shelfLifeUnopenedDays: 90,
@@ -162,7 +163,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '식빵',
-    synonyms: ['삼립식빵', '통밀식빵', '초코식빵'],
+    synonyms: [],
     category: '곡물/베이커리',
     defaultStorage: '실온',
     shelfLifeUnopenedDays: 5,
@@ -174,7 +175,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '된장',
-    synonyms: ['시골된장', '재래된장', '청정원된장'],
+    synonyms: [],
     category: '조미료/소스',
     defaultStorage: '실온',
     shelfLifeUnopenedDays: 365,
@@ -186,7 +187,7 @@ export const foodDatabase: FoodDbEntry[] = [
   },
   {
     standardName: '고등어',
-    synonyms: ['손질고등어', '국산고등어', '고등어 2마리'],
+    synonyms: [],
     category: '수산물',
     defaultStorage: '냉동',
     shelfLifeUnopenedDays: 90,

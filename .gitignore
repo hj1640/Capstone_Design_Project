@@ -39,3 +39,9 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# 대용량 모델 파일 (GitHub는 100MB 넘는 파일을 거부함) — 받는 방법은 README 참고
+/assets/models/**/*.onnx
+/onnx_model/
+/onnx_model_int8_check/
+*.npy

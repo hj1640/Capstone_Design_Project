@@ -1,57 +1,56 @@
 import { foodDatabase } from '@/data/foodDatabase';
 import { FoodDbEntry } from '@/types/food';
+import { embed } from './embedder';
 
-// ⚠️ 임시 매칭기 (MiniLM 임베딩 이전 단계)
-// 과제계획서 "다" 항목의 최종 목표는 paraphrase-multilingual-MiniLM-L12-v2로
-// OCR 상품명과 DB 표준명/동의어를 384차원 벡터로 임베딩해 코사인 유사도를 비교하는 것이다.
-// 그 모델을 기기에서 돌리려면 ONNX 변환 + INT8 양자화 + 추론 런타임(onnxruntime-react-native 등)
-// 작업이 추가로 필요해서, 지금은 "문자 2-gram Jaccard 유사도" 기반 매칭으로 같은 인터페이스를
-// 구현해뒀다. 나중에 이 파일의 matchFoodName 내부 구현만 임베딩 비교로 바꾸면
-// receiptParser → foodMatcher → OcrCandidate로 이어지는 나머지 파이프라인은 그대로 재사용된다.
-// 한국어는 띄어쓰기가 자유로워 띄어쓰기를 제거한 뒤 문자 n-gram으로 비교하는 쪽이
-// 띄어쓰기 기준 토큰 비교보다 안정적이다.
-
-function normalize(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/\d+\s*(ml|l|g|kg|개|봉|팩|마리|단|병|캔|모|포기|송이)?/g, '') // 용량/수량 표기 제거
-    .replace(/[^\p{L}\p{N}]/gu, '') // 공백/기호 제거
-    .trim();
-}
-
-function bigrams(text: string): Set<string> {
-  const set = new Set<string>();
-  if (text.length <= 1) {
-    if (text) set.add(text);
-    return set;
-  }
-  for (let i = 0; i < text.length - 1; i++) set.add(text.slice(i, i + 2));
-  return set;
-}
-
-function jaccard(a: Set<string>, b: Set<string>): number {
-  if (a.size === 0 || b.size === 0) return 0;
-  let intersection = 0;
-  for (const gram of a) if (b.has(gram)) intersection += 1;
-  const union = a.size + b.size - intersection;
-  return union === 0 ? 0 : intersection / union;
-}
+// ko-sroberta 임베딩 + 코사인 유사도로 OCR 상품명을 식품 DB 표준명과 매칭한다.
+// DB는 식품마다 이름 1개(standardName)만 쓴다.
 
 export interface FoodMatch {
   entry: FoodDbEntry;
-  score: number; // 0~1, 실제 구현에서는 코사인 유사도로 대체될 값
+  score: number; // 코사인 유사도 (-1~1, 실제로는 대략 0.3~1.0)
 }
 
-export function matchFoodName(rawText: string, topK = 3): FoodMatch[] {
-  const inputGrams = bigrams(normalize(rawText));
+interface DbVector {
+  entry: FoodDbEntry;
+  vector: number[];
+}
 
-  const scored: FoodMatch[] = foodDatabase.map((entry) => {
-    const candidateNames = [entry.standardName, ...entry.synonyms];
-    const bestScore = Math.max(
-      ...candidateNames.map((name) => jaccard(inputGrams, bigrams(normalize(name)))),
-    );
-    return { entry, score: bestScore };
-  });
+// DB 임베딩 캐시: 앱이 켜져 있는 동안 한 번만 계산해서 메모리에 들고 있는다.
+// (영수증 한 줄마다 DB 전체를 다시 임베딩하지 않음)
+// DB가 16개 단어뿐이라 앱 시작 시 계산해도 1초 안팎이고, DB를 고치면 자동으로 새 값이 반영된다.
+let dbVectorsPromise: Promise<DbVector[]> | null = null;
 
-  return scored.sort((a, b) => b.score - a.score).slice(0, topK);
+function getDbVectors(): Promise<DbVector[]> {
+  if (!dbVectorsPromise) {
+    dbVectorsPromise = (async () => {
+      const out: DbVector[] = [];
+      for (const entry of foodDatabase) {
+        out.push({ entry, vector: await embed(entry.standardName) });
+      }
+      return out;
+    })().catch((error) => {
+      dbVectorsPromise = null; // 실패하면 다음 호출 때 다시 계산
+      throw error;
+    });
+  }
+  return dbVectorsPromise;
+}
+
+// 영수증 화면에 들어올 때 미리 호출해두면 첫 인식이 빨라진다.
+export async function warmUpFoodMatcher(): Promise<void> {
+  await getDbVectors();
+}
+
+function dot(a: number[], b: number[]): number {
+  let sum = 0;
+  for (let i = 0; i < a.length; i++) sum += a[i] * b[i];
+  return sum; // 두 벡터 모두 길이 1로 정규화되어 있어서 내적 = 코사인 유사도
+}
+
+export async function matchFoodName(rawText: string, topK = 3): Promise<FoodMatch[]> {
+  const [dbVectors, inputVec] = [await getDbVectors(), await embed(rawText)];
+  return dbVectors
+    .map(({ entry, vector }) => ({ entry, score: dot(inputVec, vector) }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, topK);
 }
