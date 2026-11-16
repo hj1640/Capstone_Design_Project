@@ -1,6 +1,7 @@
 import { FoodItem, PurchaseHistoryEntry, PurchaseRecommendation } from '@/types/food';
 import { findFoodDbEntry } from '@/data/foodDatabase';
 import { addDays, daysBetween, todayIso } from './date';
+import forecastPolicy from '../../config/purchase-forecast.json';
 
 // 과제계획서 "바" 항목: "최근 구매일, 평균 구매주기, 평균 구매량, 현재 잔여량,
 // 예상 소진일을 조합한 규칙 기반 알고리즘"
@@ -9,6 +10,7 @@ export function generateRecommendations(
   history: PurchaseHistoryEntry[],
   fridgeItems: FoodItem[],
 ): PurchaseRecommendation[] {
+  if (!forecastPolicy.enabled || forecastPolicy.method===null || forecastPolicy.minimumHistory===null) return [];
   const byName = new Map<string, PurchaseHistoryEntry[]>();
   for (const entry of history) {
     const list = byName.get(entry.standardName) ?? [];

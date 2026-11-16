@@ -1,0 +1,12 @@
+{
+  "decision": "2026-11-16 기존 hj1640 Expo 프로젝트 유지",
+  "mode": "existing_app",
+  "name": "스마트 냉장고",
+  "slug": "fridge-app",
+  "scheme": "fridgeapp",
+  "owner": "hj1640",
+  "projectId": "06175197-78fe-4334-a926-099fcede5a81",
+  "androidPackage": "com.hj1640.fridgeapp",
+  "createdOnExpo": true,
+  "dashboardUrl": "https://expo.dev/accounts/hj1640/projects/fridge-app"
+}

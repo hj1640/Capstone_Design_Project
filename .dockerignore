@@ -1,0 +1,4 @@
+**
+!requirements-service.txt
+!server/
+!server/*.py

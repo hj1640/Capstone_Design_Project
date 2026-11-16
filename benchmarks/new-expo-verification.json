@@ -1,0 +1,75 @@
+{
+  "decision": "D-052",
+  "timestamp": "2026-11-12T12:14:41.391636+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.14",
+  "node": "v24.22.1",
+  "passed": true,
+  "checks": [
+    {
+      "name": "new_project_configuration",
+      "passed": true,
+      "elapsed_seconds": 0.671,
+      "detail": "PASS: separate project identity; local APK without server; connected builds require HTTPS; supplied bad URLs rejected\n\n"
+    },
+    {
+      "name": "decision_contract",
+      "passed": true,
+      "elapsed_seconds": 1.052,
+      "detail": "\ntest_current_user_decisions_and_evidence_limits (test_project_contract.ReviewContractTests.test_current_user_decisions_and_evidence_limits) ... ok\ntest_deployment_is_implemented_but_not_misreported_as_live (test_project_contract.ReviewContractTests.test_deployment_is_implemented_but_not_misreported_as_live) ... ok\ntest_new_expo_choice_does_not_claim_cloud_or_device_completion (test_project_contract.ReviewContractTests.test_new_expo_choice_does_not_claim_cloud_or_device_completion) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.009s\n\nOK\n"
+    },
+    {
+      "name": "service_http_regression",
+      "passed": true,
+      "elapsed_seconds": 9.442,
+      "detail": "PASS: HTTPS/config gates; enrollment loss/recovery; real HTTP registration/edit/replay; 8 concurrent revisions\nPASS: server+client process restart; same owner/statistics; withdrawal; wrong-owner binding blocked; logout revoked, local data retained\nPASS: actual Waitress process restart and SQLite backup integrity (synthetic fixture)\n\n(node:43920) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/32203728/Documents/ChatGPT/Capstone%20Design/team-mobile/src/services/feedback/session.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:7644) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/32203728/Documents/ChatGPT/Capstone%20Design/team-mobile/src/services/feedback/session.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "name": "typecheck",
+      "passed": true,
+      "elapsed_seconds": 12.132,
+      "detail": "\n"
+    },
+    {
+      "name": "lint",
+      "passed": true,
+      "elapsed_seconds": 41.943,
+      "detail": "\n"
+    },
+    {
+      "name": "expo_native_configuration",
+      "passed": true,
+      "elapsed_seconds": 3.042,
+      "detail": "{\"name\":\"스마트 냉장고 개인판\",\"slug\":\"fridge-app-personal\",\"scheme\":\"fridgepersonal\",\"version\":\"1.0.0\",\"orientation\":\"portrait\",\"icon\":\"./assets/icon.png\",\"userInterfaceStyle\":\"light\",\"newArchEnabled\":true,\"experiments\":{\"typedRoutes\":true},\"ios\":{\"supportsTablet\":true,\"bundleIdentifier\":\"com.placeholder.appid\"},\"android\":{\"adaptiveIcon\":{\"backgroundColor\":\"#E6F4FE\",\"foregroundImage\":\"./assets/android-icon-foreground.png\",\"backgroundImage\":\"./assets/android-icon-background.png\",\"monochromeImage\":\"./assets/android-icon-monochrome.png\"},\"predictiveBackGestureEnabled\":false,\"permissions\":[\"android.permission.READ_EXTERNAL_STORAGE\",\"android.permission.WRITE_EXTERNAL_STORAGE\",\"android.permission.INTERNET\"],\"package\":\"com.placeholder.appid\"},\"web\":{\"favicon\":\"./assets/favicon.png\",\"bundler\":\"metro\"},\"plugins\":[\"expo-router\",[\"expo-image-picker\",{\"photosPermission\":\"영수증 사진을 선택하기 위해 사진 보관함 접근 권한이 필요해요.\",\"cameraPermission\":\"영수증을 촬영하기 위해 카메라 접근 권한이 필요해요.\",\"microphonePermission\":false}],\"onnxruntime-react-native\",\"expo-sqlite\",\"expo-secure-store\",\"expo-asset\"],\"_internal\":{\"isDebug\":false,\"projectRoot\":\"C:\\\\Users\\\\32203728\\\\Documents\\\\ChatGPT\\\\Capstone Design\\\\team-mobile\",\"dynamicConfigPath\":\"C:\\\\Users\\\\32203728\\\\Documents\\\\ChatGPT\\\\Capstone Design\\\\team-mobile\\\\app.config.js\",\"staticConfigPath\":\"C:\\\\Users\\\\32203728\\\\Documents\\\\ChatGPT\\\\Capstone Design\\\\team-mobile\\\\app.json\",\"packageJsonPath\":\"C:\\\\Users\\\\32203728\\\\Documents\\\\ChatGPT\\\\Capstone Design\\\\team-mobile\\\\package.json\",\"pluginHistory\":{\"expo-image-picker\":{\"name\":\"expo-image-picker\",\"version\":\"57.0.21\"},\"onnxruntime-react-native\":{\"name\":\"onnxruntime-react-native\",\"version\":\"1.24.3\"},\"expo-sqlite\":{\"name\":\"expo-sqlite\",\"version\":\"57.0.4\"},\"expo-secure-store\":{\"name\":\"expo-secure-store\",\"version\":\"57.0.4\"},\"expo-asset\":{\"name\":\"expo-asset\",\"version\":\"57.0.21\"},\"react-native-maps\":{\"name\":\"react-native-maps\",\"version\":\"UNVERSIONED\"},\"expo-apple-authentication\":{\"name\":\"expo-apple-authentication\",\"version\":\"UNVERSIONED\"},\"expo-contacts\":{\"name\":\"expo-contacts\",\"version\":\"UNVERSIONED\"},\"expo-notifications\":{\"name\":\"expo-notifications\",\"version\":\"UNVERSIONED\"},\"expo-updates\":{\"name\":\"expo-updates\",\"version\":\"UNVERSIONED\"},\"expo-document-picker\":{\"name\":\"expo-document-picker\",\"version\":\"UNVERSIONED\"},\"expo-system-ui\":{\"name\":\"expo-system-ui\",\"version\":\"UNVERSIONED\"},\"expo-dev-menu\":{\"name\":\"expo-dev-menu\",\"version\":\"57.0.19\"},\"expo-dev-launcher\":{\"name\":\"expo-dev-launcher\",\"version\":\"57.0.20\"},\"expo-dev-client\":{\"name\":\"expo-dev-client\",\"version\":\"57.0.21\"},\"expo-file-system\":{\"name\":\"expo-file-system\",\"version\":\"57.0.7\"}},\"autolinkedModules\":[\"@expo/dom-webview\",\"@expo/log-box\",\"@expo/ui\",\"expo\",\"expo-asset\",\"expo-constants\",\"expo-crypto\",\"expo-dev-client\",\"expo-dev-launcher\",\"expo-dev-menu\",\"expo-dev-menu-interface\",\"expo-device\",\"expo-file-system\",\"expo-font\",\"expo-glass-effect\",\"expo-image-loader\",\"expo-image-picker\",\"expo-json-utils\",\"expo-keep-awake\",\"expo-linking\",\"expo-manifests\",\"expo-modules-core\",\"expo-modules-jsi\",\"expo-router\",\"expo-secure-store\",\"expo-sqlite\",\"expo-status-bar\",\"expo-symbols\",\"expo-updates-interface\",\"onnxruntime-react-native\"]},\"sdkVersion\":\"57.0.0\",\"platforms\":[\"ios\",\"android\",\"web\"],\"extra\":{\"router\":{}},\"mods\":{\"ios\":{},\"android\":{}}}\n"
+    },
+    {
+      "name": "android_js_bundle",
+      "passed": true,
+      "elapsed_seconds": 55.36,
+      "detail": "Using src/app as the root directory for Expo Router.\nStarting Metro Bundler\n\n| (node:3480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n| (Use `node --trace-warnings ...` to show where the warning was created)\nAndroid Bundled 40496ms node_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\entry.js (1366 modules)\n\n› Assets (29):\nassets\\models\\model_int8.onnx (118MB)\nassets\\models\\model_local_int8.onnx (118MB)\nnode_modules\\.pnpm\\@expo-google-fonts+material-symbols@0.4.52\\node_modules\\@expo-google-fonts\\material-symbols\\400Regular\\MaterialSymbols_400Regular.ttf (973KB)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\arrow_down.png (9.5KB)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\arrow_right.xml (307B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\checkmark.xml (312B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\error.png (469B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\file.png (138B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\forward.png (188B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\pkg.png (364B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\react-navigation\\elements\\back-icon-mask.png (653B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\react-navigation\\elements\\back-icon.png (4 variations | 152B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\react-navigation\\elements\\clear-icon.png (4 variations | 425B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\react-navigation\\elements\\close-icon.png (4 variations | 235B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\react-navigation\\elements\\search-icon.png (4 variations | 599B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\sitemap.png (465B)\nnode_modules\\.pnpm\\expo-router@57.0.30_61efae3aee60193b9d01da077872f50b\\node_modules\\expo-router\\assets\\unmatched.png (4.8KB)\n\n› android bundles (1):\n_expo/static/js/android/entry-95e41996de3b96ce52112beab183d6a9.hbc (14MB)\n\n› Files (1):\nmetadata.json (2KB)\n\nExported: .stage0-new-expo-export\n\n"
+    }
+  ],
+  "synthetic_fixtures": true,
+  "source_sha256": {
+    "app.config.js": "5e282917f46f07feb2009d0b2ecb242fef8fb2c42ed35636f2a0651d5afc23b1",
+    "app.json": "5b275f1976af4f190fdaad5c56a12c8707fc2cfe9bf750a55cf846bdacc1e101",
+    "eas.json": "49f1dba323a36016b9f75e152e465d89171c5894b6a39d15c29baffd0871e200",
+    "config/expo-project.json": "6b87e1a3b7e09eb24a46f20827d04fb101cfa7b32699f36b7432192605986efd",
+    "config/deployment.cjs": "68539da70abe97eb6490fcdbf1d2331ff40329956baae20fd3549b156c83bc27",
+    "package.json": "923458560013590c31125b77d4a63b7f8abc38197dfc18b66800246f703ff1e0",
+    "pnpm-lock.yaml": "921a08bcbce0b38782abce2a8a3901d4abeaf1c8bf77e3a9c1084efd483b6c5f",
+    "scripts/project-config-check.mjs": "6f26af6847b9c4c40ee014646ef13585b6ab87b9f0d4aa72989ffbd26136077c",
+    "scripts/build-preview.mjs": "69dd9e8570045406f8187c4f6edd9de0c41b3f800c30ae2cf3c03eb6b0fa75e1",
+    "scripts/check-deployment.mjs": "6c48b210deb0a68e6d3e19fc3124120623c0bf3ac7fef99382f53dd52801cd36",
+    "scripts/verify_project.py": "51a7b8b3072fc2e33dcfd19610d412692a5a23e4f4480c9267af01500cc5b35b",
+    "server/test_project_contract.py": "a9d43c65496d1677ae7d135cb17e720b97b55326f9701fb806c817753165e6fc",
+    "src/app/feedback-sync.tsx": "b92288c6a1cf52b675a134447d389b3e9df7a42fab21abb78d514567a5bffb92",
+    "docs/project-contract.json": "022f702f9a4342bc2dd276d06bb9cfca17511b9d45d9307f57130f031768a606"
+  },
+  "not_verified": [
+    "Expo project creation without user login",
+    "Android cloud APK build and signing",
+    "Physical device installation and native behavior",
+    "Public statistics server hosting"
+  ]
+}

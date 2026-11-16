@@ -2,16 +2,13 @@
 // 과제계획서 "나" 항목: "정규표현식, 키워드 사전으로 날짜, 수량, 금액, 합계, 결제 문구를
 // 분리하며, 고정 좌표 대신 텍스트 내용과 줄의 상대 배치로 상품명 후보를 선별한다."
 //
-// 실물 영수증뿐 아니라 쿠팡 등 온라인 쇼핑 앱의 "주문내역" 캡쳐본도 같은 파이프라인으로
-// 처리한다. 두 입력의 차이는 "잡음(화면 UI 문구)의 종류"뿐이라서, 노이즈 패턴 목록에
-// 온라인 주문 앱에서 흔한 문구들을 추가하는 방식으로 대응한다.
+// 입력은 지류(종이) 영수증만 지원한다.
 
 // 날짜/시간만 있는 줄 (guessStoreName에서도 재사용)
 const DATE_ONLY_LINE = /^\d{2,4}\s*[-.\/]\s*\d{1,2}\s*[-.\/]\s*\d{1,2}/;
 const TIME_ONLY_LINE = /^\d{1,2}\s*:\s*\d{2}(\s*:\s*\d{2})?$/;
 
 const NOISE_PATTERNS: RegExp[] = [
-  // --- 실물 영수증 공통 잡음 ---
   /합\s*계/,
   /부가세/,
   /과세물품/,
@@ -46,29 +43,6 @@ const NOISE_PATTERNS: RegExp[] = [
   TIME_ONLY_LINE,
   // 가격+수량만 있는 줄 ("1,990원1개"처럼 상품명 줄과 분리되어 따로 찍히는 경우)
   /^[\d,]+\s*원\s*\d+\s*(개|봉|팩|병|캔|모|마리|단|포기|송이)?\s*$/,
-
-  // --- 쿠팡 등 온라인 쇼핑 앱 "주문내역" 화면 UI 잡음 ---
-  /바로\s*구매/,
-  /장바구니/,
-  /담\s*기/,
-  /주문\s*하기/,
-  /주문\s*내역/,
-  /주문\s*관리/,
-  /주문한\s*상품/,
-  /검색할\s*수\s*있어요/,
-  /모두\s*보기/,
-  /^제외$/,
-  /^접기$/,
-  /더\s*보기/,
-  /배송\s*완료/,
-  /배송\s*조회/,
-  /배송\s*주문/,
-  /로켓(프레시|배송|와우)?/,
-  /리뷰\s*(쓰기|보기)?/,
-  /평점/,
-  /쿠폰/,
-  /위시\s*리스트/,
-  /찜\s*하기/,
 ];
 
 // 영수증/화면 맨 앞에 붙는 네비게이션 기호(뒤로가기 화살표 등)로 시작하는 줄.
@@ -83,6 +57,9 @@ function isNoiseLine(line: string): boolean {
 
 // 줄 끝의 금액 표기 (쉼표 포함 3자리 이상 숫자, 끝에 '원' 선택적으로)
 const TRAILING_PRICE = /[\d,]{3,}\s*원?\s*$/;
+
+// "두부 1,000 2 2,000" 처럼 상품명·단가·수량·금액이 한 줄에 있는 형식
+const COLUMN_LINE = /^(.+?)\s+[\d,]+\s+(\d{1,3})\s+[\d,]+\s*원?$/;
 
 // "오뚜기밥 210g*3" 처럼 뒤에 붙는 수량 배수
 const QTY_MULTIPLIER = /[*xX×]\s*(\d+)\s*$/;
@@ -104,6 +81,14 @@ export function parseReceiptLines(lines: string[]): ParsedReceiptLine[] {
     if (isNoiseLine(rawLine)) continue;
 
     let text = rawLine.trim();
+
+    // "상품명 단가 수량 금액"이 한 줄에 찍힌 경우 (예: "두부 1,000 2 2,000")
+    const columns = text.match(COLUMN_LINE);
+    if (columns && /[가-힣a-z]/i.test(columns[1])) {
+      results.push({ rawText: text, nameCandidate: columns[1].trim(), quantity: Number(columns[2]) || 1 });
+      continue;
+    }
+
     text = text.replace(TRAILING_PRICE, '').trim();
     if (!text) continue;
 
@@ -146,8 +131,3 @@ export function guessStoreName(lines: string[]): string {
   return '인식된 영수증';
 }
 
-// 온라인 쇼핑 앱 주문내역 캡쳐본인지 추정한다 (실물 영수증과 기본 라벨을 다르게 보여주기 위함).
-export function detectIsOnlineOrderFormat(lines: string[]): boolean {
-  const ONLINE_SIGNATURE = /로켓(프레시|배송|와우)?|바로\s*구매|장바구니|주문\s*내역|배송\s*완료/;
-  return lines.some((line) => ONLINE_SIGNATURE.test(line.trim()));
-}

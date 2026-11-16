@@ -1,0 +1,94 @@
+{
+  "timestamp": "2026-11-02T13:13:23.530Z",
+  "synthetic": true,
+  "target": "next_purchase_date",
+  "update": "incremental arithmetic mean experiment only; no production averaging method selected",
+  "split": "walk forward: each prediction uses only earlier observed purchase intervals",
+  "samples": 5,
+  "meanMAEDays": 3.033333333333333,
+  "lastIntervalMAEDays": 4.2,
+  "byPriorQuantity": [
+    {
+      "quantity": 1,
+      "count": 3,
+      "meanNextIntervalDays": 7
+    },
+    {
+      "quantity": 2,
+      "count": 2,
+      "meanNextIntervalDays": 14
+    }
+  ],
+  "rows": [
+    {
+      "user": "synthetic-weekly",
+      "food": "synthetic-food",
+      "lastPurchaseDate": "2026-11-08",
+      "quantity": 1,
+      "actualNextPurchaseDate": "2026-11-15",
+      "actualIntervalDays": 7,
+      "pastIntervalsUsed": 1,
+      "meanPredictionDays": 7,
+      "lastIntervalPredictionDays": 7,
+      "meanAbsoluteErrorDays": 0,
+      "lastIntervalAbsoluteErrorDays": 0
+    },
+    {
+      "user": "synthetic-weekly",
+      "food": "synthetic-food",
+      "lastPurchaseDate": "2026-11-15",
+      "quantity": 1,
+      "actualNextPurchaseDate": "2026-11-22",
+      "actualIntervalDays": 7,
+      "pastIntervalsUsed": 2,
+      "meanPredictionDays": 7,
+      "lastIntervalPredictionDays": 7,
+      "meanAbsoluteErrorDays": 0,
+      "lastIntervalAbsoluteErrorDays": 0
+    },
+    {
+      "user": "synthetic-varying-quantity",
+      "food": "synthetic-food",
+      "lastPurchaseDate": "2026-11-08",
+      "quantity": 2,
+      "actualNextPurchaseDate": "2026-11-22",
+      "actualIntervalDays": 14,
+      "pastIntervalsUsed": 1,
+      "meanPredictionDays": 7,
+      "lastIntervalPredictionDays": 7,
+      "meanAbsoluteErrorDays": 7,
+      "lastIntervalAbsoluteErrorDays": 7
+    },
+    {
+      "user": "synthetic-varying-quantity",
+      "food": "synthetic-food",
+      "lastPurchaseDate": "2026-11-22",
+      "quantity": 1,
+      "actualNextPurchaseDate": "2026-11-29",
+      "actualIntervalDays": 7,
+      "pastIntervalsUsed": 2,
+      "meanPredictionDays": 10.5,
+      "lastIntervalPredictionDays": 14,
+      "meanAbsoluteErrorDays": 3.5,
+      "lastIntervalAbsoluteErrorDays": 7
+    },
+    {
+      "user": "synthetic-varying-quantity",
+      "food": "synthetic-food",
+      "lastPurchaseDate": "2026-11-29",
+      "quantity": 2,
+      "actualNextPurchaseDate": "2026-12-13",
+      "actualIntervalDays": 14,
+      "pastIntervalsUsed": 3,
+      "meanPredictionDays": 9.333333333333334,
+      "lastIntervalPredictionDays": 7,
+      "meanAbsoluteErrorDays": 4.666666666666666,
+      "lastIntervalAbsoluteErrorDays": 7
+    }
+  ],
+  "caveats": [
+    "Synthetic encoded patterns, not measured user behavior.",
+    "Quantity association is descriptive; not causal and not actual consumption.",
+    "Errors use unrounded expected intervals; UI rounding/minimum history/lead days remain open."
+  ]
+}

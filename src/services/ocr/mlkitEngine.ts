@@ -14,8 +14,7 @@ export const mlkitOcrEngine: OcrEngine = {
   name: 'google-ml-kit',
 
   isAvailable() {
-    // 웹이거나(react-native-web) 네이티브 모듈이 링크되지 않은 환경(Expo Go 등)에서는
-    // NativeModules.TextRecognition이 없으므로 false를 반환해 모의 엔진으로 자연스럽게 전환한다.
+    // Missing native module means actual OCR is unavailable; no implicit mock replacement.
     return Platform.OS !== 'web' && !!NativeModules.TextRecognition;
   },
 

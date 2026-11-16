@@ -1,0 +1,106 @@
+{
+  "timestamp": "2026-11-02T13:14:27.496609+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.14",
+  "source_sha256": {
+    "src/services/ocr/onlineOrder.ts": "47170ab52a287d29461a6698d124aed018e44254b5d1e638d282d5d6d895f4a4",
+    "src/services/registration.ts": "43be3f29c8e621764f855bc807e0119deb2a2ed55426907c778a3823fc165a54",
+    "src/services/feedback/store.ts": "b656144b9798279086387c0d6882911f9042776904f01a4c80c1c93a942ec1f3",
+    "server/trust_stats.py": "a967dd74762e233bd3c0fae3af82db26667c103260ec1f21a1329fe6aca5d0e0",
+    "server/dev_api.py": "5279ac23270c60cbc447de9ea9d5f8691aeb611bcffad989701ae13fcf435b55",
+    "scripts/stage8-flow-check.mjs": "70d35a2fba99698510afce668b0811f6b6218642f468a45d75e16447c4ce4201",
+    "src/utils/date.ts": "0094010efa9d3b65723b0fb370ea7665a55f4c46b6cf1093ff1343154cb20776",
+    "src/utils/status.ts": "18844d16eac73a4368a16f801054df01058ab7aacc794f8e8aeca527e35679a8",
+    "src/utils/recommend.ts": "98ec91d7bc52d2002459dbffc5831f73fa0e9ccfdf3ac8320b0d3fbb19b447d6",
+    "config/purchase-forecast.json": "4aff910fd1b4e5a8c0e86c351e7f89e162e90b7d2ee2522602b6d21419bda635"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "server_tests",
+      "passed": true,
+      "elapsed_seconds": 25.912314799963497,
+      "detail": "\ntest_auth_and_owner_boundaries (test_dev_api.APITests.test_auth_and_owner_boundaries) ... ok\ntest_concurrent_submissions_are_one_row (test_dev_api.APITests.test_concurrent_submissions_are_one_row) ... ok\ntest_consent_and_client_weight_rejected (test_dev_api.APITests.test_consent_and_client_weight_rejected) ... ok\ntest_database_survives_restart (test_dev_api.APITests.test_database_survives_restart) ... ok\ntest_date_order_and_missing_open_date_held (test_dev_api.APITests.test_date_order_and_missing_open_date_held) ... ok\ntest_distinct_keys_deduplicate_same_item_revision_basis (test_dev_api.APITests.test_distinct_keys_deduplicate_same_item_revision_basis) ... ok\ntest_edit_supersedes_and_override_is_preserved (test_dev_api.APITests.test_edit_supersedes_and_override_is_preserved) ... ok\ntest_idempotency_replay_and_payload_conflict (test_dev_api.APITests.test_idempotency_replay_and_payload_conflict) ... ok\ntest_other_owner_cannot_withdraw_feedback (test_dev_api.APITests.test_other_owner_cannot_withdraw_feedback) ... ok\ntest_revoke_after_lost_response_and_alias_key (test_dev_api.APITests.test_revoke_after_lost_response_and_alias_key) ... ok\ntest_revoke_before_post_prevents_resurrection (test_dev_api.APITests.test_revoke_before_post_prevents_resurrection) ... ok\ntest_stale_revision_and_clear (test_dev_api.APITests.test_stale_revision_and_clear) ... ok\ntest_strict_calendar_and_source (test_dev_api.APITests.test_strict_calendar_and_source) ... ok\ntest_all_withdrawals_reset_totals (test_trust_stats.TrustTests.test_all_withdrawals_reset_totals) ... ok\ntest_arithmetic_candidate_rejects_outliers (test_trust_stats.TrustTests.test_arithmetic_candidate_rejects_outliers) ... ok\ntest_changed_parameters_need_new_policy_version (test_trust_stats.TrustTests.test_changed_parameters_need_new_policy_version) ... ok\ntest_concurrent_reviews_preserve_unique_accounts (test_trust_stats.TrustTests.test_concurrent_reviews_preserve_unique_accounts) ... ok\ntest_condition_filters_and_food_only_product_safety (test_trust_stats.TrustTests.test_condition_filters_and_food_only_product_safety) ... ok\ntest_conditions_products_and_source_are_separate_groups (test_trust_stats.TrustTests.test_conditions_products_and_source_are_separate_groups) ... ok\ntest_default_config_is_disabled (test_trust_stats.TrustTests.test_default_config_is_disabled) ... ok\ntest_extreme_outlier_has_bounded_influence (test_trust_stats.TrustTests.test_extreme_outlier_has_bounded_influence) ... ok\ntest_item_edit_invalidates_old_contribution (test_trust_stats.TrustTests.test_item_edit_invalidates_old_contribution) ... ok\ntest_low_weight_outliers_do_not_satisfy_minimum (test_trust_stats.TrustTests.test_low_weight_outliers_do_not_satisfy_minimum) ... ok\ntest_minimum_qualifying_accounts_gate_publication (test_trust_stats.TrustTests.test_minimum_qualifying_accounts_gate_publication) ... ok\ntest_package_label_cannot_become_opened_duration (test_trust_stats.TrustTests.test_package_label_cannot_become_opened_duration) ... ok\ntest_policy_rebuild_withdraws_previous_publication (test_trust_stats.TrustTests.test_policy_rebuild_withdraws_previous_publication) ... ok\ntest_public_rule_omits_owner_statistics (test_trust_stats.TrustTests.test_public_rule_omits_owner_statistics) ... ok\ntest_repeat_evaluate_does_not_double_count (test_trust_stats.TrustTests.test_repeat_evaluate_does_not_double_count) ... ok\ntest_repeat_owner_counts_once (test_trust_stats.TrustTests.test_repeat_owner_counts_once) ... ok\ntest_rollback_is_atomic (test_trust_stats.TrustTests.test_rollback_is_atomic) ... ok\ntest_unreviewed_or_unanchored_submission_is_held (test_trust_stats.TrustTests.test_unreviewed_or_unanchored_submission_is_held) ... ok\ntest_withdraw_removes_contribution_and_publication (test_trust_stats.TrustTests.test_withdraw_removes_contribution_and_publication) ... ok\n\n----------------------------------------------------------------------\nRan 32 tests in 25.630s\n\nOK\n"
+    },
+    {
+      "name": "stage2_token_parity",
+      "passed": true,
+      "elapsed_seconds": 0.6828509999904782,
+      "detail": "PASS: 8 Python/JS token sequences; masked pooling and invalid-output guards\n\n(node:20184) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/32203728/Documents/ChatGPT/Capstone%20Design/team-mobile/src/services/embedding/core.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "name": "stage3_catalog",
+      "passed": true,
+      "elapsed_seconds": 0.1378250999841839,
+      "detail": "PASS: 20 catalog/search checks (synthetic data)\n\n(node:38480) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/32203728/Documents/ChatGPT/Capstone%20Design/team-mobile/src/data/catalog-stage3.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "name": "stage4_metrics",
+      "passed": true,
+      "elapsed_seconds": 0.1830329999793321,
+      "detail": "\ntest_empty_metrics_are_unknown (test_stage4_metrics.MetricTests.test_empty_metrics_are_unknown) ... ok\ntest_product_error_can_still_have_correct_food (test_stage4_metrics.MetricTests.test_product_error_can_still_have_correct_food) ... ok\ntest_unknown_and_ambiguous_do_not_inflate_known_accuracy (test_stage4_metrics.MetricTests.test_unknown_and_ambiguous_do_not_inflate_known_accuracy) ... ok\ntest_unknown_automatic_suggestion_counts_as_error (test_stage4_metrics.MetricTests.test_unknown_automatic_suggestion_counts_as_error) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "name": "stage5_semantic_parity",
+      "passed": true,
+      "elapsed_seconds": 0.15204820001963526,
+      "detail": "PASS: 25 Python/TS semantic rankings and version/vector guards\n\n(node:32320) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/32203728/Documents/ChatGPT/Capstone%20Design/team-mobile/src/data/catalog-stage3.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "name": "stage6_client_http",
+      "passed": true,
+      "elapsed_seconds": 2.0549151999875903,
+      "detail": "PASS: persistent client outbox / real HTTP server integration\n\n(node:26704) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/32203728/Documents/ChatGPT/Capstone%20Design/team-mobile/src/services/feedback/store.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "name": "stage7_trust_http",
+      "passed": true,
+      "elapsed_seconds": 1.5284411000320688,
+      "detail": "PASS: trust-engine publication/lookup/withdrawal over actual loopback HTTP\n\n"
+    },
+    {
+      "name": "stage8_full_flow",
+      "passed": true,
+      "elapsed_seconds": 1.5933285999344662,
+      "detail": "PASS: online text → catalog → registration → personal edit → HTTP submission → synthetic review → rules → withdrawal\n\n(node:42940) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/32203728/Documents/ChatGPT/Capstone%20Design/team-mobile/src/services/ocr/onlineOrder.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to \\\\?\\C:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "name": "stage8_purchase_eval",
+      "passed": true,
+      "elapsed_seconds": 0.10307869990356266,
+      "detail": "Synthetic next-purchase MAE: mean=3.033 days; last interval=4.200 days; n=5\n\n"
+    },
+    {
+      "name": "stage8_date_boundaries",
+      "passed": true,
+      "elapsed_seconds": 0.30716329999268055,
+      "detail": "PASS: local calendar day and UTC date arithmetic across timezone/DST boundaries\n\n"
+    },
+    {
+      "name": "typecheck",
+      "passed": true,
+      "elapsed_seconds": 2.2114727000007406,
+      "detail": "\n"
+    },
+    {
+      "name": "lint",
+      "passed": true,
+      "elapsed_seconds": 15.080029999953695,
+      "detail": "\nC:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\src\\components\\ProgressBar.tsx\n  3:18  warning  'radius' is defined but never used  @typescript-eslint/no-unused-vars\n\nC:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\src\\services\\embedding\\native.ts\n  8:34  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports\n\nC:\\Users\\32203728\\Documents\\ChatGPT\\Capstone Design\\team-mobile\\src\\services\\embedding\\probe.ts\n  12:34  warning  A `require()` style import is forbidden  @typescript-eslint/no-require-imports\n\n✖ 3 problems (0 errors, 3 warnings)\n\n\n"
+    },
+    {
+      "name": "android_bundle",
+      "passed": true,
+      "elapsed_seconds": 46.35690239991527,
+      "detail": "Using src/app as the root directory for Expo Router.\nStarting Metro Bundler\n\n| (node:41836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n| (Use `node --trace-warnings ...` to show where the warning was created)\n| (node:41836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n| (Use `node --trace-warnings ...` to show where the warning was created)\nAndroid Bundled 38649ms node_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\entry.js (1375 modules)\n\n› Assets (29):\nassets\\models\\model_int8.onnx (118MB)\nassets\\models\\model_local_int8.onnx (118MB)\nnode_modules\\.pnpm\\@expo-google-fonts+material-symbols@0.4.52\\node_modules\\@expo-google-fonts\\material-symbols\\400Regular\\MaterialSymbols_400Regular.ttf (973KB)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\arrow_down.png (9.5KB)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\arrow_right.xml (307B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\checkmark.xml (312B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\error.png (469B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\file.png (138B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\forward.png (188B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\pkg.png (364B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\react-navigation\\elements\\back-icon-mask.png (653B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\react-navigation\\elements\\back-icon.png (4 variations | 152B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\react-navigation\\elements\\clear-icon.png (4 variations | 425B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\react-navigation\\elements\\close-icon.png (4 variations | 235B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\react-navigation\\elements\\search-icon.png (4 variations | 599B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\sitemap.png (465B)\nnode_modules\\.pnpm\\expo-router@57.0.29_79b68b41f5f556d36c7c5cf2cb7c7643\\node_modules\\expo-router\\assets\\unmatched.png (4.8KB)\n\n› android bundles (1):\n_expo/static/js/android/entry-79391bd7fa68deeb3625effdb0f0193b.hbc (14MB)\n\n› Files (1):\nmetadata.json (2KB)\n\nExported: .stage0-stage8-export\n\n"
+    }
+  ],
+  "not_verified": [
+    "Actual OCR image accuracy",
+    "Android native SQLite restart and network/UI flow",
+    "Real product/duration data",
+    "Production authentication/hosting",
+    "Approved live trust policy",
+    "Native PyTorch-to-ONNX export parity"
+  ]
+}

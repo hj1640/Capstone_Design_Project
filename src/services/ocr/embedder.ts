@@ -1,4 +1,4 @@
-import * as ort from 'onnxruntime-react-native';
+import { InferenceSession, Tensor } from 'onnxruntime-react-native';
 import { Asset } from 'expo-asset';
 import { tokenize } from './wordpieceTokenizer';
 
@@ -6,17 +6,19 @@ import { tokenize } from './wordpieceTokenizer';
 // 모델/토크나이저는 assets/models/ko-sroberta/ 아래에 둔다.
 // (다른 모델과 파일 이름이 겹치지 않도록 모델 이름으로 폴더를 나눔)
 
-let sessionPromise: Promise<ort.InferenceSession> | null = null;
+let sessionPromise: Promise<InferenceSession> | null = null;
 
 // 모델 로드는 한 번만. require()는 에셋 번호(number)를 돌려주기 때문에
 // 그대로 InferenceSession.create에 넘기면 안 되고, expo-asset으로 실제 파일 경로(localUri)를 얻어야 한다.
-function getSession(): Promise<ort.InferenceSession> {
+function getSession(): Promise<InferenceSession> {
   if (!sessionPromise) {
     sessionPromise = (async () => {
+      // Metro가 .onnx 파일을 앱에 포함하려면 정적 require가 필요하다.
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const asset = Asset.fromModule(require('../../../assets/models/ko-sroberta/model_int8.onnx'));
       await asset.downloadAsync();
       if (!asset.localUri) throw new Error('ko-sroberta 모델 파일을 찾을 수 없습니다');
-      return ort.InferenceSession.create(asset.localUri);
+      return InferenceSession.create(asset.localUri);
     })().catch((error) => {
       sessionPromise = null; // 실패하면 다음 호출 때 다시 시도
       throw error;
@@ -44,13 +46,13 @@ async function embedNow(text: string): Promise<number[]> {
   const seqLen = inputIds.length;
   // 패딩 없이 한 문장만 넣으므로 attention_mask는 전부 1, token_type_ids는 전부 0
   const toTensor = (values: number[]) =>
-    new ort.Tensor('int64', BigInt64Array.from(values.map(BigInt)), [1, seqLen]);
-  const allFeeds: Record<string, ort.Tensor> = {
+    new Tensor('int64', BigInt64Array.from(values.map(BigInt)), [1, seqLen]);
+  const allFeeds: Record<string, Tensor> = {
     input_ids: toTensor(inputIds),
     attention_mask: toTensor(new Array(seqLen).fill(1)),
     token_type_ids: toTensor(new Array(seqLen).fill(0)),
   };
-  const feeds: Record<string, ort.Tensor> = {};
+  const feeds: Record<string, Tensor> = {};
   for (const name of session.inputNames) feeds[name] = allFeeds[name];
 
   const results = await session.run(feeds);

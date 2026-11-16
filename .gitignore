@@ -45,3 +45,31 @@ yarn-error.*
 /onnx_model/
 /onnx_model_int8_check/
 *.npy
+
+# Local verification output and private data (share only reviewed, anonymized evidence)
+.stage0*/
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+*.db
+*.db-*
+.env
+.env.*
+!.env.example
+credentials.json
+service-account*.json
+
+/assets/models/*
+!/assets/models/.gitkeep
+!/assets/models/ko-sroberta/
+/assets/models/ko-sroberta/*
+!/assets/models/ko-sroberta/tokenizer.json
+
+.venv/
+
+# Python experiment caches
+__pycache__/
+.secrets/
+backups/
+*.pyc

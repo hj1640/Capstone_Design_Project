@@ -5,13 +5,28 @@
   },
   "build": {
     "development": {
+      "node": "24.22.1",
+      "pnpm": "11.25.0",
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "node": "24.22.1",
+      "pnpm": "11.25.0",
+      "developmentClient": false,
+      "distribution": "internal",
+      "autoIncrement": true,
+      "environment": "preview",
+      "android": {
+        "buildType": "apk"
+      }
     },
     "production": {
+      "node": "24.22.1",
+      "pnpm": "11.25.0",
       "autoIncrement": true
     }
   },
