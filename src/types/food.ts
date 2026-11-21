@@ -109,6 +109,8 @@ export interface MockReceipt {
   candidates: OcrCandidate[];
   /** 'mock' is only used by an explicitly selected synthetic example. */
   engine?: 'mlkit' | 'mock';
+  /** 식품 매칭(ko-sroberta)이 실패했을 때의 오류. OCR 원문 후보는 그대로 보여준다. */
+  matcherError?: string;
 }
 
 export interface PurchaseRecommendation {

@@ -3,6 +3,8 @@ import { AppState } from 'react-native';
 import { FoodItem, MockReceipt, OcrCandidate, PurchaseHistoryEntry, FoodCategory } from '@/types/food';
 import type { DiscardEntry } from '@/data/discardLog';
 import { buildRegistration } from '@/services/registration';
+import { userFoods } from '@/services/userFoods';
+import { foodDatabase } from '@/data/foodDatabase';
 import { randomUUID } from 'expo-crypto';
 import { todayIso } from '@/utils/date';
 import { feedbackStore, schedulePersonalSync, setPersonalAppActive } from '@/services/feedback/local';
@@ -32,7 +34,7 @@ interface FridgeContextValue {
     source: FoodItem['source'],
     purchaseDate: string,
   ) => void;
-  adjustRemaining: (itemId: string, deltaRatio: number) => void;
+  setRemaining: (itemId: string, remaining: number) => void;
   removeItem: (itemId: string, outcome: 'consumed' | 'discarded') => void;
   savePersonalExpiry: (item: FoodItem, expiry: string | null, source: EditSource | null, personalAverage?: boolean) => void;
   refreshPersonalExpiry: () => void;
@@ -66,20 +68,24 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
 
   const addConfirmedReceiptItems = useCallback(
     (candidates: OcrCandidate[], source: FoodItem['source'], purchaseDate: string) => {
-      const registered=buildRegistration(candidates,source,purchaseDate,randomUUID);
+      const registered=buildRegistration(candidates,source,purchaseDate,randomUUID,name=>userFoods.defaultsFor(name));
+      // 기본 DB에 없던 식품명은 내 식품 DB에 추가 → 다음 영수증부터 매칭 후보가 된다
+      const builtIn=new Set(foodDatabase.map(f=>f.standardName));
+      for (const item of registered.items) if (!builtIn.has(item.standardName)) userFoods.rememberName(item.standardName,item.category);
       feedbackStore.remember(registered.items,registered.history);
       setFridgeItems(previous=>[...registered.items,...previous]);
       setPurchaseHistory(previous=>[...registered.history,...previous]);
     },[]);
 
-  const adjustRemaining = useCallback((itemId: string, deltaRatio: number) => {
+  // 남은 양 조절: 화면에 바로 반영하고 기기(SQLite)에 저장한다
+  const setRemaining = useCallback((itemId: string, remaining: number) => {
+    feedbackStore.setRemaining(itemId, remaining);
     setFridgeItems((prev) =>
-      prev.map((item) => {
-        if (item.id !== itemId) return item;
-        const delta = item.totalQuantity * deltaRatio;
-        const next = Math.max(0, Math.min(item.totalQuantity, item.remainingQuantity + delta));
-        return { ...item, remainingQuantity: next };
-      }),
+      prev.map((item) =>
+        item.id === itemId
+          ? { ...item, remainingQuantity: Math.max(0, Math.min(item.totalQuantity, remaining)) }
+          : item,
+      ),
     );
   }, []);
 
@@ -115,7 +121,7 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
       purchaseHistory,
       discardLog,
       addConfirmedReceiptItems,
-      adjustRemaining,
+      setRemaining,
       removeItem,
       savePersonalExpiry,
       refreshPersonalExpiry,
@@ -127,7 +133,7 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
       purchaseHistory,
       discardLog,
       addConfirmedReceiptItems,
-      adjustRemaining,
+      setRemaining,
       removeItem,
       savePersonalExpiry,
       refreshPersonalExpiry,

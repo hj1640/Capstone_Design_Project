@@ -43,7 +43,33 @@ const NOISE_PATTERNS: RegExp[] = [
   TIME_ONLY_LINE,
   // 가격+수량만 있는 줄 ("1,990원1개"처럼 상품명 줄과 분리되어 따로 찍히는 경우)
   /^[\d,]+\s*원\s*\d+\s*(개|봉|팩|병|캔|모|마리|단|포기|송이)?\s*$/,
+  // "라벨: 값" 형식 (대표: / 회원 : / 할부 : / 카드사: / 판매총액: …) — 상품명에는 콜론이 거의 없다
+  /[:：]/,
+  // 표 머리글·바코드·주소·인사말
+  /단\s*가/,
+  /상품\s*\(?\s*코드/,
+  /바\s*코\s*드/,
+  /총\s*액/,
+  /액.*원$/,
+  /대\s*표/,
+  /회\s*원/,
+  /[할활]\s*부/,
+  /^승\s*[인이]$/,
+  /\.(com|net|kr|co)\b/i,
+  /최선을|방문해|또\s*오세요/,
+  // 안내 문구 ("반품시 영수증 지참 바랍니다", "5월은 지방소득세 납부의 달 입니다", "납세의무가 있는 자")
+  /바랍|입니|합니|십시|하세요|드립니|드려요|주세요/,
+  /납부|납세|소득세|세금|의무|과세|면세/,
+  /반품|교환|환불|지참/,
+  /봉투|계산원|캐셔|담당자/,
+  /상\s*품\s*명|수\s*량/,
 ];
+
+// 상품명이 되려면 한글이 최소 2글자는 있어야 한다 (가격·바코드·코드 줄은 숫자/영문뿐)
+const MIN_HANGUL = 2;
+
+// 농협·마트 영수증의 품목 순번 ("001 P굿모닝우유", "O0b P브로커리" — OCR이 0을 O/b로 읽기도 함)
+const ITEM_INDEX_PREFIX = /^[0-9OoDbB]{2,3}\s*[Pp]\s*/;
 
 // 영수증/화면 맨 앞에 붙는 네비게이션 기호(뒤로가기 화살표 등)로 시작하는 줄.
 // 이런 줄은 "<주문내역"처럼 상품명이나 매장명이 아니라 화면 UI 요소일 확률이 매우 높다.
@@ -52,6 +78,7 @@ const UI_SYMBOL_PREFIX = /^[<Δ△▶›»]/;
 function isNoiseLine(line: string): boolean {
   const trimmed = line.trim();
   if (trimmed.length < 2) return true;
+  if ((trimmed.match(/[가-힣]/g) ?? []).length < MIN_HANGUL) return true;
   return NOISE_PATTERNS.some((pattern) => pattern.test(trimmed));
 }
 
@@ -80,7 +107,10 @@ export function parseReceiptLines(lines: string[]): ParsedReceiptLine[] {
   for (const rawLine of lines) {
     if (isNoiseLine(rawLine)) continue;
 
-    let text = rawLine.trim();
+    let text = rawLine.trim().replace(ITEM_INDEX_PREFIX, '');
+    if ((text.match(/[가-힣]/g) ?? []).length < MIN_HANGUL) continue;
+    // 끝에 붙은 문장부호/OCR 잡티 제거 ("양 파," "브로커리 .")
+    text = text.replace(/[\s.,·]+$/, '');
 
     // "상품명 단가 수량 금액"이 한 줄에 찍힌 경우 (예: "두부 1,000 2 2,000")
     const columns = text.match(COLUMN_LINE);
@@ -120,10 +150,16 @@ export function parseReceiptLines(lines: string[]): ParsedReceiptLine[] {
 // isNoiseLine보다 훨씬 느슨한 기준(빈 줄이 아니고 너무 길지 않음)만 적용한다.
 // 다만 "<주문내역"처럼 명백히 UI 기호로 시작하는 줄은 매장/플랫폼명이 될 수 없으므로 제외한다.
 export function guessStoreName(lines: string[]): string {
-  for (const line of lines.slice(0, 3)) {
+  // 매장명에 흔한 단어가 있는 줄을 먼저 찾는다 (계산원 이름 같은 짧은 줄을 매장명으로 잡지 않도록)
+  const STORE_HINT = /마트|하나로|슈퍼|상회|편의점|점$|마켓|농협|이마트|홈플러스|롯데|코스트코|GS25|CU|세븐일레븐/i;
+  const hinted = lines.slice(0, 6).map((l) => l.trim()).find((l) => l.length >= 2 && l.length <= 24 && STORE_HINT.test(l));
+  if (hinted) return hinted;
+  for (const line of lines.slice(0, 5)) {
     const trimmed = line.trim();
     if (UI_SYMBOL_PREFIX.test(trimmed)) continue;
     if (DATE_ONLY_LINE.test(trimmed) || TIME_ONLY_LINE.test(trimmed)) continue;
+    // 주소·전화·대표자·사업자번호 줄은 매장명이 아니다
+    if (/주\s*소|전\s*화|대\s*표|사업자|tel/i.test(trimmed)) continue;
     if (trimmed.length >= 2 && trimmed.length <= 24) {
       return trimmed;
     }

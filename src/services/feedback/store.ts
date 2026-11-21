@@ -103,6 +103,14 @@ export function createFeedbackStore(storage: Storage, newId: ()=>string) {
     withdraw(itemId: string) {
       const state=read(); cancelSubmissions(state,itemId); write(state);
     },
+    // 남은 양만 바꾼다 (서버 전송·평균과 무관한 기기 내 기록이라 동기화 작업을 만들지 않음)
+    setRemaining(itemId: string,remaining: number) {
+      if (!Number.isFinite(remaining) || remaining<0) throw new Error('남은 양을 확인해 주세요');
+      const state=read(),record=state.records[itemId];
+      if (!record) return;
+      record.item={...record.item,remainingQuantity:Math.min(remaining,record.item.totalQuantity)};
+      write(state);
+    },
     hide(item: FoodItem) {
       const state=read(); cancelSubmissions(state,item.id);
       if (state.records[item.id]) state.records[item.id].hidden=true;
@@ -115,6 +123,7 @@ export function createFeedbackStore(storage: Storage, newId: ()=>string) {
         if (record.hidden) merged.delete(id);
         else merged.set(id,{...(merged.get(id) ?? record.item),standardName:record.item.standardName,
           purchaseDate:record.item.purchaseDate,isOpened:record.item.isOpened,storageType:record.item.storageType,
+          remainingQuantity:record.item.remainingQuantity ?? record.item.totalQuantity,
           expectedExpiryDate:record.expiry ?? record.baseExpiry});
       }
       return [...merged.values()];
