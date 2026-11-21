@@ -1,6 +1,7 @@
 import { foodDatabase } from '@/data/foodDatabase';
 import { FoodDbEntry } from '@/types/food';
 import { embed } from './embedder';
+import Storage from 'expo-sqlite/kv-store';
 import { userFoods } from '../userFoods';
 import { toFoodDbEntry } from '../userFoodStore';
 
@@ -49,20 +50,38 @@ function allEntries(): FoodDbEntry[] {
   return [...foodDatabase, ...userFoods.list().filter((f) => !builtIn.has(f.name)).map(toFoodDbEntry)];
 }
 
-// 이름별 임베딩 캐시: 한 번 계산한 이름은 앱이 켜져 있는 동안 다시 계산하지 않는다.
-// (영수증 한 줄마다 DB 전체를 다시 임베딩하지 않음. 새로 추가된 식품만 그때 한 번 계산)
-const vectorCache = new Map<string, number[]>();
+// 이름별 임베딩 캐시: 한 번 계산한 DB 이름 벡터는 기기(SQLite)에 저장해 두고 다시 계산하지 않는다.
+// (영수증 한 줄마다, 또 앱을 켤 때마다 DB 전체를 다시 임베딩하지 않음. 새로 추가된 식품만 한 번 계산)
+// 모델을 바꾸면 VECTOR_CACHE_KEY를 바꿔서 예전 벡터를 버린다.
+const VECTOR_CACHE_KEY = 'food-vectors-v1:ko-sroberta-multitask-int8';
+let vectorCache: Map<string, number[]> | null = null;
+
+function loadVectorCache(): Map<string, number[]> {
+  if (!vectorCache) {
+    try {
+      const raw = Storage.getItemSync(VECTOR_CACHE_KEY);
+      vectorCache = new Map(raw ? Object.entries(JSON.parse(raw) as Record<string, number[]>) : []);
+    } catch {
+      vectorCache = new Map();
+    }
+  }
+  return vectorCache;
+}
 
 async function getDbVectors(): Promise<DbVector[]> {
+  const cache = loadVectorCache();
+  let added = false;
   const out: DbVector[] = [];
   for (const entry of allEntries()) {
-    let vector = vectorCache.get(entry.standardName);
+    let vector = cache.get(entry.standardName);
     if (!vector) {
-      vector = await embed(entry.standardName);
-      vectorCache.set(entry.standardName, vector);
+      vector = (await embed(entry.standardName)).map((v) => Math.round(v * 1e5) / 1e5);
+      cache.set(entry.standardName, vector);
+      added = true;
     }
     out.push({ entry, vector, grams: bigrams(entry.standardName) });
   }
+  if (added) Storage.setItemSync(VECTOR_CACHE_KEY, JSON.stringify(Object.fromEntries(cache)));
   return out;
 }
 

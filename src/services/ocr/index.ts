@@ -15,11 +15,11 @@ export { mlkitOcrEngine } from './mlkitEngine';
 
 // 임계값 (ko-sroberta 코사인 유사도 기준, scripts/calibrate_threshold.py로 보정)
 // 2026-11-16 예시 44개 실험: 점수>=0.50 && 1-2위 차이>=0.15 → 자동확정 19개 모두 정답.
-// 0.40 미만은 DB에 없는 품목/잡음일 가능성이 높아 후보 목록에서 제외한다.
+// 2026-11-21 DB 120개 기준: 0.35 미만 제외 시 식품 23/28개 유지, 잡음 7/10개 제거.
 // ⚠️ 직접 만든 예시 기준이므로 실제 영수증을 모아 다시 돌려서 조정할 것.
 const CONFIDENT_THRESHOLD = 0.5;
 const MIN_GAP_FOR_CONFIDENT = 0.15;
-const REJECT_THRESHOLD = 0.4;
+const REJECT_THRESHOLD = 0.35;
 
 async function buildCandidatesFromOcr(lines: string[]): Promise<OcrCandidate[]> {
   const parsedLines = parseReceiptLines(lines);
@@ -29,7 +29,7 @@ async function buildCandidatesFromOcr(lines: string[]): Promise<OcrCandidate[]> 
     const top = matches[0];
     const second = matches[1];
 
-    // 0.40 미만은 식품이 아닐 가능성이 높아 목록에서 뺀다 (OCR 원문 카드에는 그대로 남고,
+    // 0.35 미만은 식품이 아닐 가능성이 높아 목록에서 뺀다 (OCR 원문 카드에는 그대로 남고,
     // 빠진 식품은 "직접 추가"로 넣으면 내 식품 DB에 저장되어 다음부터 인식된다)
     if (!top || top.score < REJECT_THRESHOLD) return null;
 

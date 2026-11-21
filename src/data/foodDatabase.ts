@@ -1,9 +1,20 @@
-import { FoodDbEntry } from '@/types/food';
+import { FoodCategory, FoodDbEntry, StorageType } from '@/types/food';
 
 // 표준명 / 동의어 / 보관정보 / 영양정보를 담은 식품 표준 DB (모의 데이터)
 // 과제계획서 "다" 항목: "DB에는 표준명, 동의어, 상위 카테고리, 기본 보관 위치,
 // 미개봉/개봉 후 보관일수, 영양정보, 대표 이미지를 저장"
 // 2026-11-16: 매칭은 ko-sroberta 임베딩으로 하므로 식품마다 표준명 1개만 쓴다 (동의어 비움).
+
+// 매칭용 이름만 있는 식품 (2026-11-21 추가). 보관일수·영양정보는 아직 확인하지 않아 0으로 둔다.
+// 소비기한은 사용자가 처음 입력한 값을 "내 식품 DB"에 기억해서 다음부터 자동으로 채운다.
+function nameOnly(category: FoodCategory, defaultStorage: StorageType, names: string[]): FoodDbEntry[] {
+  return names.map((standardName) => ({
+    standardName, synonyms: [], category, defaultStorage,
+    shelfLifeUnopenedDays: 0, shelfLifeOpenedDays: 0, unit: '개', icon: '🛒',
+    nutrition: { calories: 0, protein: 0, fat: 0, carbs: 0 }, consumptionPattern: '비주기형',
+  }));
+}
+
 export const foodDatabase: FoodDbEntry[] = [
   {
     standardName: '흰우유',
@@ -197,6 +208,15 @@ export const foodDatabase: FoodDbEntry[] = [
     nutrition: { calories: 183, protein: 20.4, fat: 10.4, carbs: 0 },
     consumptionPattern: '비주기형',
   },
+  ...nameOnly('채소', '냉장', ['양파', '감자', '고구마', '당근', '양배추', '배추', '무', '오이', '호박', '브로콜리', '시금치', '상추', '깻잎', '콩나물', '숙주', '버섯', '팽이버섯', '새송이버섯', '표고버섯', '마늘', '생강', '고추', '청양고추', '파프리카', '피망', '토마토', '가지', '부추', '미나리', '쪽파', '샐러드']),
+  ...nameOnly('과일', '냉장', ['사과', '배', '귤', '오렌지', '딸기', '포도', '수박', '참외', '복숭아', '키위', '레몬', '블루베리', '망고', '감', '자몽', '체리']),
+  ...nameOnly('유제품', '냉장', ['우유', '치즈', '요거트', '버터', '생크림']),
+  ...nameOnly('육류', '냉장', ['소고기', '돼지고기', '닭고기', '닭다리', '다짐육', '햄', '소시지', '베이컨', '오리고기']),
+  ...nameOnly('수산물', '냉장', ['연어', '오징어', '새우', '조개', '멸치', '어묵', '참치캔', '갈치', '꽁치', '낙지', '조미김', '미역']),
+  ...nameOnly('가공식품', '실온', ['라면', '만두', '떡', '장아찌', '단무지', '젓갈', '반찬', '피자', '즉석국', '통조림', '컵밥']),
+  ...nameOnly('음료', '실온', ['주스', '탄산음료', '커피', '맥주']),
+  ...nameOnly('곡물/베이커리', '실온', ['쌀', '빵', '떡볶이떡', '국수', '파스타', '시리얼', '과자']),
+  ...nameOnly('조미료/소스', '실온', ['간장', '고추장', '케첩', '마요네즈', '식용유', '참기름', '설탕', '소금', '고춧가루']),
 ];
 
 export function findFoodDbEntry(standardName: string): FoodDbEntry | undefined {
