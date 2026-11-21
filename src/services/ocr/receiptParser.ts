@@ -149,10 +149,12 @@ export function parseReceiptLines(lines: string[]): ParsedReceiptLine[] {
 // isNoiseLine보다 훨씬 느슨한 기준(빈 줄이 아니고 너무 길지 않음)만 적용한다.
 // 다만 "<주문내역"처럼 명백히 UI 기호로 시작하는 줄은 매장/플랫폼명이 될 수 없으므로 제외한다.
 export function guessStoreName(lines: string[]): string {
-  for (const line of lines.slice(0, 3)) {
+  for (const line of lines.slice(0, 5)) {
     const trimmed = line.trim();
     if (UI_SYMBOL_PREFIX.test(trimmed)) continue;
     if (DATE_ONLY_LINE.test(trimmed) || TIME_ONLY_LINE.test(trimmed)) continue;
+    // 주소·전화·대표자·사업자번호 줄은 매장명이 아니다
+    if (/주\s*소|전\s*화|대\s*표|사업자|tel/i.test(trimmed)) continue;
     if (trimmed.length >= 2 && trimmed.length <= 24) {
       return trimmed;
     }
