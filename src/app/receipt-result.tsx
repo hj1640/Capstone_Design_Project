@@ -64,6 +64,17 @@ export default function ReceiptResultScreen() {
         }`}
       />
 
+      {pendingReceipt.engine === 'mock' && (
+        <Text style={{ color: colors.statusDanger, fontWeight: '700', marginBottom: spacing.md }}>
+          ⚠️ 실제 인식 결과가 아니라 미리 만든 예시 영수증이에요 (ML Kit 개발 빌드에서만 실제 인식)
+        </Text>
+      )}
+      {pendingReceipt.matcherError && (
+        <Text style={{ color: colors.statusDanger, fontWeight: '700', marginBottom: spacing.md }}>
+          ⚠️ 식품 매칭 모델(ko-sroberta)을 실행하지 못해 OCR 원문만 보여줘요: {pendingReceipt.matcherError}
+        </Text>
+      )}
+
       <Text>구매일 확인 (배송일과 구분해 주세요)</Text>
       <TextInput accessibilityLabel="실제 구매일" value={purchaseDate} onChangeText={setPurchaseDate}
         placeholder="YYYY-MM-DD" style={{borderWidth:1,padding:10,marginBottom:16}} />
