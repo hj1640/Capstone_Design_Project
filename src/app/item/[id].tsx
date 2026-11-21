@@ -7,11 +7,13 @@ import { formatDateKo } from '@/utils/date';
 import { Card } from '@/components/Card';
 import { ExpiryEditor } from '@/components/ExpiryEditor';
 import { StatusBadge } from '@/components/StatusBadge';
+import { ProgressBar } from '@/components/ProgressBar';
 import { colors, radius, spacing } from '@/constants/theme';
+import type { FoodItem } from '@/types/food';
 
 export default function ItemDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { fridgeItems, removeItem } = useFridge();
+  const { fridgeItems, removeItem, setRemaining } = useFridge();
   const item = fridgeItems.find((i) => i.id === id);
 
   if (!item) {
@@ -70,6 +72,10 @@ export default function ItemDetailScreen() {
       </Card>
 
       <Card style={{ marginTop: spacing.lg }}>
+        <RemainingControl item={item} onChange={(value) => setRemaining(item.id, value)} />
+      </Card>
+
+      <Card style={{ marginTop: spacing.lg }}>
         <Text style={styles.sectionTitle}>영양정보 (기준량 당)</Text>
         {item.nutritionVerified===false ? <Text>확인된 영양정보가 없습니다.</Text> : <View style={styles.nutritionRow}>
           <NutritionItem label="칼로리" value={`${item.nutrition.calories}kcal`} />
@@ -88,6 +94,42 @@ export default function ItemDetailScreen() {
         </Pressable>
       </View>
     </ScrollView>
+  );
+}
+
+// 남은 양: 개수 단위는 1개씩, 무게·부피는 전체의 10%씩 조절하고, 자주 쓰는 비율은 한 번에 고른다
+function RemainingControl({ item, onChange }: { item: FoodItem; onChange: (value: number) => void }) {
+  const total = item.totalQuantity;
+  const remaining = item.remainingQuantity ?? total;
+  const countable = item.unit === '개' || item.unit === '마리' || item.unit === '팩' || item.unit === '봉';
+  const step = countable ? 1 : Math.max(1, Math.round(total * 0.1));
+  const format = (value: number) => (Number.isInteger(value) ? String(value) : value.toFixed(1));
+  const ratio = total > 0 ? remaining / total : 0;
+  return (
+    <View>
+      <View style={styles.remainHeader}>
+        <Text style={styles.sectionTitle}>남은 양</Text>
+        <Text style={styles.remainValue}>
+          {format(remaining)} / {format(total)}
+          {item.unit} ({Math.round(ratio * 100)}%)
+        </Text>
+      </View>
+      <ProgressBar ratio={ratio} />
+      <View style={styles.qtyControlRow}>
+        <Pressable style={styles.qtyButton} onPress={() => onChange(Math.max(0, remaining - step))}>
+          <Text style={styles.qtyButtonText}>− {format(step)}{item.unit}</Text>
+        </Pressable>
+        {[0.25, 0.5, 0.75, 1].map((r) => (
+          <Pressable key={r} style={styles.qtyButton} onPress={() => onChange(countable ? Math.round(total * r) : total * r)}>
+            <Text style={styles.qtyButtonText}>{r * 100}%</Text>
+          </Pressable>
+        ))}
+        <Pressable style={styles.qtyButton} onPress={() => onChange(Math.min(total, remaining + step))}>
+          <Text style={styles.qtyButtonText}>+ {format(step)}{item.unit}</Text>
+        </Pressable>
+      </View>
+      {remaining === 0 && <Text style={styles.remainHint}>다 먹었다면 아래 ‘다 먹었어요’를 눌러 목록에서 빼 주세요.</Text>}
+    </View>
   );
 }
 
@@ -128,15 +170,19 @@ const styles = StyleSheet.create({
   dateValue: { fontSize: 14, fontWeight: '700', color: colors.textPrimary, marginTop: 2 },
   statusDesc: { marginTop: spacing.md, fontSize: 13, fontWeight: '600' },
   sectionTitle: { fontSize: 13, fontWeight: '700', color: colors.textPrimary, marginBottom: spacing.md },
+  remainHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' },
+  remainValue: { fontSize: 13, fontWeight: '700', color: colors.textPrimary },
+  remainHint: { fontSize: 12, color: colors.textSecondary, marginTop: spacing.sm },
   qtyControlRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: spacing.md,
+    gap: spacing.xs,
   },
   qtyButton: {
     backgroundColor: colors.accentSoft,
-    paddingHorizontal: spacing.md,
+    paddingHorizontal: spacing.sm,
     paddingVertical: spacing.sm,
     borderRadius: radius.sm,
   },
