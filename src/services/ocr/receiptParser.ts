@@ -63,6 +63,9 @@ const NOISE_PATTERNS: RegExp[] = [
   /반품|교환|환불|지참/,
   /봉투|계산원|캐셔|담당자/,
   /상\s*품\s*명|수\s*량/,
+  // "[결제 금액] 1,600원", "[단말기 ID] 5832974", "[카드 번호] …" 같은 대괄호 항목 줄
+  /\[[^\]]*\]/,
+  /결\s*제|금\s*액|단\s*말\s*기|가\s*맹\s*점|취\s*소/,
 ];
 
 // 상품명이 되려면 한글이 최소 2글자는 있어야 한다 (가격·바코드·코드 줄은 숫자/영문뿐)
@@ -76,7 +79,8 @@ const ITEM_INDEX_PREFIX = /^[0-9OoDbB]{2,3}\s*[Pp]\s*/;
 const UI_SYMBOL_PREFIX = /^[<Δ△▶›»]/;
 
 function isNoiseLine(line: string): boolean {
-  const trimmed = line.trim();
+  // 눈에 안 보이는 문자(폭 없는 공백 등)를 지우고 판단한다
+  const trimmed = line.replace(/[\u200b-\u200d\ufeff\u00a0]/g, ' ').trim();
   if (trimmed.length < 2) return true;
   if ((trimmed.match(/[가-힣]/g) ?? []).length < MIN_HANGUL) return true;
   return NOISE_PATTERNS.some((pattern) => pattern.test(trimmed));
