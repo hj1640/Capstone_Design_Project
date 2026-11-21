@@ -97,14 +97,16 @@ export default function ItemDetailScreen() {
   );
 }
 
-// 남은 양: 개수 단위는 1개씩, 무게·부피는 전체의 10%씩 조절하고, 자주 쓰는 비율은 한 번에 고른다
+// 남은 양: 비율 버튼(0·25·50·75·100%)은 정확히 그 비율로 맞춘다 (1개짜리도 0.5개처럼 나눠서 기록).
+// −/+는 4개 이상 개수 단위면 1개씩, 그 외(1~3개, g·ml 등)는 전체의 25%씩.
 function RemainingControl({ item, onChange }: { item: FoodItem; onChange: (value: number) => void }) {
   const total = item.totalQuantity;
   const remaining = item.remainingQuantity ?? total;
-  const countable = item.unit === '개' || item.unit === '마리' || item.unit === '팩' || item.unit === '봉';
-  const step = countable ? 1 : Math.max(1, Math.round(total * 0.1));
-  const format = (value: number) => (Number.isInteger(value) ? String(value) : value.toFixed(1));
+  const countable = ['개', '마리', '팩', '봉'].includes(item.unit);
+  const step = countable && total >= 4 ? 1 : total * 0.25;
+  const format = (value: number) => String(Math.round(value * 100) / 100);
   const ratio = total > 0 ? remaining / total : 0;
+  const clamp = (value: number) => Math.max(0, Math.min(total, Math.round(value * 100) / 100));
   return (
     <View>
       <View style={styles.remainHeader}>
@@ -116,15 +118,27 @@ function RemainingControl({ item, onChange }: { item: FoodItem; onChange: (value
       </View>
       <ProgressBar ratio={ratio} />
       <View style={styles.qtyControlRow}>
-        <Pressable style={styles.qtyButton} onPress={() => onChange(Math.max(0, remaining - step))}>
+        {[0, 0.25, 0.5, 0.75, 1].map((r) => {
+          const selected = Math.abs(ratio - r) < 0.001;
+          return (
+            <Pressable
+              key={r}
+              accessibilityRole="button"
+              accessibilityState={{ selected }}
+              hitSlop={6}
+              style={[styles.qtyButton, selected && styles.qtyButtonActive]}
+              onPress={() => onChange(clamp(total * r))}
+            >
+              <Text style={[styles.qtyButtonText, selected && styles.qtyButtonTextActive]}>{r * 100}%</Text>
+            </Pressable>
+          );
+        })}
+      </View>
+      <View style={styles.qtyControlRow}>
+        <Pressable hitSlop={6} style={[styles.qtyButton, { flex: 1 }]} onPress={() => onChange(clamp(remaining - step))}>
           <Text style={styles.qtyButtonText}>− {format(step)}{item.unit}</Text>
         </Pressable>
-        {[0.25, 0.5, 0.75, 1].map((r) => (
-          <Pressable key={r} style={styles.qtyButton} onPress={() => onChange(countable ? Math.round(total * r) : total * r)}>
-            <Text style={styles.qtyButtonText}>{r * 100}%</Text>
-          </Pressable>
-        ))}
-        <Pressable style={styles.qtyButton} onPress={() => onChange(Math.min(total, remaining + step))}>
+        <Pressable hitSlop={6} style={[styles.qtyButton, { flex: 1 }]} onPress={() => onChange(clamp(remaining + step))}>
           <Text style={styles.qtyButtonText}>+ {format(step)}{item.unit}</Text>
         </Pressable>
       </View>
@@ -181,12 +195,16 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   qtyButton: {
+    flex: 1,
+    alignItems: 'center',
     backgroundColor: colors.accentSoft,
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.sm,
     borderRadius: radius.sm,
   },
-  qtyButtonText: { color: colors.accent, fontWeight: '700', fontSize: 12 },
+  qtyButtonText: { color: colors.accent, fontWeight: '700', fontSize: 12, textAlign: 'center' },
+  qtyButtonActive: { backgroundColor: colors.accent },
+  qtyButtonTextActive: { color: '#FFFFFF' },
   qtyValue: { fontSize: 14, fontWeight: '700', color: colors.textPrimary },
   nutritionRow: { flexDirection: 'row' },
   nutritionValue: { fontSize: 15, fontWeight: '800', color: colors.textPrimary },
