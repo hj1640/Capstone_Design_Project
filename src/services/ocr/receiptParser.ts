@@ -149,6 +149,10 @@ export function parseReceiptLines(lines: string[]): ParsedReceiptLine[] {
 // isNoiseLine보다 훨씬 느슨한 기준(빈 줄이 아니고 너무 길지 않음)만 적용한다.
 // 다만 "<주문내역"처럼 명백히 UI 기호로 시작하는 줄은 매장/플랫폼명이 될 수 없으므로 제외한다.
 export function guessStoreName(lines: string[]): string {
+  // 매장명에 흔한 단어가 있는 줄을 먼저 찾는다 (계산원 이름 같은 짧은 줄을 매장명으로 잡지 않도록)
+  const STORE_HINT = /마트|하나로|슈퍼|상회|편의점|점$|마켓|농협|이마트|홈플러스|롯데|코스트코|GS25|CU|세븐일레븐/i;
+  const hinted = lines.slice(0, 6).map((l) => l.trim()).find((l) => l.length >= 2 && l.length <= 24 && STORE_HINT.test(l));
+  if (hinted) return hinted;
   for (const line of lines.slice(0, 5)) {
     const trimmed = line.trim();
     if (UI_SYMBOL_PREFIX.test(trimmed)) continue;
