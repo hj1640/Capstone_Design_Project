@@ -4,7 +4,9 @@ import {execFileSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 import path from 'node:path';
 const require=createRequire(import.meta.url);
-const cli=path.join(path.dirname(require.resolve('expo-modules-autolinking/package.json')),'bin/expo-modules-autolinking.js');
+// pnpm은 expo의 하위 의존성을 최상위에 두지 않으므로 expo 패키지 기준으로 찾는다.
+const expoRequire=createRequire(require.resolve('expo/package.json'));
+const cli=path.join(path.dirname(expoRequire.resolve('expo-modules-autolinking/package.json')),'bin/expo-modules-autolinking.js');
 const config=JSON.parse(execFileSync(process.execPath,[cli,'react-native-config','--platform','android','--json'],
   {encoding:'utf8',maxBuffer:8*1024*1024}));
 for(const [name,instance] of [
