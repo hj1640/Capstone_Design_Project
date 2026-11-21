@@ -3,6 +3,8 @@ import { AppState } from 'react-native';
 import { FoodItem, MockReceipt, OcrCandidate, PurchaseHistoryEntry, FoodCategory } from '@/types/food';
 import type { DiscardEntry } from '@/data/discardLog';
 import { buildRegistration } from '@/services/registration';
+import { userFoods } from '@/services/userFoods';
+import { foodDatabase } from '@/data/foodDatabase';
 import { randomUUID } from 'expo-crypto';
 import { todayIso } from '@/utils/date';
 import { feedbackStore, schedulePersonalSync, setPersonalAppActive } from '@/services/feedback/local';
@@ -66,7 +68,10 @@ export function FridgeProvider({ children }: { children: React.ReactNode }) {
 
   const addConfirmedReceiptItems = useCallback(
     (candidates: OcrCandidate[], source: FoodItem['source'], purchaseDate: string) => {
-      const registered=buildRegistration(candidates,source,purchaseDate,randomUUID);
+      const registered=buildRegistration(candidates,source,purchaseDate,randomUUID,name=>userFoods.defaultsFor(name));
+      // 기본 DB에 없던 식품명은 내 식품 DB에 추가 → 다음 영수증부터 매칭 후보가 된다
+      const builtIn=new Set(foodDatabase.map(f=>f.standardName));
+      for (const item of registered.items) if (!builtIn.has(item.standardName)) userFoods.rememberName(item.standardName,item.category);
       feedbackStore.remember(registered.items,registered.history);
       setFridgeItems(previous=>[...registered.items,...previous]);
       setPurchaseHistory(previous=>[...registered.history,...previous]);

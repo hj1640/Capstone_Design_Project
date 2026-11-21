@@ -1,6 +1,8 @@
 import { foodDatabase } from '@/data/foodDatabase';
 import { FoodDbEntry } from '@/types/food';
 import { embed } from './embedder';
+import { userFoods } from '../userFoods';
+import { toFoodDbEntry } from '../userFoodStore';
 
 // ko-sroberta 임베딩 + 코사인 유사도로 OCR 상품명을 식품 DB 표준명과 매칭한다.
 // DB는 식품마다 이름 1개(standardName)만 쓴다.
@@ -41,25 +43,27 @@ interface DbVector {
   grams: Set<string>;
 }
 
-// DB 임베딩 캐시: 앱이 켜져 있는 동안 한 번만 계산해서 메모리에 들고 있는다.
-// (영수증 한 줄마다 DB 전체를 다시 임베딩하지 않음)
-// DB가 16개 단어뿐이라 앱 시작 시 계산해도 1초 안팎이고, DB를 고치면 자동으로 새 값이 반영된다.
-let dbVectorsPromise: Promise<DbVector[]> | null = null;
+// 매칭 대상 = 기본 식품 DB + 사용자가 추가한 "내 식품 DB"
+function allEntries(): FoodDbEntry[] {
+  const builtIn = new Set(foodDatabase.map((f) => f.standardName));
+  return [...foodDatabase, ...userFoods.list().filter((f) => !builtIn.has(f.name)).map(toFoodDbEntry)];
+}
 
-function getDbVectors(): Promise<DbVector[]> {
-  if (!dbVectorsPromise) {
-    dbVectorsPromise = (async () => {
-      const out: DbVector[] = [];
-      for (const entry of foodDatabase) {
-        out.push({ entry, vector: await embed(entry.standardName), grams: bigrams(entry.standardName) });
-      }
-      return out;
-    })().catch((error) => {
-      dbVectorsPromise = null; // 실패하면 다음 호출 때 다시 계산
-      throw error;
-    });
+// 이름별 임베딩 캐시: 한 번 계산한 이름은 앱이 켜져 있는 동안 다시 계산하지 않는다.
+// (영수증 한 줄마다 DB 전체를 다시 임베딩하지 않음. 새로 추가된 식품만 그때 한 번 계산)
+const vectorCache = new Map<string, number[]>();
+
+async function getDbVectors(): Promise<DbVector[]> {
+  const out: DbVector[] = [];
+  for (const entry of allEntries()) {
+    let vector = vectorCache.get(entry.standardName);
+    if (!vector) {
+      vector = await embed(entry.standardName);
+      vectorCache.set(entry.standardName, vector);
+    }
+    out.push({ entry, vector, grams: bigrams(entry.standardName) });
   }
-  return dbVectorsPromise;
+  return out;
 }
 
 // 영수증 화면에 들어올 때 미리 호출해두면 첫 인식이 빨라진다.

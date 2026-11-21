@@ -15,7 +15,7 @@ export { mlkitOcrEngine } from './mlkitEngine';
 
 // 임계값 (ko-sroberta 코사인 유사도 기준, scripts/calibrate_threshold.py로 보정)
 // 2026-11-16 예시 44개 실험: 점수>=0.50 && 1-2위 차이>=0.15 → 자동확정 19개 모두 정답.
-// 0.40 미만은 DB에 없는 품목/잡음일 가능성이 높아 표준명 추측 없이 원문 그대로 사용자 확인.
+// 0.40 미만은 DB에 없는 품목/잡음일 가능성이 높아 후보 목록에서 제외한다.
 // ⚠️ 직접 만든 예시 기준이므로 실제 영수증을 모아 다시 돌려서 조정할 것.
 const CONFIDENT_THRESHOLD = 0.5;
 const MIN_GAP_FOR_CONFIDENT = 0.15;
@@ -24,24 +24,14 @@ const REJECT_THRESHOLD = 0.4;
 async function buildCandidatesFromOcr(lines: string[]): Promise<OcrCandidate[]> {
   const parsedLines = parseReceiptLines(lines);
 
-  return Promise.all(parsedLines.map(async (parsed, idx) => {
+  const results = await Promise.all(parsedLines.map(async (parsed, idx): Promise<OcrCandidate | null> => {
     const matches = await matchFoodName(parsed.nameCandidate, 3);
     const top = matches[0];
     const second = matches[1];
 
-    if (!top || top.score < REJECT_THRESHOLD) {
-      return {
-        id: `live-${Date.now()}-${idx}`,
-        rawText: parsed.rawText,
-        guessedName: parsed.nameCandidate,
-        alternativeNames: [],
-        confidence: top?.score ?? 0,
-        category: '가공식품',
-        quantity: parsed.quantity,
-        unit: parsed.unitHint ?? '개',
-        status: 'uncertain',
-      } satisfies OcrCandidate;
-    }
+    // 0.40 미만은 식품이 아닐 가능성이 높아 목록에서 뺀다 (OCR 원문 카드에는 그대로 남고,
+    // 빠진 식품은 "직접 추가"로 넣으면 내 식품 DB에 저장되어 다음부터 인식된다)
+    if (!top || top.score < REJECT_THRESHOLD) return null;
 
     const gap = top.score - (second?.score ?? 0);
     const isConfident = top.score >= CONFIDENT_THRESHOLD && gap >= MIN_GAP_FOR_CONFIDENT;
@@ -59,6 +49,7 @@ async function buildCandidatesFromOcr(lines: string[]): Promise<OcrCandidate[]> 
       status: isConfident ? 'confirmed' : 'uncertain',
     } satisfies OcrCandidate;
   }));
+  return results.filter((c): c is OcrCandidate => c !== null);
 }
 
 // 매칭 모델이 실패해도 OCR로 읽은 실제 줄은 버리지 않는다 (표준명 추측 없이 사용자 확인).
