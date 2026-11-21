@@ -2,16 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { router } from 'expo-router';
 import { FoodItem } from '@/types/food';
-import { computeStatus, remainingRatio } from '@/utils/status';
+import { computeStatus } from '@/utils/status';
 import { formatDateKo } from '@/utils/date';
-import { ProgressBar } from './ProgressBar';
 import { StatusBadge } from './StatusBadge';
 import { colors, radius, spacing } from '@/constants/theme';
 
 export function FoodCard({ item }: { item: FoodItem }) {
   const status = computeStatus(item.purchaseDate, item.expectedExpiryDate);
-  const ratio = remainingRatio(item.totalQuantity, item.remainingQuantity);
-  const isCountable = item.unit === '개' || item.unit === '마리';
 
   return (
     <Pressable
@@ -28,13 +25,7 @@ export function FoodCard({ item }: { item: FoodItem }) {
       <Text style={styles.meta}>{status.description}</Text>
 
       <View style={{ marginTop: spacing.sm }}>
-        <ProgressBar ratio={ratio} color={status.color} />
         <View style={styles.qtyRow}>
-          <Text style={styles.qtyText}>
-            {isCountable
-              ? `${item.remainingQuantity}/${item.totalQuantity}${item.unit}`
-              : `${Math.round(item.remainingQuantity)}${item.unit} 남음`}
-          </Text>
           <Text style={styles.dateText}>~{formatDateKo(item.expectedExpiryDate)}</Text>
         </View>
       </View>

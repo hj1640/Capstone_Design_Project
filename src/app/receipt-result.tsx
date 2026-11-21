@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, TextInput, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { useFridge } from '@/context/FridgeContext';
@@ -6,10 +6,13 @@ import { OcrCandidate } from '@/types/food';
 import { Card } from '@/components/Card';
 import { SectionHeader } from '@/components/SectionHeader';
 import { colors, radius, spacing } from '@/constants/theme';
+import { validDate } from '@/services/feedback/store';
 
 export default function ReceiptResultScreen() {
   const { pendingReceipt, setPendingReceipt, addConfirmedReceiptItems } = useFridge();
   const [candidates, setCandidates] = useState<OcrCandidate[]>(pendingReceipt?.candidates ?? []);
+  const [purchaseDate,setPurchaseDate]=useState(pendingReceipt?.date ?? '');
+  const registered=useRef(false);
 
   useEffect(() => {
     if (!pendingReceipt) {
@@ -27,7 +30,7 @@ export default function ReceiptResultScreen() {
   function toggleReject(id: string) {
     setCandidates((prev) =>
       prev.map((c) =>
-        c.id === id ? { ...c, status: c.status === 'rejected' ? 'confirmed' : 'rejected' } : c,
+        c.id === id ? { ...c, status: c.status === 'rejected' ? 'uncertain' : 'rejected' } : c,
       ),
     );
   }
@@ -35,6 +38,8 @@ export default function ReceiptResultScreen() {
   const includedCount = candidates.filter((c) => c.status !== 'rejected').length;
 
   function handleConfirmAll() {
+    if(registered.current) return;
+    if (!validDate(purchaseDate)) {Alert.alert('구매일 확인','실제 구매일을 YYYY-MM-DD 형식으로 입력해 주세요.');return;}
     const stillUncertain = candidates.some((c) => c.status === 'uncertain');
     if (stillUncertain) {
       Alert.alert(
@@ -43,7 +48,9 @@ export default function ReceiptResultScreen() {
       );
       return;
     }
-    addConfirmedReceiptItems(candidates, '영수증');
+    registered.current=true;
+    try {addConfirmedReceiptItems(candidates, '영수증',purchaseDate);}
+    catch(error){registered.current=false;Alert.alert('등록 확인',String(error));return;}
     setPendingReceipt(null);
     router.replace('/fridge');
   }
@@ -52,10 +59,14 @@ export default function ReceiptResultScreen() {
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: spacing.lg, paddingBottom: spacing.xl }}>
       <SectionHeader
         title={pendingReceipt.storeName}
-        subtitle={`${pendingReceipt.date} · OCR로 ${candidates.length}개 품목을 인식했어요${
+        subtitle={`${pendingReceipt.date ?? '구매일 확인 필요'} · OCR로 ${candidates.length}개 품목을 인식했어요${
           pendingReceipt.engine === 'mock' ? ' (모의 데이터)' : ''
         }`}
       />
+
+      <Text>구매일 확인 (배송일과 구분해 주세요)</Text>
+      <TextInput accessibilityLabel="실제 구매일" value={purchaseDate} onChangeText={setPurchaseDate}
+        placeholder="YYYY-MM-DD" style={{borderWidth:1,padding:10,marginBottom:16}} />
 
       <Card style={{ marginBottom: spacing.lg }}>
         <Text style={styles.rawLabel}>원문 인식 결과 (OCR)</Text>
@@ -72,6 +83,12 @@ export default function ReceiptResultScreen() {
             <View style={{ flex: 1 }}>
               <Text style={styles.rawText}>{c.rawText}</Text>
               <Text style={styles.guessedName}>→ {c.guessedName}</Text>
+              <TextInput accessibilityLabel="확인할 식품명" value={c.guessedName}
+                onChangeText={text=>updateCandidate(c.id,{guessedName:text,status:'uncertain'})}
+                style={{borderWidth:1,padding:8}} />
+              <Pressable onPress={()=>{if(c.guessedName.trim()) updateCandidate(c.id,{guessedName:c.guessedName.trim(),status:'confirmed'});}}>
+                <Text>이 식품명으로 확인</Text>
+              </Pressable>
             </View>
             <Pressable onPress={() => toggleReject(c.id)}>
               <Text style={styles.rejectText}>{c.status === 'rejected' ? '복구' : '제외'}</Text>
@@ -81,7 +98,7 @@ export default function ReceiptResultScreen() {
           {c.status === 'uncertain' && (
             <View style={styles.uncertainBox}>
               <Text style={styles.uncertainLabel}>
-                유사도가 낮아요 ({Math.round(c.confidence * 100)}%) · 후보 중 선택해주세요
+                분류 후보를 확인해 선택해주세요. 점수는 확률이 아닙니다.
               </Text>
               <View style={styles.chipRow}>
                 {[c.guessedName, ...c.alternativeNames].map((name) => (
@@ -98,7 +115,7 @@ export default function ReceiptResultScreen() {
           )}
 
           <View style={styles.qtyRow}>
-            <Text style={styles.qtyLabel}>수량</Text>
+            <Text style={styles.qtyLabel}>구매 수량 (0이면 확인 필요)</Text>
             <TextInput
               style={styles.qtyInput}
               keyboardType="numeric"
@@ -110,6 +127,10 @@ export default function ReceiptResultScreen() {
         </Card>
       ))}
 
+      <Pressable onPress={()=>setCandidates(previous=>[...previous,{id:`manual-${Date.now()}-${previous.length}`,
+        rawText:'직접 추가',guessedName:'',alternativeNames:[],confidence:0,category:'가공식품',quantity:0,unit:'개',status:'uncertain'}])}>
+        <Text>인식에서 빠진 품목 직접 추가</Text>
+      </Pressable>
       <Pressable style={styles.confirmButton} onPress={handleConfirmAll}>
         <Text style={styles.confirmButtonText}>{includedCount}개 품목 냉장고에 등록하기</Text>
       </Pressable>

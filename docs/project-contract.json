@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-11-12",
+  "stage1": {
+    "decision": "D-042",
+    "status": "design_proposed",
+    "runtimeImplemented": false
+  },
+  "baselineCommit": "dc385df9babe8bad53064f16674e2019010c4965",
+  "repository": "https://github.com/hj1640/Capstone_Design_Project",
+  "notion": "https://app.notion.com/p/3fcddc2e13b380868de9ca2b14385b29",
+  "expoBuild": "https://expo.dev/accounts/hj1640/projects/fridge-app/builds/ae1cdfc7-f4ef-4862-9024-4b00b5b70ac2",
+  "workingPlatform": "existing_react_native_expo_app",
+  "scope": {
+    "onlineOrdersOnly": {
+      "value": false,
+      "decision": "D-050",
+      "supersedes": "D-002"
+    },
+    "hardwareRequired": {
+      "value": false,
+      "decision": "D-001"
+    },
+    "showEstimatedRemainingAmount": {
+      "value": false,
+      "decision": "D-007"
+    },
+    "inputKinds": {
+      "value": [
+        "paper",
+        "coupang"
+      ],
+      "decision": "D-050"
+    }
+  },
+  "requirements": {
+    "twoLayerProductFoodDb": "D-039",
+    "verifiedExpiryFeedbackStatistics": "D-040",
+    "githubTeamContinuation": "D-041"
+  },
+  "unresolved": {
+    "selectedEmbeddingModel": null,
+    "productSimilarityCutoff": null,
+    "candidateMargin": null,
+    "minimumDistinctContributors": null,
+    "outlierRule": null,
+    "outlierWeight": null,
+    "sharedStatisticsMethod": null,
+    "purchaseIntervalStatisticsMethod": null,
+    "feedbackDurationMeaning": "package_label_expiry_minus_purchase_date",
+    "serverDeployment": null
+  },
+  "evidence": {
+    "expoBuildSourceCommitVerified": false,
+    "physicalDeviceTestedThisReview": false,
+    "notionExperimentArtifactsInBaseline": false,
+    "realFoodKeeperWorkbookInBaseline": false,
+    "selected600ItemsInBaseline": false
+  },
+  "stage2": {
+    "decision": "D-043",
+    "status": "probe_implemented_desktop_validated_device_pending",
+    "runtimeVerified": false,
+    "desktopTokenParityCases": 8,
+    "experimentalModelRevision": "2c4055b12046f11709e9df2c122e59ffbdc2f900"
+  },
+  "stage3": {
+    "decision": "D-044",
+    "status": "synthetic_catalog_implemented",
+    "productCount": 7,
+    "foodCount": 5,
+    "method": "lexical_baseline",
+    "realCatalogValidated": false,
+    "physicalDeviceValidated": false
+  },
+  "stage4": {
+    "decision": "D-045",
+    "status": "synthetic_comparison_measured",
+    "datasetCases": 25,
+    "knownTestCases": 12,
+    "productionModelSelected": false,
+    "thresholdCalibrated": false,
+    "physicalDeviceMeasured": false
+  },
+  "stage5": {
+    "decision": "D-046",
+    "status": "cpu_comparison_and_developer_integration_implemented",
+    "localQuantizationPerformed": true,
+    "pytorchExportParityVerified": false,
+    "physicalDeviceMeasured": false,
+    "realCatalogIntegrated": false,
+    "productionModelSelected": false
+  },
+  "stage6": {
+    "decision": "D-047",
+    "status": "local_feedback_implemented_http_verified",
+    "personalDateStorage": "expo_sqlite",
+    "backend": "local_development_python_sqlite",
+    "productionAuthenticationSelected": false,
+    "communityPublicationEnabled": false,
+    "physicalDevicePersistenceVerified": false
+  },
+  "stage7": {
+    "decision": "D-048",
+    "status": "trust_engine_and_synthetic_comparison_implemented",
+    "productionPolicyApproved": false,
+    "communityPublicationEnabled": false,
+    "realReferenceDatasetVerified": false,
+    "syntheticPolicyExperiments": 4
+  },
+  "stage8": {
+    "decision": "D-049",
+    "status": "synthetic_integration_and_handoff_prepared",
+    "verificationGroups": 13,
+    "realImageOcrVerified": false,
+    "physicalDeviceAcceptancePassed": false,
+    "productionReleaseApproved": false,
+    "implicitPurchaseDateFallback": false,
+    "unknownExpirySupported": true,
+    "purchaseForecastEnabled": false
+  },
+  "personalAverage": {
+    "decision": "D-050",
+    "scope": "personal",
+    "source": "package_label",
+    "method": "incremental_arithmetic_mean",
+    "groupBy": [
+      "authenticated_owner",
+      "confirmed_normalized_food_name",
+      "storage"
+    ],
+    "oneContributionPer": "purchase_item_id",
+    "statisticalOutlierCutoff": null,
+    "minimumPeople": null,
+    "automaticallyReplacesLabelDate": false,
+    "productionAuthentication": false,
+    "nativeDeviceVerified": false,
+    "openedMeaning": "opened_at_label_recording_excluded"
+  },
+  "expiryStatus": {
+    "decision": "D-050",
+    "method": "calendar_past_today_future_unknown",
+    "unvalidatedRiskCutoffsEnabled": false
+  },
+  "deployment": {
+    "decision": "D-051",
+    "authentication": "operator_enrollment_hashed_device_sessions",
+    "nativeSecureStorageImplemented": true,
+    "automaticForegroundRetry": true,
+    "publicServerDeployed": false,
+    "apkBuilt": true,
+    "physicalDeviceAccepted": false,
+    "confirmedProjectId": "6899818e-50b4-41b0-8fae-e4f27ac65566",
+    "confirmedAndroidPackage": "com.capstoneteam7.fridge.personal6899818e",
+    "confirmedServerUrl": null,
+    "status": "android_trial_apk_built_server_and_device_acceptance_pending",
+    "hostingAvailability": "user_confirmed_none",
+    "expoAccess": "authenticated_new_project_owner",
+    "projectContinuationChoice": "new_separate_expo_project",
+    "projectContinuationDecision": "D-052"
+  },
+  "newExpoProject": {
+    "decision": "D-052",
+    "authorized": true,
+    "created": true,
+    "owner": "juuuuuuun",
+    "projectId": "6899818e-50b4-41b0-8fae-e4f27ac65566",
+    "androidPackage": "com.capstoneteam7.fridge.personal6899818e",
+    "slug": "fridge-app-personal",
+    "standaloneLocalProfile": "preview-local",
+    "serverOptionalOnlyForLocalProfile": true,
+    "apkBuilt": true,
+    "physicalDeviceAccepted": false,
+    "dashboardUrl": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal",
+    "requestedPlatform": "android",
+    "buildProfile": "preview-local",
+    "buildToolchain": {
+      "node": "24.22.1",
+      "pnpm": "11.25.0",
+      "lockfile": "pnpm-lock.yaml",
+      "reason": "D-052: first EAS build selected stale npm lockfile and failed; use the validated pnpm install consistently"
+    },
+    "androidCompatibilityPatch": "patches/onnxruntime-react-native@1.24.3.patch",
+    "nativeAutolinkingVerified": true,
+    "successfulBuildId": "0a220d0e-cd8e-48de-9315-474e560b04f6",
+    "buildSourceCommit": "611cdc6228d61798c33d63ba71d4d3a46ec04b27"
+  }
+}

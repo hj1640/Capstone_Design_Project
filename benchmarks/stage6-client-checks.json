@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-11-12T11:53:35.656Z",
+  "node": "v24.22.1",
+  "platform": "win32",
+  "tests": [
+    "calendar validation",
+    "explicit consent",
+    "disk restart",
+    "offline retry",
+    "duplicate protection after lost response",
+    "withdraw unknown receipt",
+    "account isolation",
+    "revision conflict",
+    "explicit conflict retry",
+    "concurrent local edit survives response",
+    "clear override",
+    "hidden item stays hidden",
+    "unconsented initial edit is local only",
+    "Retry-After blocks dependent writes"
+  ],
+  "passed": true
+}

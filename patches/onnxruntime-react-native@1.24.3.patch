@@ -1,0 +1,56 @@
+diff --git a/android/build.gradle b/android/build.gradle
+index 41b43599a9af6ef1c170047d39db1f3baa6ca682..fcd588917661d55e201f3d19b87de4b2a4a434d2 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -66,7 +66,12 @@ boolean ortExtensionsEnabled = readPackageJsonField('onnxruntimeExtensionsEnable
+ boolean useQnn = readPackageJsonField('onnxruntimeUseQnn') == "true"
+ 
+ def REACT_NATIVE_VERSION = ['node', '--print', "JSON.parse(require('fs').readFileSync(require.resolve('react-native/package.json'), 'utf-8')).version"].execute(null, rootDir).text.trim()
+-def REACT_NATIVE_MINOR_VERSION = REACT_NATIVE_VERSION.split("\\.")[1].toInteger()
++def versionParts = REACT_NATIVE_VERSION.split("\\.")
++if (versionParts.length < 2) {
++  throw new GradleException("Invalid React Native version format: ${REACT_NATIVE_VERSION}. Expected format: major.minor[.patch]")
++}
++def REACT_NATIVE_MAJOR_VERSION = versionParts[0].toInteger()
++def REACT_NATIVE_MINOR_VERSION = versionParts[1].toInteger()
+ 
+ android {
+ // This is needed by the new AndroidManifestNew.xml
+@@ -82,7 +87,7 @@ android {
+     externalNativeBuild {
+       cmake {
+         cppFlags "-O2 -frtti -fexceptions -Wall -Wno-unused-variable -fstack-protector-all"
+-        if (REACT_NATIVE_MINOR_VERSION >= 71) {
++        if (REACT_NATIVE_MAJOR_VERSION > 0 || REACT_NATIVE_MINOR_VERSION >= 71) {
+           // fabricjni required c++_shared
+           arguments "-DANDROID_STL=c++_shared",
+             "-DNODE_MODULES_DIR=${nodeModules}",
+@@ -244,10 +249,10 @@ dependencies {
+   if (useQnn) {
+     extractLibs "com.microsoft.onnxruntime:onnxruntime-android-qnn:latest.integration@aar"
+   } else {
+-    extractLibs "com.microsoft.onnxruntime:onnxruntime-android:latest.integration@aar"
++    extractLibs "com.microsoft.onnxruntime:onnxruntime-android:1.24.3@aar"
+   }
+ 
+-  if (VersionNumber.parse(REACT_NATIVE_VERSION) < VersionNumber.parse("0.71")) {
++  if (REACT_NATIVE_MAJOR_VERSION == 0 && REACT_NATIVE_MINOR_VERSION < 71) {
+     extractLibs "com.facebook.fbjni:fbjni:+:headers"
+     extractLibs "com.facebook.fbjni:fbjni:+"
+   }
+diff --git a/android/src/main/java/ai/onnxruntime/reactnative/OnnxruntimeModule.java b/android/src/main/java/ai/onnxruntime/reactnative/OnnxruntimeModule.java
+index c362e6ad71bbe11265efd6beaab614af0632a70f..e8564652fd962c38f6d91bd8f2f461f4b98726a1 100644
+--- a/android/src/main/java/ai/onnxruntime/reactnative/OnnxruntimeModule.java
++++ b/android/src/main/java/ai/onnxruntime/reactnative/OnnxruntimeModule.java
+@@ -48,7 +48,7 @@ public class OnnxruntimeModule extends ReactContextBaseJavaModule {
+       System.loadLibrary("onnxruntimejsi");
+       JavaScriptContextHolder jsContext = getReactApplicationContext().getJavaScriptContextHolder();
+       CallInvokerHolderImpl jsCallInvokerHolder =
+-        (CallInvokerHolderImpl) getReactApplicationContext().getCatalystInstance().getJSCallInvokerHolder();
++        (CallInvokerHolderImpl) getReactApplicationContext().getJSCallInvokerHolder();
+       nativeInstall(jsContext.get(), jsCallInvokerHolder);
+       return true;
+     } catch (Exception e) {
+diff --git a/unimodule.json b/unimodule.json
+deleted file mode 100644
+index c2bd3c0f071c0cd1ee9ccc88c7491906aed289d4..0000000000000000000000000000000000000000

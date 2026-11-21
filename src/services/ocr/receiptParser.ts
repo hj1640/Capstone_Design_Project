@@ -1,6 +1,12 @@
 // 영수증 텍스트 전처리
 // 과제계획서 "나" 항목: "정규표현식, 키워드 사전으로 날짜, 수량, 금액, 합계, 결제 문구를
 // 분리하며, 고정 좌표 대신 텍스트 내용과 줄의 상대 배치로 상품명 후보를 선별한다."
+//
+// 입력은 지류(종이) 영수증만 지원한다.
+
+// 날짜/시간만 있는 줄 (guessStoreName에서도 재사용)
+const DATE_ONLY_LINE = /^\d{2,4}\s*[-.\/]\s*\d{1,2}\s*[-.\/]\s*\d{1,2}/;
+const TIME_ONLY_LINE = /^\d{1,2}\s*:\s*\d{2}(\s*:\s*\d{2})?$/;
 
 const NOISE_PATTERNS: RegExp[] = [
   /합\s*계/,
@@ -33,11 +39,15 @@ const NOISE_PATTERNS: RegExp[] = [
   /^\*+$/,
   /^-+$/,
   /^=+$/,
-  // 날짜만 있는 줄 (2026-10-12, 2026.10.12, 10/12 등)
-  /^\d{2,4}[-.\/]\d{1,2}[-.\/]\d{1,2}/,
-  // 시간만 있는 줄 (13:05:21)
-  /^\d{1,2}:\d{2}(:\d{2})?$/,
+  DATE_ONLY_LINE,
+  TIME_ONLY_LINE,
+  // 가격+수량만 있는 줄 ("1,990원1개"처럼 상품명 줄과 분리되어 따로 찍히는 경우)
+  /^[\d,]+\s*원\s*\d+\s*(개|봉|팩|병|캔|모|마리|단|포기|송이)?\s*$/,
 ];
+
+// 영수증/화면 맨 앞에 붙는 네비게이션 기호(뒤로가기 화살표 등)로 시작하는 줄.
+// 이런 줄은 "<주문내역"처럼 상품명이나 매장명이 아니라 화면 UI 요소일 확률이 매우 높다.
+const UI_SYMBOL_PREFIX = /^[<Δ△▶›»]/;
 
 function isNoiseLine(line: string): boolean {
   const trimmed = line.trim();
@@ -47,6 +57,9 @@ function isNoiseLine(line: string): boolean {
 
 // 줄 끝의 금액 표기 (쉼표 포함 3자리 이상 숫자, 끝에 '원' 선택적으로)
 const TRAILING_PRICE = /[\d,]{3,}\s*원?\s*$/;
+
+// "두부 1,000 2 2,000" 처럼 상품명·단가·수량·금액이 한 줄에 있는 형식
+const COLUMN_LINE = /^(.+?)\s+[\d,]+\s+(\d{1,3})\s+[\d,]+\s*원?$/;
 
 // "오뚜기밥 210g*3" 처럼 뒤에 붙는 수량 배수
 const QTY_MULTIPLIER = /[*xX×]\s*(\d+)\s*$/;
@@ -68,6 +81,14 @@ export function parseReceiptLines(lines: string[]): ParsedReceiptLine[] {
     if (isNoiseLine(rawLine)) continue;
 
     let text = rawLine.trim();
+
+    // "상품명 단가 수량 금액"이 한 줄에 찍힌 경우 (예: "두부 1,000 2 2,000")
+    const columns = text.match(COLUMN_LINE);
+    if (columns && /[가-힣a-z]/i.test(columns[1])) {
+      results.push({ rawText: text, nameCandidate: columns[1].trim(), quantity: Number(columns[2]) || 1 });
+      continue;
+    }
+
     text = text.replace(TRAILING_PRICE, '').trim();
     if (!text) continue;
 
@@ -97,12 +118,16 @@ export function parseReceiptLines(lines: string[]): ParsedReceiptLine[] {
 // 영수증 상단부에서 매장명으로 보이는 첫 줄을 추정한다 (고정 좌표 대신 상대 위치 활용).
 // 실제 영수증은 거의 항상 첫 줄이 매장명이므로, 품목 후보를 걸러낼 때 쓰는
 // isNoiseLine보다 훨씬 느슨한 기준(빈 줄이 아니고 너무 길지 않음)만 적용한다.
+// 다만 "<주문내역"처럼 명백히 UI 기호로 시작하는 줄은 매장/플랫폼명이 될 수 없으므로 제외한다.
 export function guessStoreName(lines: string[]): string {
   for (const line of lines.slice(0, 3)) {
     const trimmed = line.trim();
+    if (UI_SYMBOL_PREFIX.test(trimmed)) continue;
+    if (DATE_ONLY_LINE.test(trimmed) || TIME_ONLY_LINE.test(trimmed)) continue;
     if (trimmed.length >= 2 && trimmed.length <= 24) {
       return trimmed;
     }
   }
   return '인식된 영수증';
 }
+

@@ -1,0 +1,4619 @@
+{
+  "timestamp": "2026-11-02T06:45:53.700934+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "python": "3.12.14",
+  "input_sha256": "0efaaa64e45f67088e1abf431e54d1c0748c577f7541fa1a1b9a051aa01001fa",
+  "warmup": 1,
+  "repeats": 3,
+  "threads": 2,
+  "results": [
+    {
+      "variant": "fp32",
+      "model_sha256": "185ae63f47e17a7e8d30d0e6a3cde6a6e4b79bc5b81666ecffc279a6856ca113",
+      "bytes": 470268510,
+      "load_ms": 625.4081999650225,
+      "index_ms": 32.50770003069192,
+      "baseline_rss": 56729600,
+      "rss_after": 803811328,
+      "process_lifetime_peak_rss": 921264128,
+      "ort": "1.30.0",
+      "numpy": "2.5.4",
+      "rows": [
+        {
+          "id": "product-carrot-3-0",
+          "warm_ms": [
+            3.8102000253275037,
+            3.4823999740183353,
+            3.4394999966025352
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7233110666275024
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4613398611545563
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.34531277418136597
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3260520100593567
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.31798097491264343
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.30736875534057617
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.189994677901268
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-3-1",
+          "warm_ms": [
+            4.059199942275882,
+            3.946000011637807,
+            3.8765999488532543
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7919487953186035
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7213723659515381
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6765597462654114
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5485894680023193
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4012642502784729
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3249797224998474
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.25004109740257263
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-3-2",
+          "warm_ms": [
+            4.1016999166458845,
+            3.995200037024915,
+            3.9039000403136015
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7668770551681519
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7290494441986084
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6959559917449951
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.545034646987915
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.39928796887397766
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.34697628021240234
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2793336808681488
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-0",
+          "warm_ms": [
+            3.928599995560944,
+            3.55150003451854,
+            3.5057999193668365
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.7111656069755554
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.400178998708725
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.39111512899398804
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.25212758779525757
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.24049875140190125
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.21006351709365845
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.12962019443511963
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-1",
+          "warm_ms": [
+            3.8635999662801623,
+            4.44479996804148,
+            3.6910000490024686
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.736200749874115
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5970023274421692
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5294750928878784
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5225822329521179
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.487117737531662
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.406882643699646
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.29783380031585693
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-2",
+          "warm_ms": [
+            3.5459999926388264,
+            4.562900052405894,
+            4.9094000132754445
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4544852077960968
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.27604997158050537
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2518690824508667
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.21968452632427216
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.21921893954277039
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.18656954169273376
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.1334398090839386
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-0",
+          "warm_ms": [
+            3.694299957714975,
+            3.6680999910458922,
+            3.43879999127239
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.9440105557441711
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.5900349617004395
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.46740075945854187
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.372690349817276
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.33716821670532227
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.31292152404785156
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.29157575964927673
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-1",
+          "warm_ms": [
+            3.6533999955281615,
+            4.094200092367828,
+            3.742600092664361
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.8852270841598511
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5046866536140442
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.438851535320282
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.39064639806747437
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.38432902097702026
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.36029961705207825
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.315197229385376
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-2",
+          "warm_ms": [
+            3.4232999896630645,
+            3.9875999791547656,
+            3.497400088235736
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.81595778465271
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.48041975498199463
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.4125308394432068
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.4055173993110657
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.372440367937088
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.35204964876174927
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.26411768794059753
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-0",
+          "warm_ms": [
+            3.7553999572992325,
+            4.567399970255792,
+            3.9089000783860683
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7629201412200928
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5797560214996338
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.49135321378707886
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.39599838852882385
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.21599070727825165
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.1712266504764557
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.13752490282058716
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-1",
+          "warm_ms": [
+            3.6954000825062394,
+            4.229799960739911,
+            4.102300037629902
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.9391610622406006
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.8991976380348206
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8584227561950684
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.726264238357544
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3800358474254608
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.34253913164138794
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2731485962867737
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-2",
+          "warm_ms": [
+            3.7095999578014016,
+            4.351800074800849,
+            3.6956999683752656
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.822798490524292
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7599295377731323
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6922080516815186
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4865293502807617
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2645208239555359
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2630605101585388
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2598635256290436
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-0",
+          "warm_ms": [
+            3.4480999456718564,
+            3.59440001193434,
+            3.486700006760657
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8497003316879272
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8079578280448914
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5547345280647278
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4700740575790405
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.24540677666664124
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.23464247584342957
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2335825264453888
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-1",
+          "warm_ms": [
+            3.5200000274926424,
+            3.5113999620079994,
+            3.9281999925151467
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8575150966644287
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7330747842788696
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6717268824577332
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6616857051849365
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4619308114051819
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.35929709672927856
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.28863584995269775
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-2",
+          "warm_ms": [
+            3.9314000168815255,
+            3.873499925248325,
+            4.081499995663762
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8611426949501038
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8277429342269897
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5867050886154175
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5454293489456177
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.324360191822052
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3234621286392212
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.30849432945251465
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-0",
+          "warm_ms": [
+            3.501300001516938,
+            3.4414000110700727,
+            3.6420999094843864
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8620762825012207
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7946510314941406
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6005901098251343
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.48755839467048645
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2963981628417969
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.27917635440826416
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.27905791997909546
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-1",
+          "warm_ms": [
+            3.6195999709889293,
+            3.552599926479161,
+            3.5186000168323517
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7165592908859253
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6892820596694946
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5421767830848694
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.45918071269989014
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3761996626853943
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.32458409667015076
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2928856611251831
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-2",
+          "warm_ms": [
+            4.248899989761412,
+            4.139999975450337,
+            4.362100036814809
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7557410001754761
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6986483335494995
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6229227781295776
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.43188902735710144
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.272411048412323
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.22207821905612946
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.22191476821899414
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-0",
+          "warm_ms": [
+            3.5855999449267983,
+            3.549800021573901,
+            3.7678000517189503
+          ],
+          "ranked": [
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.932495653629303
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.5522487163543701
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.352292001247406
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.34078651666641235
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.2724078297615051
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.25479555130004883
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.21008513867855072
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-1",
+          "warm_ms": [
+            3.6973999813199043,
+            3.7731999764218926,
+            3.850300097838044
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7656372785568237
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7037485837936401
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.6254217624664307
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5510014891624451
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.521232008934021
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.431230366230011
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.308333158493042
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-2",
+          "warm_ms": [
+            3.8909000577405095,
+            3.975300001911819,
+            4.0883999317884445
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6813399791717529
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6483255624771118
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.5082648992538452
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4890531003475189
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.45797064900398254
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.41623204946517944
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4045979678630829
+            }
+          ]
+        },
+        {
+          "id": "ambiguous-prefix",
+          "warm_ms": [
+            3.6441999254748225,
+            3.5221000434830785,
+            3.6589999217540026
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5994926691055298
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.592031717300415
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5574255585670471
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.43518495559692383
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2651780843734741
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.20061984658241272
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.19791123270988464
+            }
+          ]
+        },
+        {
+          "id": "unknown-0",
+          "warm_ms": [
+            3.5330000100657344,
+            3.514599986374378,
+            3.6057999823242426
+          ],
+          "ranked": [
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.46023035049438477
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4376473128795624
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.42889928817749023
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.4258812367916107
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3745417892932892
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.3441096842288971
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.33013445138931274
+            }
+          ]
+        },
+        {
+          "id": "unknown-1",
+          "warm_ms": [
+            3.011199994944036,
+            2.9866000404581428,
+            2.9619999695569277
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.4091712534427643
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3942234218120575
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.36162155866622925
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.2969065308570862
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.2555670738220215
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.19754864275455475
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.05167362093925476
+            }
+          ]
+        },
+        {
+          "id": "unknown-2",
+          "warm_ms": [
+            4.229400074109435,
+            3.7228999426588416,
+            3.6584000336006284
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6797751188278198
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6278665065765381
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.4927351474761963
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.465652734041214
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3544688820838928
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.34501153230667114
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.32654809951782227
+            }
+          ]
+        }
+      ],
+      "test_metrics": {
+        "known_count": 12,
+        "product_top1": 0.3333333333333333,
+        "product_top3": 1.0,
+        "food_top1": 0.3333333333333333
+      },
+      "cosine_to_fp32_mean": 1.0000000001189842,
+      "cosine_to_fp32_min": 0.9999999893616071,
+      "top1_changes_vs_fp32_all_cases": 0,
+      "warm_p50_ms": 3.6973999813199043,
+      "warm_p95_ms": 4.38691001618281
+    },
+    {
+      "variant": "upstream_int8",
+      "model_sha256": "d6ea442ff6a891daefed7c83b2f596fc5dc66bf697e4d006236f64f34bbcf4c8",
+      "bytes": 118054609,
+      "load_ms": 211.95499994792044,
+      "index_ms": 18.696899991482496,
+      "baseline_rss": 57061376,
+      "rss_after": 453574656,
+      "process_lifetime_peak_rss": 467415040,
+      "ort": "1.30.0",
+      "numpy": "2.5.4",
+      "rows": [
+        {
+          "id": "product-carrot-3-0",
+          "warm_ms": [
+            2.285099937580526,
+            2.211300074122846,
+            2.2071999264881015
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6818884611129761
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4573266804218292
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.37688684463500977
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3492003381252289
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.33722469210624695
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.3110136091709137
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.26608365774154663
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-3-1",
+          "warm_ms": [
+            2.610399969853461,
+            2.7184999780729413,
+            2.122499980032444
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.8202457427978516
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6793514490127563
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6382864713668823
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.4820687472820282
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4050280451774597
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.34337925910949707
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.30457985401153564
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-3-2",
+          "warm_ms": [
+            2.0191000076010823,
+            2.1997999865561724,
+            2.2007999941706657
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.8018023371696472
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7421748042106628
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7106868028640747
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5161163806915283
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.408211350440979
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3806404173374176
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3481670618057251
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-0",
+          "warm_ms": [
+            1.8385000294074416,
+            2.199699985794723,
+            1.873500063084066
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.6657534837722778
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3839040994644165
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.34036731719970703
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.2909267544746399
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.2833781838417053
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.2482689619064331
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.1343703269958496
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-1",
+          "warm_ms": [
+            1.9538000924512744,
+            1.9399001030251384,
+            1.9874999998137355
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.7587323188781738
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6580697894096375
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5532009601593018
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5427326560020447
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5359238386154175
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.41999316215515137
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.327634334564209
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-2",
+          "warm_ms": [
+            1.7540999688208103,
+            2.2815000265836716,
+            2.0327999955043197
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4702841341495514
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.38452428579330444
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.3398415446281433
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3228341341018677
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.28010308742523193
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.24734526872634888
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.1627877652645111
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-0",
+          "warm_ms": [
+            1.727399998344481,
+            1.7184000462293625,
+            1.7111999914050102
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.837775468826294
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.564736545085907
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5303871631622314
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.47712796926498413
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.4074341952800751
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.4007978141307831
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.29857829213142395
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-1",
+          "warm_ms": [
+            1.900100032798946,
+            2.194100059568882,
+            2.05360003747046
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.8526287078857422
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5697789192199707
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.44847336411476135
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.4433603584766388
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.4419858455657959
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.3745647668838501
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3634182810783386
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-2",
+          "warm_ms": [
+            1.7310000257566571,
+            1.7229999648407102,
+            1.7208000645041466
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.7711913585662842
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5659130811691284
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.49651429057121277
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.4801461696624756
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.4211823046207428
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3978525400161743
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3361439108848572
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-0",
+          "warm_ms": [
+            2.2070000413805246,
+            2.4298999924212694,
+            2.349299960769713
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7467418909072876
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.4828566312789917
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.4335998296737671
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.3621559739112854
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.21049408614635468
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.20460578799247742
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.1966799944639206
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-1",
+          "warm_ms": [
+            1.915500033646822,
+            1.9008000381290913,
+            1.8922999734058976
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.8657150268554688
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8538193106651306
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.8295068740844727
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8200398087501526
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4512265920639038
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.35644781589508057
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.323779821395874
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-2",
+          "warm_ms": [
+            2.649500034749508,
+            2.185799996368587,
+            2.0647000055760145
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8125016689300537
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7631397843360901
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7077206373214722
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6164153218269348
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.32330480217933655
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.30525320768356323
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2970044016838074
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-0",
+          "warm_ms": [
+            1.8098000437021255,
+            1.8260999349877238,
+            1.7503000563010573
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.9155349731445312
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8833707571029663
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6399063467979431
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5365395545959473
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2975047528743744
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2660728096961975
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2634049654006958
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-1",
+          "warm_ms": [
+            2.0656000124290586,
+            2.02969997189939,
+            2.0883999532088637
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7937948107719421
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7006853818893433
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6847578287124634
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6410477161407471
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.49434590339660645
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.365004301071167
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.28154149651527405
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-2",
+          "warm_ms": [
+            2.264800015836954,
+            2.1729000145569444,
+            2.0218000281602144
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.9224217534065247
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.893134593963623
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6964590549468994
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5566316843032837
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.38749557733535767
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3698611259460449
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3547266125679016
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-0",
+          "warm_ms": [
+            1.7901998944580555,
+            1.7453000182285905,
+            1.7324000364169478
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.9309297204017639
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8838298320770264
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.662731409072876
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5547454953193665
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.36110204458236694
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.32635557651519775
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.31897085905075073
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-1",
+          "warm_ms": [
+            1.867600018158555,
+            1.8062000162899494,
+            1.7948999302461743
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6731624603271484
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6225327849388123
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.39617589116096497
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3579207956790924
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3265855014324188
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.31593674421310425
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2955908477306366
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-2",
+          "warm_ms": [
+            2.543400041759014,
+            2.3228999925777316,
+            2.2955999011173844
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7894291877746582
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.615381121635437
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5669724941253662
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4737018346786499
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.27230510115623474
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2689873278141022
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2576548457145691
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-0",
+          "warm_ms": [
+            1.9369000801816583,
+            1.9129000138491392,
+            1.909899991005659
+          ],
+          "ranked": [
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.9114859700202942
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4853383004665375
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.34844130277633667
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.27730172872543335
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.2578960955142975
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.2484731376171112
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.18545693159103394
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-1",
+          "warm_ms": [
+            2.131100045517087,
+            2.0689000375568867,
+            2.0352998981252313
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7997786402702332
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7569711208343506
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6642893552780151
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.6590619087219238
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.4769675135612488
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4383918046951294
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3362579345703125
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-2",
+          "warm_ms": [
+            1.9645000575110316,
+            1.930900034494698,
+            1.9383999751880765
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7777501940727234
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7556226849555969
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6366572380065918
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.4992491900920868
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.46994131803512573
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4479392170906067
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.44136351346969604
+            }
+          ]
+        },
+        {
+          "id": "ambiguous-prefix",
+          "warm_ms": [
+            2.849100041203201,
+            2.26540002040565,
+            2.0222999155521393
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6382312774658203
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.600136399269104
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.566107988357544
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5303612947463989
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.29864487051963806
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.29155877232551575
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2819285988807678
+            }
+          ]
+        },
+        {
+          "id": "unknown-0",
+          "warm_ms": [
+            2.039400045759976,
+            1.9659999525174499,
+            2.4037000257521868
+          ],
+          "ranked": [
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.48178982734680176
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.45391762256622314
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4451621174812317
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.4098248779773712
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.37257009744644165
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.36954444646835327
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.3147936165332794
+            }
+          ]
+        },
+        {
+          "id": "unknown-1",
+          "warm_ms": [
+            1.659400062635541,
+            1.5997999580577016,
+            1.598999951966107
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.43976396322250366
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.37765049934387207
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.3607777953147888
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.32296547293663025
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.290698379278183
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.23485645651817322
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.05545517057180405
+            }
+          ]
+        },
+        {
+          "id": "unknown-2",
+          "warm_ms": [
+            2.330100047402084,
+            2.256799954921007,
+            2.410000073723495
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7189978957176208
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6740160584449768
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6172374486923218
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.498690128326416
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4195275902748108
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3883301317691803
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.36663782596588135
+            }
+          ]
+        }
+      ],
+      "test_metrics": {
+        "known_count": 12,
+        "product_top1": 0.4166666666666667,
+        "product_top3": 0.8333333333333334,
+        "food_top1": 0.4166666666666667
+      },
+      "cosine_to_fp32_mean": 0.9823686848956515,
+      "cosine_to_fp32_min": 0.9164432665930891,
+      "top1_changes_vs_fp32_all_cases": 3,
+      "warm_p50_ms": 2.0222999155521393,
+      "warm_p95_ms": 2.563500020187348
+    },
+    {
+      "variant": "local_int8",
+      "model_sha256": "a621ad502961ec86088e4bf9d12e73bd29a7d12afbbf83f62aa0477254f61b29",
+      "bytes": 118308811,
+      "load_ms": 250.4634999204427,
+      "index_ms": 21.76169992890209,
+      "baseline_rss": 56778752,
+      "rss_after": 453808128,
+      "process_lifetime_peak_rss": 467681280,
+      "ort": "1.30.0",
+      "numpy": "2.5.4",
+      "rows": [
+        {
+          "id": "product-carrot-3-0",
+          "warm_ms": [
+            1.8167999805882573,
+            1.7865999834612012,
+            2.162399934604764
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6951280832290649
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.5087419748306274
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.39751094579696655
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.3817944824695587
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3415341079235077
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3269336223602295
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.24639293551445007
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-3-1",
+          "warm_ms": [
+            2.0707000512629747,
+            2.5438000448048115,
+            2.6822000509127975
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.8135390877723694
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7252123355865479
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6619220972061157
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6412065029144287
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.44819480180740356
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3154354691505432
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3100544512271881
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-3-2",
+          "warm_ms": [
+            2.600700012408197,
+            2.799200010485947,
+            2.6522999396547675
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7418653964996338
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7276175618171692
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6769227385520935
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.624721884727478
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.42614609003067017
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.34786325693130493
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3296475410461426
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-0",
+          "warm_ms": [
+            1.9441000185906887,
+            1.886799931526184,
+            1.8833000212907791
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.7256699800491333
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3758971095085144
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.361149400472641
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.2237733155488968
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.1993010938167572
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.17975330352783203
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.16715651750564575
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-1",
+          "warm_ms": [
+            2.1768000442534685,
+            2.837600070051849,
+            2.151499968022108
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.7595487833023071
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.653452455997467
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5681356191635132
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5406448841094971
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5086796283721924
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4593096673488617
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3114185631275177
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-2",
+          "warm_ms": [
+            1.818199991248548,
+            1.7794000450521708,
+            1.8116999417543411
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4975339472293854
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.3000723719596863
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.2549237310886383
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.24076277017593384
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.21866902709007263
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.21686509251594543
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.1929885447025299
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-0",
+          "warm_ms": [
+            1.9980999641120434,
+            2.1828999742865562,
+            1.8578000599518418
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.8994104862213135
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.6010951995849609
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.49429386854171753
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.422115683555603
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.3737782835960388
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.34757018089294434
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.33307337760925293
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-1",
+          "warm_ms": [
+            1.9613000331446528,
+            1.960699912160635,
+            1.956299995072186
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.8248450756072998
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5263319611549377
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.43649300932884216
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.4054149091243744
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.3875909745693207
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3590070903301239
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.33814674615859985
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-2",
+          "warm_ms": [
+            1.8316999776288867,
+            2.015399979427457,
+            1.8649999983608723
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.7514297962188721
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.49106365442276
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.41801297664642334
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.37501227855682373
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.37182074785232544
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3469378352165222
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.292683869600296
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-0",
+          "warm_ms": [
+            2.919199992902577,
+            2.890500007197261,
+            2.872499986551702
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7208445072174072
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5649983882904053
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.4434046745300293
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.33484864234924316
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.19929641485214233
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.19671541452407837
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.11899712681770325
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-1",
+          "warm_ms": [
+            2.6615000097081065,
+            2.0110999466851354,
+            1.9818999571725726
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.9368299245834351
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.9230336546897888
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8723140954971313
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7572762966156006
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4325971007347107
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.37803763151168823
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.25405463576316833
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-2",
+          "warm_ms": [
+            1.941199996508658,
+            1.8661998910829425,
+            1.8621000926941633
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8332371711730957
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7874307036399841
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7557851672172546
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.508073627948761
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.315365195274353
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.31457415223121643
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.22953471541404724
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-0",
+          "warm_ms": [
+            2.082600025460124,
+            2.06990004517138,
+            2.010800060816109
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8687489032745361
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8569972515106201
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7038168907165527
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5076268315315247
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2968796491622925
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.27251219749450684
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.21232500672340393
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-1",
+          "warm_ms": [
+            2.005400019697845,
+            1.9769000355154276,
+            1.9516999600455165
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8324241042137146
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7282452583312988
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7278743982315063
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6900157928466797
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.5066162347793579
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.42443639039993286
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2814384698867798
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-2",
+          "warm_ms": [
+            2.4498000275343657,
+            2.320399973541498,
+            2.310300013050437
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8979738354682922
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8793625831604004
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7277995347976685
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5666807889938354
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3477356433868408
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.34646666049957275
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2854084372520447
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-0",
+          "warm_ms": [
+            1.9217999652028084,
+            1.9019999308511615,
+            1.9523000810295343
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.882018506526947
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8330602645874023
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7260662317276001
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5311029553413391
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3636751174926758
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.33072513341903687
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.27830660343170166
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-1",
+          "warm_ms": [
+            2.2912001004442573,
+            2.0662000169977546,
+            2.0164999878033996
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7114647626876831
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6761521697044373
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5323729515075684
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.44883430004119873
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.42876309156417847
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3362855911254883
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.32844799757003784
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-2",
+          "warm_ms": [
+            2.2905999794602394,
+            2.266200026497245,
+            2.5596999330446124
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7795990705490112
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7209596037864685
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5998584032058716
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.42969030141830444
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2828611135482788
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.26054638624191284
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.21742060780525208
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-0",
+          "warm_ms": [
+            2.0419000647962093,
+            2.0169999916106462,
+            2.0493000047281384
+          ],
+          "ranked": [
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.9272314310073853
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.5568993091583252
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.3326731324195862
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3259676992893219
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.26621270179748535
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.23531940579414368
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.22915178537368774
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-1",
+          "warm_ms": [
+            2.112099900841713,
+            2.059200080111623,
+            2.31409992557019
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8406549096107483
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7990870475769043
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6810412406921387
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5636225938796997
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.4685404896736145
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3943515717983246
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.34233492612838745
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-2",
+          "warm_ms": [
+            1.9432000117376447,
+            1.9379999721422791,
+            1.931800041347742
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7476588487625122
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7078701257705688
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6109775304794312
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5132286548614502
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.44634348154067993
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4355694651603699
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4272777736186981
+            }
+          ]
+        },
+        {
+          "id": "ambiguous-prefix",
+          "warm_ms": [
+            1.8599999602884054,
+            1.8482001032680273,
+            2.21950002014637
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6356558203697205
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6344112157821655
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5544559955596924
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4326626658439636
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2761719822883606
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.25687357783317566
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.22053757309913635
+            }
+          ]
+        },
+        {
+          "id": "unknown-0",
+          "warm_ms": [
+            1.9205999560654163,
+            1.8992000259459019,
+            1.8968000076711178
+          ],
+          "ranked": [
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.465226948261261
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.45558300614356995
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.40997132658958435
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.3972941040992737
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.3618876338005066
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.33571910858154297
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.333334743976593
+            }
+          ]
+        },
+        {
+          "id": "unknown-1",
+          "warm_ms": [
+            1.6709999181330204,
+            1.609700033441186,
+            1.8210000125691295
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.41628536581993103
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4137694835662842
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.38992565870285034
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.36328229308128357
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.2861272096633911
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.24694418907165527
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.0615699477493763
+            }
+          ]
+        },
+        {
+          "id": "unknown-2",
+          "warm_ms": [
+            2.5186999700963497,
+            2.4843000574037433,
+            2.474399982020259
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6555587649345398
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5973168611526489
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5491740703582764
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.46730512380599976
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3991343379020691
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3885551691055298
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3307417035102844
+            }
+          ]
+        }
+      ],
+      "test_metrics": {
+        "known_count": 12,
+        "product_top1": 0.4166666666666667,
+        "product_top3": 0.8333333333333334,
+        "food_top1": 0.4166666666666667
+      },
+      "cosine_to_fp32_mean": 0.9884137602461986,
+      "cosine_to_fp32_min": 0.9664627371627289,
+      "top1_changes_vs_fp32_all_cases": 2,
+      "warm_p50_ms": 2.0110999466851354,
+      "warm_p95_ms": 2.8107200283557177
+    },
+    {
+      "variant": "matmul_int8",
+      "model_sha256": "bbe48ef41cb21dbe40f4f8f506176312577822b13c5eeb6337f33ac3a91c8833",
+      "bytes": 406942288,
+      "load_ms": 536.4918999839574,
+      "index_ms": 19.274000078439713,
+      "baseline_rss": 56975360,
+      "rss_after": 742576128,
+      "process_lifetime_peak_rss": 859828224,
+      "ort": "1.30.0",
+      "numpy": "2.5.4",
+      "rows": [
+        {
+          "id": "product-carrot-3-0",
+          "warm_ms": [
+            1.8133999546989799,
+            1.8008999759331346,
+            2.918599988333881
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6979349851608276
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.45512956380844116
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.33642858266830444
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.3208036422729492
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3177829682826996
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3060300350189209
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.1798366904258728
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-3-1",
+          "warm_ms": [
+            2.0538000389933586,
+            2.127900021150708,
+            2.0801000064238906
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.8093216419219971
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6498249769210815
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.598623514175415
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5627906322479248
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.43768763542175293
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.34993964433670044
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.23681628704071045
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-3-2",
+          "warm_ms": [
+            2.0623999880626798,
+            2.3898000363260508,
+            2.2225999273359776
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7700951099395752
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7513367533683777
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7292250394821167
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.621645450592041
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4071859121322632
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3801788091659546
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2815438508987427
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-0",
+          "warm_ms": [
+            1.8687000265344977,
+            1.935599953867495,
+            1.9340000580996275
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.7399736046791077
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.41531452536582947
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3925158679485321
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.2220836877822876
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.22108522057533264
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.18851356208324432
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.15743784606456757
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-1",
+          "warm_ms": [
+            1.9598000217229128,
+            2.229499979875982,
+            2.0240000449121
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.7437678575515747
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6229326725006104
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5743521451950073
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5210553407669067
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.49913132190704346
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.46392542123794556
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3477954864501953
+            }
+          ]
+        },
+        {
+          "id": "product-tofu-1-2",
+          "warm_ms": [
+            1.7969999462366104,
+            1.8262999365106225,
+            1.9133000168949366
+          ],
+          "ranked": [
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.49241846799850464
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.3250753879547119
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2714535892009735
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.24765139818191528
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.24192942678928375
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.2313995063304901
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.22297438979148865
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-0",
+          "warm_ms": [
+            1.7946999287232757,
+            2.56459997035563,
+            1.866700011305511
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.9129171371459961
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.5842662453651428
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4801405668258667
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3594081401824951
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.32980096340179443
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.31116893887519836
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.30497509241104126
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-1",
+          "warm_ms": [
+            1.9633000483736396,
+            1.9811999518424273,
+            2.114200033247471
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.8747740387916565
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5297479629516602
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.45305490493774414
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.4023427963256836
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.3800356388092041
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3622954487800598
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3353424072265625
+            }
+          ]
+        },
+        {
+          "id": "product-milk-1-2",
+          "warm_ms": [
+            1.8001000862568617,
+            2.084400039166212,
+            1.8489999929443002
+          ],
+          "ranked": [
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.8009323477745056
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4970157742500305
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.4346229135990143
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.3747715353965759
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.35946929454803467
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.34449541568756104
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.26617753505706787
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-0",
+          "warm_ms": [
+            2.2760999854654074,
+            2.2190000163391232,
+            2.3302999325096607
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7329198718070984
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.5280457139015198
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5006157755851746
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.3823469281196594
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.18949775397777557
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.17737746238708496
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.13565240800380707
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-1",
+          "warm_ms": [
+            2.6227999478578568,
+            2.0059000235050917,
+            1.9496000604704022
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.9269620180130005
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.9050722718238831
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.862506091594696
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.7655127048492432
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3777347207069397
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3661558926105499
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.29811176657676697
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-1-2",
+          "warm_ms": [
+            1.8564000492915511,
+            1.854300033301115,
+            1.9821000751107931
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.840024471282959
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.793632984161377
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7523936033248901
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5271139144897461
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2896917760372162
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.27256545424461365
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.25047767162323
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-0",
+          "warm_ms": [
+            2.009500050917268,
+            1.845399965532124,
+            1.783899962902069
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8948999047279358
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8464295268058777
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6695398688316345
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5146126747131348
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.26988422870635986
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2674897611141205
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.23020188510417938
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-1",
+          "warm_ms": [
+            1.8602999625727534,
+            1.8573999404907227,
+            1.8564000492915511
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8114847540855408
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7138606309890747
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6832723617553711
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6778194904327393
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4175761938095093
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3899775743484497
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2894076704978943
+            }
+          ]
+        },
+        {
+          "id": "product-carrot-2-2",
+          "warm_ms": [
+            2.2502000210806727,
+            2.0756999729201198,
+            2.069799927994609
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8901985883712769
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8593336343765259
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6767190098762512
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5644501447677612
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3344566524028778
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.33045846223831177
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.29197829961776733
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-0",
+          "warm_ms": [
+            1.81639997754246,
+            1.8100000452250242,
+            1.7871999880298972
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.8909156322479248
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.8286750912666321
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.699783444404602
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5278832912445068
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3216947317123413
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.31266117095947266
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.29383978247642517
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-1",
+          "warm_ms": [
+            1.9039000617340207,
+            2.0339000038802624,
+            1.8691999139264226
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.6818909645080566
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6815853118896484
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.4566841423511505
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.4168393909931183
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3799790143966675
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3097851276397705
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2794812321662903
+            }
+          ]
+        },
+        {
+          "id": "product-potato-1-2",
+          "warm_ms": [
+            2.1516000851988792,
+            2.158199902623892,
+            2.1560000022873282
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.7637224793434143
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6390671730041504
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6069502830505371
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.45581281185150146
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.27452266216278076
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.24267908930778503
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.23566564917564392
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-0",
+          "warm_ms": [
+            2.0727000664919615,
+            2.088200068101287,
+            1.8945999909192324
+          ],
+          "ranked": [
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.9229449033737183
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.5234345197677612
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.34168803691864014
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.323326051235199
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.2635538578033447
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.2540745735168457
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.2271064668893814
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-1",
+          "warm_ms": [
+            1.9455000292509794,
+            1.9226999720558524,
+            1.9236999796703458
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7814626693725586
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.7186697125434875
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.6580930948257446
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5978400707244873
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5780043601989746
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.4621433913707733
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3038870096206665
+            }
+          ]
+        },
+        {
+          "id": "product-cheese-1-2",
+          "warm_ms": [
+            2.0809000125154853,
+            2.1617000456899405,
+            1.9697000971063972
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.7153938412666321
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.6733684539794922
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.547996461391449
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.5363439917564392
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.5098219513893127
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.44013458490371704
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.38536933064460754
+            }
+          ]
+        },
+        {
+          "id": "ambiguous-prefix",
+          "warm_ms": [
+            1.8584000645205379,
+            1.8455999670550227,
+            1.8536000279709697
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.6284381151199341
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.597653865814209
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5807902812957764
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4858021140098572
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.28911343216896057
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.2653416395187378
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.2109106481075287
+            }
+          ]
+        },
+        {
+          "id": "unknown-0",
+          "warm_ms": [
+            1.8886999459937215,
+            2.661900012753904,
+            2.4021000135689974
+          ],
+          "ranked": [
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.49013781547546387
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.45248711109161377
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4222857356071472
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.387653648853302
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.36590099334716797
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.3430878818035126
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.3397504985332489
+            }
+          ]
+        },
+        {
+          "id": "unknown-1",
+          "warm_ms": [
+            2.021899912506342,
+            1.9890000112354755,
+            1.9302000291645527
+          ],
+          "ranked": [
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.4404686689376831
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.4070008397102356
+            },
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.40369924902915955
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.3856395184993744
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.3116341829299927
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.2583673596382141
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.11271932721138
+            }
+          ]
+        },
+        {
+          "id": "unknown-2",
+          "warm_ms": [
+            2.617199905216694,
+            2.5033000856637955,
+            2.4706999538466334
+          ],
+          "ranked": [
+            {
+              "productId": "product-potato-1",
+              "foodId": "food-potato",
+              "score": 0.6431607007980347
+            },
+            {
+              "productId": "product-carrot-2",
+              "foodId": "food-carrot",
+              "score": 0.5899470448493958
+            },
+            {
+              "productId": "product-carrot-1",
+              "foodId": "food-carrot",
+              "score": 0.5240693092346191
+            },
+            {
+              "productId": "product-carrot-3",
+              "foodId": "food-carrot",
+              "score": 0.4785934090614319
+            },
+            {
+              "productId": "product-cheese-1",
+              "foodId": "food-cheese",
+              "score": 0.3914610743522644
+            },
+            {
+              "productId": "product-milk-1",
+              "foodId": "food-milk",
+              "score": 0.3791331648826599
+            },
+            {
+              "productId": "product-tofu-1",
+              "foodId": "food-tofu",
+              "score": 0.34659168124198914
+            }
+          ]
+        }
+      ],
+      "test_metrics": {
+        "known_count": 12,
+        "product_top1": 0.4166666666666667,
+        "product_top3": 0.9166666666666666,
+        "food_top1": 0.4166666666666667
+      },
+      "cosine_to_fp32_mean": 0.991072739899213,
+      "cosine_to_fp32_min": 0.9822065877722084,
+      "top1_changes_vs_fp32_all_cases": 4,
+      "warm_p50_ms": 1.9811999518424273,
+      "warm_p95_ms": 2.580379950813949
+    }
+  ],
+  "caveats": [
+    "Synthetic data only; same test set as stage4, not new independent evidence.",
+    "Separate fresh CPU process per model; OS file cache is not controlled.",
+    "Peak RSS is process lifetime including Python/ORT/tokenizer, not model-only RAM.",
+    "Upstream ONNX export reused; native PyTorch to ONNX export parity not measured.",
+    "No actual mobile measurements."
+  ]
+}

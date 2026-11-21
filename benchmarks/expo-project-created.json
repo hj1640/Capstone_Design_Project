@@ -1,0 +1,17 @@
+{
+  "decision": "D-052",
+  "observedAtUtc": "2026-11-12T12:29:26.812485+00:00",
+  "cliCreateStatus": "created",
+  "owner": "juuuuuuun",
+  "projectId": "6899818e-50b4-41b0-8fae-e4f27ac65566",
+  "slug": "fridge-app-personal",
+  "dashboardUrl": "https://expo.dev/accounts/juuuuuuun/projects/fridge-app-personal",
+  "projectInfoVerified": true,
+  "androidPackage": "com.capstoneteam7.fridge.personal6899818e",
+  "modelHashesVerified": true,
+  "requestedPlatform": "android",
+  "buildProfile": "preview-local",
+  "apkBuilt": false,
+  "serverDeployed": false,
+  "deviceTested": false
+}
