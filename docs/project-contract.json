@@ -159,6 +159,17 @@
     "projectContinuationChoice": "new_separate_expo_project",
     "projectContinuationDecision": "D-052"
   },
+  "foodDatabaseDemo": {
+    "decision": "D-053",
+    "status": "user_approved_approximate_demo_values",
+    "totalItems": 120,
+    "approximateItemsFilled": 104,
+    "existingItemsPreserved": 16,
+    "foodSourceTableRequired": false,
+    "verifiedShelfLife": false,
+    "feedsPersonalStatistics": false,
+    "automaticallyAppliedAtRegistration": false
+  },
   "newExpoProject": {
     "decision": "D-052",
     "authorized": true,

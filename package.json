@@ -42,6 +42,7 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
+    "test:food-db": "node scripts/food-db-check.mjs",
     "server:dev": "python server/dev_api.py",
     "test:stage6:server": "python -m unittest discover -s server -p test_dev_api.py -v",
     "test:stage6:client": "python server/run_client_check.py",
