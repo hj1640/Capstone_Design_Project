@@ -76,6 +76,14 @@ export default function ItemDetailScreen() {
       </Card>
 
       <Card style={{ marginTop: spacing.lg }}>
+        <Text style={styles.sectionTitle}>AI 카메라 측정 (시험 기능)</Text>
+        <Pressable accessibilityRole="button" style={[styles.qtyButton, styles.qtyButtonActive]}
+          onPress={() => router.push({ pathname: '/hw-capture', params: { id: item.id } })}>
+          <Text style={[styles.qtyButtonText, styles.qtyButtonTextActive]}>잔여량 측정 시작</Text>
+        </Pressable>
+      </Card>
+
+      <Card style={{ marginTop: spacing.lg }}>
         <Text style={styles.sectionTitle}>영양정보 (기준량 당)</Text>
         {item.nutritionVerified===false ? <Text>확인된 영양정보가 없습니다.</Text> : <View style={styles.nutritionRow}>
           <NutritionItem label="칼로리" value={`${item.nutrition.calories}kcal`} />

@@ -21,6 +21,7 @@ export default function RootLayout() {
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="receipt-result" options={{ title: '인식 결과 확인' }} />
           <Stack.Screen name="item/[id]" options={{ title: '품목 상세' }} />
+          <Stack.Screen name="hw-capture" options={{ title: '카메라 측정' }} />
           <Stack.Screen name="feedback-sync" options={{ title: '내 구매 기록 평균' }} />
         </Stack>
       </FridgeProvider>
